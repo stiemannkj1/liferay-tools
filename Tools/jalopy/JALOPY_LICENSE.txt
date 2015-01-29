@@ -1,0 +1,136 @@
+               TRIEMAX Software Binary Software License Agreement
+
+                                    for the
+
+                          Jalopy Source Code Formatter
+
+
+
+TRIEMAX SOFTWARE ("TRIEMAX") IS WILLING TO LICENSE THE SOFTWARE IDENTIFIED
+BELOW TO YOU ONLY UPON THE CONDITION THAT YOU ACCEPT ALL OF THE TERMS CONTAINED
+IN THIS BINARY SOFTWARE LICENSE AGREEMENT AND SUPPLEMENTAL LICENSE TERMS
+(COLLECTIVELY "AGREEMENT"). PLEASE READ THE AGREEMENT CAREFULLY. BY DOWNLOADING,
+INSTALLING, COPYING, SAVING OR OTHERWISE USING THIS SOFTWARE, YOU (AS DEFINED
+BELOW) BECOME A PARTY TO THIS AGREEMENT AND YOU ARE BOUND BY ALL THE TERMS AND
+CONDITIONS OF THIS AGREEMENT. IF YOU DO NOT AGREE TO ANY OF THE TERMS OR ANY OF
+THE CONDITIONS, OR ANY OF THE TERMS OR CONDITIONS ISN'T VALID IN YOUR COUNTRY,
+YOU MUST NOT INSTALL OR OTHERWISE USE THE SOFTWARE. IF YOU ALREADY DOWNLOADED OR
+INSTALLED SOFTWARE, YOU MUST REMOVE THE SOFTWARE FROM YOUR SYSTEM AND DESTROY
+ALL COPIES.
+
+
+  1. DEFINITIONS.  "SOFTWARE" means the binary code of Jalopy Source Code
+     Formatter with all its documentation and otherwise bundled files, in whole
+     or in parts.
+     "YOU" (or "YOUR") means an individual or a legal entity exercising rights
+     under, and complying with all of the terms of, this Agreement. For legal
+     entities, "YOU" includes any entity which controls, is controlled by, or is
+     under common control with YOU. For purposes of this definition, "control"
+     means (a) the power, direct or indirect, to cause the direction or
+     management of such entity, whether by contract or otherwise, or (b)
+     ownership of more than fifty percent (50%) of the outstanding shares or
+     beneficial ownership of such entity.
+
+  2. LICENSE GRANT.  TRIEMAX grants YOU a non-exclusive and non-transferable
+     right to use SOFTWARE for lawful purposes under certain obligations and
+     limited rights as set forth in this Agreement. YOU may:
+
+       (i)   save and use the number of copies of the SOFTWARE for which the
+             corresponding fee has been paid.
+       (ii)  make one copy of the SOFTWARE for archival purposes;
+
+  3. RESTRICTIONS.  SOFTWARE is owned and copyrighted by TRIEMAX. It is
+     licensed, not sold. Title to SOFTWARE and all associated intellectual
+     property rights are retained by TRIEMAX. YOU must not:
+
+       (i)   reverse engineer, decompile, disassemble or otherwise make any
+             attempt to discover the source code of SOFTWARE;
+       (ii)  modify or create derivative work based upon SOFTWARE in whole or in
+             parts;
+       (iii) distribute copies of the SOFTWARE in whole or in parts;
+       (iv)  remove any proprietary notices, labels or copyrights from the
+             SOFTWARE;
+       (v)   resell, redistribute, lease, rent, transfer, sublicense or
+             otherwise transfer rights of the SOFTWARE without the prior written
+             consent of TRIEMAX.
+
+  4. LIMITED WARRANTY.  THE SOFTWARE IS PROVIDED "AS IS" AND WITHOUT WARRANTY OF
+     ANY KIND. TRIEMAX HEREBY EXCLUDES AND DISCLAIMS ALL IMPLIED OR STATUTORY
+     WARRANTIES, INCLUDING ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+     PARTICULAR PURPOSE, QUALITY, NON-INFRINGEMENT, TITLE, RESULTS, EFFORTS OR
+     QUIET ENJOYMENT. THERE IS NO WARRANTY THAT THE PRODUCT WILL BE ERROR-FREE
+     OR WILL FUNCTION WITHOUT INTERRUPTION. YOU ASSUME THE ENTIRE RISK FOR THE
+     RESULTS OBTAINED USING THE PRODUCT. TO THE EXTENT THAT TRIEMAX MAY NOT
+     DISCLAIM ANY WARRANTY AS A MATTER OF APPLICABLE LAW, THE SCOPE AND DURATION
+     OF SUCH WARRANTY WILL BE THE MINIMUM PERMITTED UNDER SUCH LAW.
+
+     SOME STATES DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES, SO THE ABOVE
+     EXCLUSION MAY NOT APPLY TO YOU. THIS LIMITED WARRANTY GIVES YOU SPECIFIC
+     LEGAL RIGHTS, AND YOU MAY ALSO HAVE OTHER LEGAL RIGHTS, WHICH VARY FROM
+     STATE TO STATE.
+
+  5. DISCLAIMER OF WARRANTY.  UNLESS SPECIFIED IN THIS AGREEMENT, ALL EXPRESS OR
+     IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED
+     WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR
+     NON-INFRINGEMENT ARE DISCLAIMED, EXCEPT TO THE EXTENT THAT THESE
+     DISCLAIMERS ARE HELD TO BE LEGALLY INVALID.
+
+  6. LIMITATION OF LIABILITY. To the extent not prohibited by law, in no event
+     TRIEMAX or any third-party-developer will be liable for any lost revenue,
+     profit or data or for special, indirect, consequential, incidental or
+     punitive damages, however caused regardless of the theory of liability,
+     arising out of or related to the use of or inability to use SOFTWARE, even
+     if TRIEMAX has been advised of the possibility of such damages.
+
+     Solely YOU are responsible for determining the appropriateness of using
+     SOFTWARE and accept full responsibility for all risks associated with its
+     exercise of rights under this Agreement, including but not limited to the
+     risks and costs of program errors, compliance with applicable laws, damage
+     to or loss of data, programs or equipment, and unavailability or
+     interruption of operations.
+
+     In no event will TRIEMAX's liability to YOU, whether in contract, tort
+     (including negligence) or otherwise, exceed the amount paid by YOU for
+     SOFTWARE under this Agreement. The foregoing limitations will apply even if
+     the above stated warranty fails of its essential purpose.
+
+     YOU acknowledge, that it is in the nature of software that software is
+     complex and not completely free of errors.
+
+  7. DISCLAIMER OF DAMAGES.  In no event shall TRIEMAX or any
+     third-party-developer be liable to YOU under any theory for any damages
+     suffered by YOU or any user of SOFTWARE or for any special, incidental,
+     indirect, consequential or similar damages (including without limitation
+     damages for loss of business profits, business interruption, loss of
+     business information or any other pecuniary loss) arising out of the use or
+     inability to use SOFTWARE, even if TRIEMAX has been advised of the
+     possibility of such damages and regardless of the legal or quitable theory
+     (contract, tort or otherwise) upon which the claim is based.
+
+  8. TERMINATION.  This Agreement is affected until terminated. YOU may
+     terminate this Agreement at any time. This Agreement will terminate
+     immediately without notice from TRIEMAX if YOU fail to comply with the
+     terms and conditions of this Agreement. Upon termination, YOU must delete
+     SOFTWARE and all copies of SOFTWARE.
+
+     YOU agree that upon termination of this Agreement for any reason, TRIEMAX
+     may take actions so that SOFTWARE no longer operates.
+
+  9. GOVERNING LAW.  This Agreement will be governed by the laws of Germany,
+     without reference to conflict of laws principles. YOU agree that any
+     litigation relating to this Agreement may only be brought in and shall be
+     subject to the jurisdiction of Homburg (Germany) City Court.
+
+ 10. SEVERABILITY.  If any provision of this Agreement is held to be
+     unenforceable, this Agreement will remain in effect with the provision
+     omitted, unless omission would frustrate the intent of the parties, in
+     which case this Agreement will immediately terminate.
+
+ 11. RESERVATION OF RIGHTS.  All rights not expressly granted in this Agreement
+     are reserved by TRIEMAX. TRIEMAX reserves the right at any time to cease
+     the support of SOFTWARE and to alter prices, features, specifications,
+     capabilities, functions, licensing terms, release dates, general
+     availability or other characteristics of the SOFTWARE.
+
+
+Copyright (c) 2003-2010 TRIEMAX Software. All rights reserved.

@@ -1,0 +1,12 @@
+# Ignore Everything...
+*
+
+# ...Except:
+!.bashrc
+!.gitconfig
+!.gitignore
+!.jsbeautifyrc
+
+# git add(-f)ed manually:
+# .netbeans/
+# Tools/

@@ -1,0 +1,11 @@
+#!/bin/sh
+name=$(basename "$0")
+jar=
+for dir in /Users/kylestiemann/Workspaces/Wiki/Wiki/src/; do
+if [ -e "$dir/$name.jar" ]; then jar=$dir/$name.jar; break; fi
+done
+if [ -z "$jar" ]; then
+echo 1>&2 "$name.jar not found"
+exit 126
+fi
+exec /usr/bin/java -jar "$jar" "$@"
