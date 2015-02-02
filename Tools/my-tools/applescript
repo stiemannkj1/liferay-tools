@@ -1,3 +1,5 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
-cat "$1"
+TEMP_FILE=$(/usr/bin/mktemp -t "applescript")
+/usr/bin/sed 's/^#!.*//' "$1" > "$TEMP_FILE"
+/usr/bin/osascript "$TEMP_FILE" "${*:2}"
