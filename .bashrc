@@ -51,6 +51,20 @@ PROMPT_COMMAND='
 	PS1="\w $GIT_PROMPT$ "
 '
 
+# Colored git prompt (SLOW):
+#PROMPT_COMMAND='
+#    GIT_PROMPT=""
+#    if git rev-parse --git-dir > /dev/null 2>&1; then
+#       COLOR=""
+#       if ! git diff-files --quiet --ignore-submodules --; then
+#           COLOR="\e[0;31m"
+#       elif ! git diff-index --cached --quiet HEAD --ignore-submodules --; then
+#           COLOR="\e[0;32m"
+#       fi
+#       GIT_PROMPT="($COLOR$(git symbolic-ref --quiet --short HEAD || git describe --tags | tr -d '\n')\e[0m) "
+#    PS1="\w $GIT_PROMPT$ "
+#'
+
 # Activate git bash completion:
 source $HOME/git-completion/git-completion.sh
 
