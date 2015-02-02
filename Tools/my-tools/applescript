@@ -2,6 +2,8 @@
 
 # Note: Created applescript executable files must have the following shebang:
 # #!/bin/bash /Users/kylestiemann/Tools/my-tools/applescript
+# Note: Some scripts work fine with an osascript shebang:
+# #!/usr/bin/osascript
 TEMP_FILE=$(/usr/bin/mktemp -t "applescript")
 /usr/bin/sed 's/^#!.*//' "$1" > "$TEMP_FILE"
 /usr/bin/osascript "$TEMP_FILE" "${*:2}"
