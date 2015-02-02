@@ -1,0 +1,21 @@
+#!/opt/local/bin/bash
+
+URL="$1"
+if [ -e "$1" ]; then
+	URL="file://$(realpath $1)"
+fi
+
+osascript <<EOD
+    tell application "Firefox"
+        reopen
+        activate
+    end tell
+    delay 0.15
+    tell application "System Events"
+        keystroke "t" using { command down, shift down }
+		keystroke "$URL"
+		key code 36
+    end tell
+EOD
+
+
