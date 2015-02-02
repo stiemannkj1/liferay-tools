@@ -71,8 +71,12 @@ source $HOME/git-completion/git-completion.sh
 # Add git_sed function:
 function git_sed() {
 	FILES=$(git grep --full-name --name-only "$1")
-	gsed -i -e "s/$1/$2/g" $FILES
-	echo "$FILES"
+	if [[ "$FILES" ]]; then
+		SEARCH="${1/,/\\,}"
+		REPLACE="${2/,/\\,}"
+		gsed -i -e "s,$SEARCH,$REPLACE,g" $FILES
+		echo "$FILES"
+	fi
 }
 
 # Export environment variables for maven:
