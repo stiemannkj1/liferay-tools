@@ -14,6 +14,7 @@ osascript <<EOD
     tell application "System Events"
         keystroke "t" using { command down, shift down }
 		keystroke "$URL"
+		-- Press "Enter" to go to $URL.
 		key code 36
     end tell
 EOD
