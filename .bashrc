@@ -35,9 +35,6 @@ shopt -s globstar
 export EDITOR="/opt/local/bin/nano"
 export VISUAL="$EDITOR"
 
-# Add chrome command so that web pages can be opened from the command line easily:
-alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-
 # Add growl command to alert me when processes complete:
 alias growl='terminal-notifier -message "Process Complete"'
 
