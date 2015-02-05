@@ -25,7 +25,7 @@ $TOOLS/freemarker-generator/bin:\
 $TOOLS/jalopy/bin:\
 $TOOLS/vdldoc/bin:\
 $TOOLS/my-tools:\
-$PROJECTS_HOME/liferay.com/liferay-faces-master:\
+$PROJECTS_HOME/liferay.com/faces/master:\
 $HOME/.rvm/bin
 
 # Support zsh-like wildcards:
