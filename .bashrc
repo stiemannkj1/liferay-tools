@@ -36,7 +36,7 @@ export EDITOR="/opt/local/bin/nano"
 export VISUAL="$EDITOR"
 
 # Add growl command to alert me when processes complete:
-alias growl='terminal-notifier -message "Process Complete"'
+alias growl='osascript -e "display notification with title \"Process Completed.\""'
 
 # Show the working directory in the prompt:
 # If the working directory is a git repo, show the branch or tag:
