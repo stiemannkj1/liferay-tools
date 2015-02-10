@@ -27,5 +27,3 @@ echo "Done."
 echo "Copying" target/*.war "to $LIFERAY_PORTAL/deploy/ ..."
 cp target/*.war $LIFERAY_PORTAL/deploy/
 echo "Done."
-
-growl.scpt "Deployment Completed."
