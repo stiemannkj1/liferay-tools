@@ -1,12 +1,24 @@
 #!/opt/local/bin/bash
 
-if [ -n "$1" ]; then
-	VERSION=$1
-else
-	VERSION=master
-fi
+case $1 in
+	*.2.x)
+		VERSION="6.2"
+	;;
+	*.1.x)
+		VERSION="6.1"
+	;;
+	*.0.x)
+		VERSION="6.0"
+	;;
+	*.0.x-legacy)
+		VERSION="5.2"
+	;;
+	"" | *)
+		VERSION="master"
+	;;
+esac
 
-LIFERAY_PORTAL=$PORTALS_HOME/liferay.com/$VERSION/liferay-portal$2
+LIFERAY_PORTAL=$PORTALS_HOME/liferay.com/$VERSION$2
 
 if [ ! -e "$LIFERAY_PORTAL" ]; then
 	echo "DEPLOYMENT FAILED! $LIFERAY_PORTAL does not exist!"
