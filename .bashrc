@@ -43,7 +43,11 @@ alias growl='osascript -e "display notification with title \"Process Completed.\
 PROMPT_COMMAND='
 	GIT_PROMPT=""
 	if git rev-parse --git-dir > /dev/null 2>&1; then
-		GIT_PROMPT="($(git symbolic-ref --quiet --short HEAD || git describe --tags | tr -d '\n')) "
+		GIT_PROMPT="($( \
+			git symbolic-ref --quiet --short HEAD || \
+			git describe --tags 2> /dev/null || \
+			printf commit | tr -d '\n' \
+		)) "
 	fi
 	PS1="\w $GIT_PROMPT$ "
 '
