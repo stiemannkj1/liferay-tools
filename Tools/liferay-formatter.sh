@@ -13,12 +13,12 @@ if [ -f "$1" ]; then
 	FORMAT_DIR="$TMPDIR"
 fi
 
-BUNDLE="$HOME/Portals/liferay.com/liferay-portal-7.0.0-SNAPSHOT-JSF-2.2"
-SOURCE="$HOME/Projects/liferay.com/liferay-portal/liferay-portal-master"
+BUNDLE_TOMCAT=$(find "$HOME/Portals/liferay.com/build" -name "tomcat-*" | head -1)
+SOURCE="$HOME/Projects/liferay.com/portal/master"
 
 (
 	cd "$FORMAT_DIR"
-	java -cp "$BUNDLE/tomcat-7.0.42/webapps/ROOT/WEB-INF/lib/*:$BUNDLE/tomcat-7.0.42/lib/ext/*:$SOURCE/portal-service/*" com.liferay.portal.tools.sourceformatter.SourceFormatter
+	java -cp "$BUNDLE_TOMCAT/webapps/ROOT/WEB-INF/lib/*:$BUNDLE_TOMCAT/lib/ext/*:$SOURCE/portal-service/*" com.liferay.portal.tools.sourceformatter.SourceFormatter
 )
 
 if [ -f "$1" ]; then
