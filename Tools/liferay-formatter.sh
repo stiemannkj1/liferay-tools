@@ -7,10 +7,9 @@ else
 fi
 
 if [ -f "$1" ]; then
-	TMPDIR="$HOME/temp/liferay-formatter"
-	mkdir "$TMPDIR"
-	cp "$1" "$TMPDIR"
-	FORMAT_DIR="$TMPDIR"
+	FORMAT_DIR=$(mktemp -d -t "liferay-formatter")
+	trap "rm -rf '$FORMAT_DIR'" SIGINT SIGTERM EXIT
+	cp "$1" "$FORMAT_DIR"
 fi
 
 BUNDLE_TOMCAT=$(find "$HOME/Portals/liferay.com/build" -name "tomcat-*" | head -1)
@@ -22,7 +21,6 @@ SOURCE="$HOME/Projects/liferay.com/portal/master"
 )
 
 if [ -f "$1" ]; then
-	FORMATTED_FILES=("$TMPDIR"/*)
+	FORMATTED_FILES=("$FORMAT_DIR"/*)
 	cp "${FORMATTED_FILES[0]}" "$1"
-	rm -rf "$TMPDIR"
 fi
