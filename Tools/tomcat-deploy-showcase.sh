@@ -24,6 +24,7 @@ cd "$SHOWCASE_WEBAPP"
 mvn install -P development
 echo "Copying showcase.war to Tomcat."
 cp "$SHOWCASE_WEBAPP"/target/showcase-webapp-*-SNAPSHOT.war "$TOMCAT_WEBAPPS/"
+touch "$LAST_RUN_TIME_STAMP_FILE"
 echo "Done."
 
-touch "$LAST_RUN_TIME_STAMP_FILE"
+growl.scpt "Deployed Showcase to Tomcat."
