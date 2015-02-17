@@ -6,7 +6,7 @@ if [ -e "$1" ]; then
 fi
 
 osascript <<EOD
-    tell application "Firefox"
+    tell application "/Applications/FirefoxCurrent/Firefox.app"
         reopen
         activate
     end tell
