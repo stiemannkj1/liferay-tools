@@ -20,7 +20,8 @@ style.type = 'text/css';
 style.appendChild(document.createTextNode(
 	'*::-moz-selection { background-color: #FF6600; }\n' +
 	'.ModernConversationHistoryControl, .ModernConversationControlBottom { width: 60%; padding-left: 20%; }\n' + 
-	'.ModernConversationHistoryControl ul, .ModernConversationHistoryControl li, .ModernConversationHistoryItem, .ModernConversationControlBottom div, .ModernConversationControlBottom textarea { width: 98.5% !important; }\n'
+	'.ModernConversationHistoryControl ul, .ModernConversationHistoryControl li, .ModernConversationHistoryItem,\n' +
+	'.ModernConversationControlBottom div, .ModernConversationControlBottom textarea { width: 98.5% !important; }\n'
 ));
 
 document.getElementsByTagName('head')[0].appendChild(style);
