@@ -67,7 +67,7 @@ PROMPT_COMMAND='
 #'
 
 # Activate git bash completion:
-source $HOME/git-completion/git-completion.sh
+source $HOME/.git-completion/git-completion.sh
 
 # Add git_sed function:
 function git_sed() {
