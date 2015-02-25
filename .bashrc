@@ -28,8 +28,10 @@ $TOOLS/my-tools:\
 $PROJECTS_HOME/liferay.com/faces/master:\
 $HOME/.rvm/bin
 
-# Support zsh-like wildcards:
+# Support wildcards (*):
 shopt -s globstar
+# Support inverse wildcards (!):
+shopt -s extglob
 
 # Make nano the default terminal editor:
 export EDITOR="/opt/local/bin/nano"
