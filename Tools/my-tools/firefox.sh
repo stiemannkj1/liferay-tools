@@ -2,7 +2,7 @@
 
 URL="$1"
 if [ -e "$1" ]; then
-	URL="file://$(realpath $1)"
+	URL="file://$(realpath "$1")"
 fi
 
 osascript <<EOD
