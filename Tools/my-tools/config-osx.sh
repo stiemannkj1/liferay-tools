@@ -1,6 +1,6 @@
 # defaults write com.apple.finder QuitMenuItem -bool true
 
-# defaults write com.apple.finder AppleShowAllFiles -bool true 
+# defaults write com.apple.finder AppleShowAllFiles -bool true
 
 # Stop Slow loading Finder in Mavericks.
 # https://discussions.apple.com/message/23844251#23857589
