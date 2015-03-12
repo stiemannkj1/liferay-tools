@@ -1,8 +1,13 @@
 # defaults write com.apple.finder QuitMenuItem -bool true
-# killall Finder
 
 # defaults write com.apple.finder AppleShowAllFiles -bool true 
+
+# Stop Slow loading Finder in Mavericks.
+# https://discussions.apple.com/message/23844251#23857589
 # killall Finder
 
+# Add "Remove From Dock" option for Finder (and others).
 # http://apple.stackexchange.com/questions/30415/how-can-i-remove-the-finder-icon-from-my-dock#30429
-# sudo defaults write /System/Library/CoreServices/Dock.app/Contents/Resources/DockMenus finder-running -array-add '<dict><key>command</key><integer>1004</integer><key>name</key><string>REMOVE_FROM_DOCK</string></dict>'
+
+# Disable Spotlight.
+# sudo mdutil -a -i off
