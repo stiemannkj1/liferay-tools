@@ -11,3 +11,6 @@
 
 # Disable Spotlight.
 # sudo mdutil -a -i off
+
+# Install Xcode command line tools.
+# xcode-select --install
