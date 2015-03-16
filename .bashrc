@@ -65,8 +65,10 @@ PROMPT_COMMAND='
 #    PS1="\w $GIT_PROMPT$ "
 #'
 
-# Activate git bash completion:
-source $HOME/.git-completion/git-completion.sh
+# Activate git bash completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+	source /opt/local/etc/profile.d/bash_completion.sh
+fi
 
 # Add git_sed function:
 function git_sed() {
