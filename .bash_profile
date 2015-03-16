@@ -1,4 +1,4 @@
-# Enviornment Variables
+# Enviornment Variables:
 export JAVA_HOME=`/usr/libexec/java_home`
 export MAVEN_OPTS="-Xms256m -Xmx1024m -XX:MaxPermSize=128m -Djava.awt.headless=true"
 export ANT_OPTS="-Xmx1024m -XX:MaxPermSize=512m -Djava.awt.headless=true"
@@ -65,7 +65,7 @@ PROMPT_COMMAND='
 #    PS1="\w $GIT_PROMPT$ "
 #'
 
-# Activate git bash completion
+# Activate git bash completion:
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 	source /opt/local/etc/profile.d/bash_completion.sh
 fi
