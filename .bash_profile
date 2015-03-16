@@ -80,3 +80,6 @@ function git_sed() {
 		echo "$FILES"
 	fi
 }
+
+# Activate mvn bash completion:
+source ~/.mvn-bash-completion/bash_completion.bash
