@@ -18,7 +18,7 @@ case $1 in
 	;;
 esac
 
-LIFERAY_PORTAL=$PORTALS_HOME/liferay.com/$VERSION$2
+LIFERAY_PORTAL=~/Portals/liferay.com/$VERSION$2
 
 if [ ! -e "$LIFERAY_PORTAL" ]; then
 	echo "DEPLOYMENT FAILED! $LIFERAY_PORTAL does not exist!"

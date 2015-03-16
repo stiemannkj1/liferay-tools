@@ -22,7 +22,7 @@ while [[ $# > 1 ]]; do
 		;;
 # 		-o|--output-dir)
 # 			# set the parent-dir of our dock app
-# 			# if not set, then determine our permissions level and put our app in /Applications/ or $HOME/Applications
+# 			# if not set, then determine our permissions level and put our app in /Applications/ or ~/Applications
 # 			OUTPUT_DIR="$1"; shift
 # 		;;
 		-l|--label)
@@ -57,9 +57,9 @@ fi
 # 	# If we have permission to write to /Applications, then make /Applications the $OUTPUT_DIR.
 # 	if [[ -w "/Applications" ]]; then
 # 		OUTPUT_DIR="/Applications"
-# 	# Otherwise default to $HOME/Applications as the $OUTPUT_DIR
+# 	# Otherwise default to ~/Applications as the $OUTPUT_DIR
 # 	else
-# 		OUTPUT_DIR="$HOME/Applications"
+# 		OUTPUT_DIR="~/Applications"
 # 	fi
 # fi
 # 

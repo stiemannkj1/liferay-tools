@@ -1,12 +1,12 @@
 #!/opt/local/bin/bash
 
-LAST_RUN_TIME_STAMP_FILE=$HOME/Tools/.tomcat-deploy.sh.lastrun
-TOMCAT_WEBAPPS=$HOME/Servers/apache-tomcat-7.0.56/webapps
+LAST_RUN_TIME_STAMP_FILE=~/Tools/.tomcat-deploy.sh.lastrun
+TOMCAT_WEBAPPS=~/Servers/apache-tomcat-7.0.56/webapps
 
 echo "Removing showcase files from Tomcat."
 rm -rf "$TOMCAT_WEBAPPS"/showcase-webapp-4.2.0-*
 
-LIFERAY_FACES_MASTER=$HOME/Projects/liferay.com/faces/master
+LIFERAY_FACES_MASTER=~/Projects/liferay.com/faces/master
 
 if [[ "$@" == *u* || $(find "$LIFERAY_FACES_MASTER/util" -mnewer "$LAST_RUN_TIME_STAMP_FILE" |  head -n 1) ]]
 then

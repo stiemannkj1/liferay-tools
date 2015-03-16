@@ -1,11 +1,13 @@
 # Enviornment Variables
 export JAVA_HOME=`/usr/libexec/java_home`
-export HOME=/Users/kylestiemann
-export PORTALS_HOME=$HOME/Portals
-export PROJECTS_HOME=$HOME/Projects
+export MAVEN_OPTS="-Xms256m -Xmx1024m -XX:MaxPermSize=128m -Djava.awt.headless=true"
+export ANT_OPTS="-Xmx1024m -XX:MaxPermSize=512m -Djava.awt.headless=true"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
-# Script Varibles
-TOOLS=$HOME/Tools
+# Make nano the default terminal editor:
+export EDITOR="/opt/local/bin/nano"
+export VISUAL="$EDITOR"
 
 # Path
 # /opt/local/bin:\ is first because macports needs to be first on the list.
@@ -20,22 +22,17 @@ export PATH=\
 /usr/local/mysql/bin:\
 $JAVA_HOME/bin:\
 /Applications/NetBeans/NetBeans\ 8.0.app/Contents/Resources/NetBeans/java/maven/bin:\
-$TOOLS:\
-$TOOLS/freemarker-generator/bin:\
-$TOOLS/jalopy/bin:\
-$TOOLS/vdldoc/bin:\
-$TOOLS/my-tools:\
-$PROJECTS_HOME/liferay.com/faces/master:\
-$HOME/.rvm/bin
+~/Tools:\
+~/Tools/freemarker-generator/bin:\
+~/Tools/jalopy/bin:\
+~/Tools/vdldoc/bin:\
+~/Tools/my-tools:\
+~/Projects/liferay.com/faces/master:\
 
 # Support wildcards (*):
 shopt -s globstar
 # Support inverse wildcards (!):
 shopt -s extglob
-
-# Make nano the default terminal editor:
-export EDITOR="/opt/local/bin/nano"
-export VISUAL="$EDITOR"
 
 # Add growl command to alert me when processes complete:
 alias growl='osascript -e "display notification with title \"Process Completed.\""'
@@ -81,13 +78,3 @@ function git_sed() {
 		echo "$FILES"
 	fi
 }
-
-# Export environment variables for maven:
-export MAVEN_OPTS="-Xms256m -Xmx1024m -XX:MaxPermSize=128m -Djava.awt.headless=true"
-
-# Export environment variables for ant:
-export ANT_OPTS="-Xmx1024m -XX:MaxPermSize=512m -Djava.awt.headless=true"
-
-# Export enviornment variables to support Mercurial:
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
