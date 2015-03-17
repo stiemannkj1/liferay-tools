@@ -37,6 +37,11 @@ shopt -s extglob
 # Add growl command to alert me when processes complete:
 alias growl='osascript -e "display notification with title \"Process Completed.\""'
 
+# In Netbeans don't export the PROMPT_COMMAND variable:
+if [ -n "$NBMAGIC" ]; then
+	unset PROMPT_COMMAND
+fi
+
 # Show the working directory in the prompt:
 # If the working directory is a git repo, show the branch or tag:
 PROMPT_COMMAND='
@@ -83,3 +88,8 @@ function git_sed() {
 
 # Activate mvn bash completion:
 source ~/.mvn-bash-completion/bash_completion.bash
+
+# Start the Netbeans terminal in the $HOME directory:
+if [ -n "$NBMAGIC" ]; then
+	cd ~/
+fi
