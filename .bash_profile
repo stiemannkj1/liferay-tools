@@ -1,7 +1,7 @@
 # Enviornment Variables:
 export JAVA_HOME=`/usr/libexec/java_home`
-export MAVEN_OPTS="-Xms256m -Xmx1024m -XX:MaxPermSize=128m -Djava.awt.headless=true"
-export ANT_OPTS="-Xmx1024m -XX:MaxPermSize=512m -Djava.awt.headless=true"
+export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
+export ANT_OPTS=$MAVEN_OPTS
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
