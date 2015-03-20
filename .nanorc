@@ -28,3 +28,5 @@ set tabsize 4
 set smooth
 set regexp
 set historylog
+set mouse
+set const
