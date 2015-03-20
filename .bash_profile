@@ -5,9 +5,12 @@ export ANT_OPTS=$MAVEN_OPTS
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-# Make nano the default terminal editor:
-export EDITOR="/opt/local/bin/nano"
+# Make mvim -v the default terminal editor:
+export EDITOR="/opt/local/bin/mvim -v"
 export VISUAL="$EDITOR"
+
+# Add growl command to alert me when processes complete:
+alias micro='mvim -v'
 
 # Path
 # /opt/local/bin:\ is first because macports needs to be first on the list.

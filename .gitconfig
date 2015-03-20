@@ -4,5 +4,5 @@
 [credential]
 	helper = cache --timeout=32400
 [core]
-	editor = nano
+	editor = mvim -v
 	pager = less -+S
