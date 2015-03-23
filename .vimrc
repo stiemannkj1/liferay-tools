@@ -21,11 +21,11 @@ set shiftwidth=4
 
 " nano-like keymappings
 inoremap <C-k> <C-o>dd
-inoremap <C-s> <C-o>yy
+inoremap ç <C-o>yy
 inoremap ∑ <C-o>yw
 inoremap ∫ <C-o>yb
 inoremap Å <C-o>v
-inoremap <C-u> <C-o>P
+inoremap √ <C-o>P
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>0
 inoremap <C-w> <C-o>w
