@@ -4,6 +4,8 @@ syntax on
 
 set mouse=a
 
+set clipboard=unnamed
+
 " softwrap settings
 set wrap
 set linebreak
