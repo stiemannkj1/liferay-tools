@@ -26,9 +26,9 @@ set shiftwidth=4
 " nano-like keymappings
 inoremap <C-k> <C-o>dd
 
+" <Alt-c> copy shortcut
 inoremap ç <C-o>yy
-inoremap ∑ <C-o>yw
-inoremap ∫ <C-o>yb
+" <Alt-v> paste shortcut
 inoremap √ <C-o>P
 
 inoremap <C-e> <C-o>$
@@ -39,7 +39,9 @@ inoremap <C-v> <C-o><C-F><C-o>L
 inoremap <C-y> <C-o><C-B><C-o>H
 
 inoremap <C-j> <C-o>J
+" <Alt-z> undo shortcut
 inoremap Ω <C-o>u
+" <Alt-Z> redo shortcut
 inoremap ¸ <C-o><C-R>
 
 inoremap <TAB> <C-t>
@@ -67,7 +69,9 @@ vnoremap <S-Left> <Left>
 vnoremap <S-Right> <Right>
 
 vnoremap <C-k> d
+" <Alt-c> copy shortcut
 vnoremap ç y
+" <Alt-v> paste shortcut
 vnoremap √ P
 
 vnoremap <C-e> $
@@ -78,7 +82,9 @@ vnoremap <C-v> <C-F>L
 vnoremap <C-y> <C-B>H
 
 vnoremap <C-j> J
+" <Alt-z> undo shortcut
 vnoremap Ω u
+" <Alt-Z> redo shortcut
 vnoremap ¸ <C-R>
 
 vnoremap <TAB> >
