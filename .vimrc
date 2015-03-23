@@ -53,6 +53,8 @@ inoremap <C-r> <C-o>:%s///
 inoremap <C-x> <C-o>ZZ
 inoremap <C-c> <C-o>ZQ
 
+" <Alt-s> block selection shortcut
+inoremap ß <C-o><C-V>
 inoremap <S-Up> <C-o>v<Up>
 inoremap <S-Down> <C-o>v<Down>
 inoremap <S-Left> <C-o>v<Left>
