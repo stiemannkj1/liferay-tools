@@ -33,14 +33,12 @@ inoremap <C-k> <C-o>dd
 " <Alt-c> copy shortcut
 inoremap ç <C-o>yy
 " <Alt-v> paste shortcut
-inoremap √ <C-o>P
+inoremap √ <C-o>p
 
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>0
-inoremap <C-w> <C-o>w
-inoremap <C-b> <C-o>b
-inoremap <C-v> <C-o><C-F><C-o>L
-inoremap <C-y> <C-o><C-B><C-o>H
+inoremap <C-y> <C-o><C-U><C-o><C-U>
+inoremap <C-v> <C-o><C-D><C-o><C-D>
 
 inoremap <C-j> <C-o>J
 " <Alt-z> undo shortcut
@@ -63,6 +61,8 @@ inoremap <S-Up> <C-o>v<Up>
 inoremap <S-Down> <C-o>v<Down>
 inoremap <S-Left> <C-o>v<Left>
 inoremap <S-Right> <C-o>v<Right>
+inoremap <C-S-Left> <C-o>v<C-Left>
+inoremap <C-S-Right> <C-o>v<C-Right>
 
 vnoremap <Up> <C-c>i<Up>
 vnoremap <Down> <C-c>i<Down>
