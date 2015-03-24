@@ -80,7 +80,7 @@ fi
 
 # Add git_sed function:
 function git_sed() {
-	FILES=$(git grep --full-name --name-only "$1")
+	FILES=$(git grep --files-with-matches --name-only "$1")
 	if [[ "$FILES" ]]; then
 		SEARCH="${1/,/\\,}"
 		REPLACE="${2/,/\\,}"
