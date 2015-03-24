@@ -1,5 +1,10 @@
 #!/opt/local/bin/bash
 
+if [ ! -e pom.xml ]; then
+	echo "${PWD##*/} missing pom.xml. Ignoring."
+	exit 0
+fi
+
 case $1 in
 	*.2.x)
 		VERSION="6.2"
