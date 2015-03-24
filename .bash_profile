@@ -41,7 +41,7 @@ shopt -s globstar
 shopt -s extglob
 
 # Add growl command to alert me when processes complete:
-alias growl='osascript -e "display notification with title \"Process Completed.\""'
+alias growl='/usr/bin/osascript -e "display notification with title \"Process Completed.\""'
 
 # In Netbeans don't export the PROMPT_COMMAND variable:
 if [ -n "$NBMAGIC" ]; then
