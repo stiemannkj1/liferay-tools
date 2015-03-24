@@ -23,6 +23,10 @@ set softtabstop=0
 set noexpandtab
 set shiftwidth=4
 
+" show trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
 " nano-like keymappings
 inoremap <C-k> <C-o>dd
 
