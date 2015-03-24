@@ -9,8 +9,11 @@ export LANG=en_US.UTF-8
 export EDITOR="/opt/local/bin/mvim -v"
 export VISUAL="$EDITOR"
 
-# Add growl command to alert me when processes complete:
-alias micro='mvim -v'
+# Add micro command to run mvim -v:
+alias micro="$EDITOR"
+
+# Alias vim to have default settings:
+alias vim='/usr/bin/vim -u NONE'
 
 # Path
 # /opt/local/bin:\ is first because macports needs to be first on the list.
