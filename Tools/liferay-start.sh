@@ -2,6 +2,11 @@
 
 CATALINA_SH=$(find . -name "tomcat-*" | head -1)/bin/catalina.sh
 
+if [[ "${PWD##*/}" == *"6.0"* ]] || [[ "${PWD##*/}" == *"5.2"* ]]; then
+	export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+	export PATH=$JAVA_HOME/bin:$PATH
+fi
+
 if [ -n "$1" ] && [[ "$1" == "jrebel" ]]; then
 	# jrebel.jar is symlinked to the NetBeans version of jrebel.jar via the following command:
 	# ln -s "/Applications/NetBeans/NetBeans 8.0.app/Contents/Resources/NetBeans/java2/jrebel/jrebel.jar" .jrebel/jrebel.jar
