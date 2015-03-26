@@ -56,7 +56,7 @@ PROMPT_COMMAND='
 		GIT_PROMPT="($( \
 			git symbolic-ref --quiet --short HEAD || \
 			git describe --tags 2> /dev/null || \
-			printf commit | tr -d '\n' \
+			printf commit | tr -d \"\n\" \
 		)) "
 	fi
 	PS1="\w $GIT_PROMPT$ "
