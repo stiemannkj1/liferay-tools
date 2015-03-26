@@ -1,5 +1,5 @@
 # Enviornment Variables:
-export JAVA_HOME=`/usr/libexec/java_home`
+export JAVA_HOME=$(/usr/libexec/java_home)
 export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
 export ANT_OPTS=$MAVEN_OPTS
 export LC_ALL=en_US.UTF-8
