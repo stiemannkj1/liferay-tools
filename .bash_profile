@@ -99,3 +99,8 @@ source ~/.mvn-bash-completion/bash_completion.bash
 if [ -n "$NBMAGIC" ]; then
 	cd ~/
 fi
+
+# Bind <C-Up> and <C-Down> to history search:
+bind '"\e[1;5A": history-search-backward'
+bind '"\e[1;5B": history-search-forward'
+
