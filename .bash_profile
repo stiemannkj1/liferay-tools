@@ -92,6 +92,17 @@ function git_sed() {
 	fi
 }
 
+# Add rec_rep function for recursive replacing of (potentially) multiline strings:
+function rec_rep() {
+	FILES=$(ag --files-with-matches "$1")
+	if [[ "$FILES" ]]; then
+		SEARCH="${1/,/\\,}"
+		REPLACE="${2/,/\\,}"
+		perl -0p -i -e "s,$SEARCH,$REPLACE,g" $FILES
+		echo "$FILES"
+	fi
+}
+
 # Activate mvn bash completion:
 source ~/.mvn-bash-completion/bash_completion.bash
 
