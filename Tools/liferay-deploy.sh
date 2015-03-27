@@ -38,7 +38,7 @@ rm -rf $LIFERAY_TOMCAT_WEBAPPS/${PWD##*/}
 echo "Done."
 
 echo "Building..."
-mvn clean install -P development
+mvn clean install -P development,tomcat
 echo "Done."
 
 echo "Copying" target/*.war "to $LIFERAY_PORTAL/deploy/ ..."
