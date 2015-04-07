@@ -52,6 +52,7 @@ inoremap <S-TAB> <C-d>
 inoremap <C-f> <C-o>/
 inoremap <C-r> <C-o>:%s///
 
+inoremap <C-w> <C-o>:w<Enter>
 inoremap <C-x> <C-o>ZZ
 inoremap <C-c> <C-o>ZQ
 
@@ -84,8 +85,8 @@ vnoremap <C-e> $
 vnoremap <C-a> 0
 vnoremap <C-w> w
 vnoremap <C-b> b
-vnoremap <C-v> <C-F>L
-vnoremap <C-y> <C-B>H
+vnoremap <C-y> <C-U><C-U>
+vnoremap <C-v> <C-D><C-D>
 
 vnoremap <C-j> J
 " <Alt-z> undo shortcut
@@ -99,6 +100,7 @@ vnoremap <S-TAB> <
 vnoremap <C-f> /
 vnoremap <C-r> :s///
 
+vnoremap <C-w> <C-c>:w<Enter>
 vnoremap <C-x> <C-c>:wq<Enter>
 vnoremap <C-c> <C-c>:q!<Enter>
 
