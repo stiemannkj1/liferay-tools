@@ -19,7 +19,7 @@ case $1 in
 		VERSION="5.2"
 	;;
 	"" | *)
-		VERSION="master"
+		VERSION="build"
 	;;
 esac
 
