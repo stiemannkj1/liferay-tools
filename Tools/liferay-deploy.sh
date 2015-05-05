@@ -5,25 +5,14 @@ if [ ! -e pom.xml ]; then
 	exit 0
 fi
 
-case $1 in
-	*.2.x)
-		VERSION="6.2"
-	;;
-	*.1.x)
-		VERSION="6.1"
-	;;
-	*.0.x)
-		VERSION="6.0"
-	;;
-	*.0.x-legacy)
-		VERSION="5.2"
-	;;
-	"" | *)
-		VERSION="build"
-	;;
-esac
+VERSION="$2"
 
-LIFERAY_PORTAL=~/Portals/liferay.com/$VERSION$2
+if [ -z "$VERSION" ]; then
+	VERSION="$(xml-strings ~/Projects/liferay.com/faces/master/pom.xml :/project/properties/liferay.version)"
+	VERSION="${VERSION:0:3}"
+fi
+
+LIFERAY_PORTAL=~/Portals/liferay.com/$VERSION$1
 
 if [ ! -e "$LIFERAY_PORTAL" ]; then
 	echo "DEPLOYMENT FAILED! $LIFERAY_PORTAL does not exist!"
