@@ -5,8 +5,5 @@ LIFERAY_VERSION=$(xml-strings ~/Projects/liferay.com/faces/master/pom.xml :/proj
 JSF_VERSION=$(xml-strings ~/Projects/liferay.com/faces/master/pom.xml :/project/properties/faces.spec.version)
 
 for portlet in $(gfind "$LIFERAY_FACES_MASTER/demos" "$LIFERAY_FACES_MASTER/issues" -name *-portlet | egrep $1); do
-
 	cd $portlet && deploy.sh "${@:2}"
-	mv ~/Portals/liferay.com/liferay-portal-$LIFERAY_VERSION-jsf-$JSF_VERSION/deploy/${portlet##*/}* ~/Portals/liferay.com/${LIFERAY_VERSION:0:3}/deploy/
-	echo "Moving ~/Portals/liferay.com/liferay-portal-$LIFERAY_VERSION-jsf-$JSF_VERSION/deploy/${portlet##*/}* to ~/Portals/liferay.com/${LIFERAY_VERSION:0:3}/deploy/"
 done
