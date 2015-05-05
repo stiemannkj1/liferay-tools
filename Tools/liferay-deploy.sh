@@ -10,3 +10,10 @@ for portlet in $(gfind "$LIFERAY_FACES_MASTER/demos" "$LIFERAY_FACES_MASTER/issu
 	mv ~/Portals/liferay.com/liferay-portal-$LIFERAY_VERSION-jsf-$JSF_VERSION/deploy/${portlet##*/}* ~/Portals/liferay.com/${LIFERAY_VERSION:0:3}/deploy/
 	echo "Moving ~/Portals/liferay.com/liferay-portal-$LIFERAY_VERSION-jsf-$JSF_VERSION/deploy/${portlet##*/}* to ~/Portals/liferay.com/${LIFERAY_VERSION:0:3}/deploy/"
 done
+
+if [[ test-setup-hook =~ "$1" ]]; then
+
+	cd $LIFERAY_FACES_MASTER/test/test-setup-hook && deploy.sh "${@:2}"
+	mv ~/Portals/liferay.com/liferay-portal-$LIFERAY_VERSION-jsf-$JSF_VERSION/deploy/${portlet##*/}* ~/Portals/liferay.com/${LIFERAY_VERSION:0:3}/deploy/
+	echo "Moving ~/Portals/liferay.com/liferay-portal-$LIFERAY_VERSION-jsf-$JSF_VERSION/deploy/${portlet##*/}* to ~/Portals/liferay.com/${LIFERAY_VERSION:0:3}/deploy/"
+fi
