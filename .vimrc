@@ -8,7 +8,16 @@ set clipboard=unnamed
 
 set timeoutlen=1000 ttimeoutlen=0
 
+set ruler
+
 set whichwrap+=<,>,[,]
+
+set showmatch
+
+" search settings
+set hlsearch
+set incsearch
+set smartcase
 
 " softwrap settings
 set wrap
@@ -50,11 +59,14 @@ inoremap <TAB> <C-t>
 inoremap <S-TAB> <C-d>
 
 inoremap <C-f> <C-o>/
-inoremap <C-r> <C-o>:%s///
+inoremap <C-r> <C-o>:%s
 
 inoremap <C-w> <C-o>:w<Enter>
 inoremap <C-x> <C-o>ZZ
 inoremap <C-c> <C-o>ZQ
+
+" <Alt-f> formatting shortcut
+inoremap ƒ <C-o>:set textwidth=80<Enter><C-o>gg<C-o>gqG<C-o>:set textwidth=0<Enter>
 
 " <Alt-s> block selection shortcut
 inoremap ß <C-o><C-V>
@@ -98,9 +110,12 @@ vnoremap <TAB> >
 vnoremap <S-TAB> <
 
 vnoremap <C-f> /
-vnoremap <C-r> :s///
+vnoremap <C-r> :s
 
 vnoremap <C-w> <C-c>:w<Enter>
 vnoremap <C-x> <C-c>:wq<Enter>
 vnoremap <C-c> <C-c>:q!<Enter>
+
+" <Alt-f> formatting shortcut
+vnoremap ƒ :set textwidth=80<Enter>gvgq:set textwidth=0<Enter>i
 
