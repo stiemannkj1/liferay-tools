@@ -4,6 +4,7 @@ export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
 export ANT_OPTS=$MAVEN_OPTS
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export LIFERAY_FACES="$HOME/Projects/liferay.com/faces"
 
 # Make mvim -v the default terminal editor:
 export EDITOR="/opt/local/bin/mvim -v"
@@ -33,7 +34,7 @@ $JAVA_HOME/bin:\
 ~/Tools/jalopy/bin:\
 ~/Tools/vdldoc/bin:\
 ~/Tools/my-tools:\
-~/Projects/liferay.com/faces/master:\
+$LIFERAY_FACES:\
 
 # Support wildcards (*):
 shopt -s globstar
