@@ -1,20 +1,37 @@
 #!/opt/local/bin/bash
 
-CATALINA_SH=$(find . -name "tomcat-*" | head -1)/bin/catalina.sh
+stop_portal() {
+	echo
+	$TOMCAT/bin/catalina.sh stop
+	exit 0
+}
+
+trap 'stop_portal' EXIT
+
+TOMCAT=$(gfind . -name "tomcat-*" | head -1)
+
+if [[ "$@" =~ "reset" ]]; then
+	rm -r data/
+	TOMCAT_WEBAPPS=$TOMCAT/webapps;
+	gfind $TOMCAT_WEBAPPS -maxdepth 1 ! -regex "\($TOMCAT_WEBAPPS\|$TOMCAT_WEBAPPS/ROOT\|$TOMCAT_WEBAPPS/marketplace-portlet\|$TOMCAT_WEBAPPS/notifications-portlet\|$TOMCAT_WEBAPPS/resources-importer-web\|$TOMCAT_WEBAPPS/tunnel-web\)" -exec rm -r {} \;
+fi
 
 if [[ "${PWD##*/}" == *"6.0"* ]] || [[ "${PWD##*/}" == *"5.2"* ]]; then
 	export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
 	export PATH=$JAVA_HOME/bin:$PATH
 fi
 
-if [ -n "$1" ] && [[ "$1" == "jrebel" ]]; then
+DEBUG=""
+
+if [[ "$@" =~ "debug" ]]; then
+	DEBUG="jpda"
+elif [[ "$@" =~ "jrebel" ]]; then
 	# jrebel.jar is symlinked to the NetBeans version of jrebel.jar via the following command:
 	# ln -s "/Applications/NetBeans/NetBeans 8.0.app/Contents/Resources/NetBeans/java2/jrebel/jrebel.jar" .jrebel/jrebel.jar
 	export JAVA_OPTS="$JAVA_OPTS -javaagent:/Users/kylestiemann/.jrebel/jrebel.jar"
-	$CATALINA_SH start
-elif [ -n "$1" ] && [[ "$1" == "debug" ]]; then
-	$CATALINA_SH jpda start
-else
-	$CATALINA_SH start
 fi
+
+# liferay-alert.sh starts an infinite loop watching the portal logs for deploys, so this script must be exited with ^C.
+# When the script is killed, stop_portal is executed.
+$TOMCAT/bin/catalina.sh $DEBUG start && liferay-alert.sh
 
