@@ -14,6 +14,10 @@ if [[ "$@" =~ "reset" ]]; then
 	rm -r data/
 	TOMCAT_WEBAPPS=$TOMCAT/webapps;
 	gfind $TOMCAT_WEBAPPS -maxdepth 1 ! -regex "\($TOMCAT_WEBAPPS\|$TOMCAT_WEBAPPS/ROOT\|$TOMCAT_WEBAPPS/marketplace-portlet\|$TOMCAT_WEBAPPS/notifications-portlet\|$TOMCAT_WEBAPPS/resources-importer-web\|$TOMCAT_WEBAPPS/tunnel-web\)" -exec rm -r {} \;
+
+	if [[ "${PWD##*/}" == *"5.2"* ]]; then
+		cp ../license/license-portaldevelopment-developer-5.2sp5-liferaycom.xml deploy/
+	fi
 fi
 
 if [[ "${PWD##*/}" == *"6.0"* ]] || [[ "${PWD##*/}" == *"5.2"* ]]; then
