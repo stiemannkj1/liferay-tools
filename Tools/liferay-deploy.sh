@@ -5,7 +5,9 @@ JSF_VERSION=$(xml-strings $LIFERAY_FACES/pom.xml :/project/properties/faces.spec
 
 for portlet in $(gfind "$LIFERAY_FACES/demos" "$LIFERAY_FACES/issues" -maxdepth 2 -name *-portlet | egrep "$1"); do
 
-	if [ -e "$portlet/pom.xml" ]; then
+	if [[ $portlet =~ icefaces3-chat-portlet ]]; then
+		echo "Skipping $portlet."
+	elif [ -e "$portlet/pom.xml" ]; then
 		cd $portlet && deploy.sh "${@:2}"
 		mv ~/Portals/liferay.com/liferay-portal-$LIFERAY_VERSION-jsf-$JSF_VERSION/deploy/${portlet##*/}* ~/Portals/liferay.com/${LIFERAY_VERSION:0:3}/deploy/
 		echo "Moving ~/Portals/liferay.com/liferay-portal-$LIFERAY_VERSION-jsf-$JSF_VERSION/deploy/${portlet##*/}* to ~/Portals/liferay.com/${LIFERAY_VERSION:0:3}/deploy/"
