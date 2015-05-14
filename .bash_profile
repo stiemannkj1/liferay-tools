@@ -6,6 +6,12 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LIFERAY_FACES="$HOME/Projects/liferay.com/faces"
 
+# History Settings:
+export HISTCONTROL=ignoredups:erasedups
+export HISTSIZE=100000
+export HISTFILESIZE=100000
+shopt -s histappend
+
 # Make mvim -v the default terminal editor:
 export EDITOR="/opt/local/bin/mvim -v"
 export VISUAL="$EDITOR"
