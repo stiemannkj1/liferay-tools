@@ -39,10 +39,10 @@ match ExtraWhitespace /\s\+$/
 " nano-like keymappings
 inoremap <C-k> <C-o>dd
 
-" <Alt-c> copy shortcut
-inoremap ç <C-o>yy
-" <Alt-v> paste shortcut
-inoremap √ <C-o>p
+" <Alt-C> copy shortcut
+inoremap Ç <C-o>yy
+" <Alt-V> paste shortcut
+inoremap ◊ <C-o>p
 
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>0
@@ -61,15 +61,18 @@ inoremap <S-TAB> <C-d>
 inoremap <C-f> <C-o>/
 inoremap <C-r> <C-o>:%s
 
-inoremap <C-w> <C-o>:w<Enter>
+" <Alt-s> save shortcut
+inoremap ß <C-o>:w<Enter>
 inoremap <C-x> <C-o>ZZ
 inoremap <C-c> <C-o>ZQ
 
 " <Alt-f> formatting shortcut
 inoremap ƒ <C-o>:set textwidth=80<Enter><C-o>gg<C-o>gqG<C-o>:set textwidth=0<Enter>
+" <Alt-F> formatting shortcut
+inoremap Ï <C-o>:%! jalopy.sh -q --lang java<Enter>
 
-" <Alt-s> block selection shortcut
-inoremap ß <C-o><C-V>
+" <Alt-b> block selection shortcut
+inoremap ∫ <C-o><C-V>
 inoremap <S-Up> <C-o>v<Up>
 inoremap <S-Down> <C-o>v<Down>
 inoremap <S-Left> <C-o>v<Left>
@@ -88,15 +91,14 @@ vnoremap <S-Left> <Left>
 vnoremap <S-Right> <Right>
 
 vnoremap <C-k> d
-" <Alt-c> copy shortcut
-vnoremap ç y
-" <Alt-v> paste shortcut
-vnoremap √ P
+
+" <Alt-C> copy shortcut
+vnoremap Ç y
+" <Alt-V> paste shortcut
+vnoremap ◊ p
 
 vnoremap <C-e> $
 vnoremap <C-a> 0
-vnoremap <C-w> w
-vnoremap <C-b> b
 vnoremap <C-y> <C-U><C-U>
 vnoremap <C-v> <C-D><C-D>
 
@@ -112,10 +114,13 @@ vnoremap <S-TAB> <
 vnoremap <C-f> /
 vnoremap <C-r> :s
 
-vnoremap <C-w> <C-c>:w<Enter>
+" <Alt-s> save shortcut
+vnoremap ß <C-c>:w<Enter>
 vnoremap <C-x> <C-c>:wq<Enter>
 vnoremap <C-c> <C-c>:q!<Enter>
 
 " <Alt-f> formatting shortcut
 vnoremap ƒ :set textwidth=80<Enter>gvgq:set textwidth=0<Enter>i
+" <Alt-F> formatting shortcut
+vnoremap Ï :! jalopy.sh -q --lang java<Enter>i
 
