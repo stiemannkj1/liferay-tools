@@ -12,7 +12,7 @@ osascript <<EOD
     end tell
     delay 0.15
     tell application "System Events"
-        keystroke "t" using { command down, shift down }
+        keystroke "t" using { command down }
 		keystroke "$URL"
 		-- Press "Enter" to go to $URL.
 		key code 36
