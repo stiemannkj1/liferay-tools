@@ -34,8 +34,8 @@ export PATH=\
 /usr/local/bin:\
 /usr/local/mysql/bin:\
 $JAVA_HOME/bin:\
-/Applications/NetBeans/NetBeans\ 8.0.app/Contents/Resources/NetBeans/java/maven/bin:\
-/Applications/NetBeans/NetBeans\ 8.0.app/Contents/MacOS:\
+/Applications/NetBeans/NetBeans\ 7.4.app/Contents/Resources/NetBeans/java/maven/bin:\
+/Applications/NetBeans/NetBeans\ 7.4.app/Contents/MacOS:\
 ~/Tools:\
 ~/Tools/freemarker-generator/bin:\
 ~/Tools/jalopy/bin:\
