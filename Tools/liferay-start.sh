@@ -20,11 +20,8 @@ if [[ "$@" =~ "reset" ]]; then
 	fi
 fi
 
-if [[ "${PWD##*/}" == *"6.0"* ]] || [[ "${PWD##*/}" == *"5.2"* ]]; then
-	export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
-	export PATH=$JAVA_HOME/bin:$PATH
-fi
-
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
+export PATH=$JAVA_HOME/bin:$PATH
 DEBUG=""
 
 if [[ "$@" =~ "debug" ]]; then
