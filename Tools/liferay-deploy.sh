@@ -1,6 +1,13 @@
 #!/opt/local/bin/bash
 
-LIFERAY_VERSION=$(xml-strings $LIFERAY_FACES/pom.xml :/project/properties/liferay.version)
+LIFERAY_VERSION=NULL
+
+if [[ $* =~ ee ]]; then
+	LIFERAY_VERSION=$(xml-strings $LIFERAY_FACES/pom.xml :/project/profiles/profile/properties/liferay.deploy.version)
+else
+	LIFERAY_VERSION=$(xml-strings $LIFERAY_FACES/pom.xml :/project/properties/liferay.version)
+fi
+
 JSF_VERSION=$(xml-strings $LIFERAY_FACES/pom.xml :/project/properties/faces.spec.version)
 
 for portlet in $(gfind "$LIFERAY_FACES/demos" "$LIFERAY_FACES/issues" -maxdepth 2 -name *-portlet | egrep "$1"); do

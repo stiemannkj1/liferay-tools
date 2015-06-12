@@ -17,6 +17,8 @@ if [[ "$@" =~ "reset" ]]; then
 
 	if [[ "${PWD##*/}" == *"5.2"* ]]; then
 		cp ../license/license-portaldevelopment-developer-5.2sp5-liferaycom.xml deploy/
+	elif [[ "${PWD##*/}" == *"6.0"* ]]; then
+		cp ../license/license-portaldevelopment-developer-6.0sp2-liferaycom.xml deploy/
 	fi
 fi
 
