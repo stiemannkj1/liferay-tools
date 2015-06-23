@@ -1,5 +1,6 @@
 #!/opt/local/bin/bash
 
+PORTALS_HOME="$HOME/Portals"
 LIFERAY_VERSION=NULL
 
 if [[ $* =~ ee ]]; then
