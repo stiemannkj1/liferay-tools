@@ -18,6 +18,13 @@ if [[ "$@" =~ "reset" ]]; then
 	if [[ "${PWD##*/}" == *"5.2"* ]]; then
 		cp ../license/license-portaldevelopment-developer-5.2sp5-liferaycom.xml deploy/
 	elif [[ "${PWD##*/}" == *"6.0"* ]]; then
+
+		TOMCAT_WORK_CATALINA_LOCALHOST=$TOMCAT/work/Catalina/localhost
+		gfind $TOMCAT_WORK_CATALINA_LOCALHOST -maxdepth 1 ! -regex "\($TOMCAT_WORK_CATALINA_LOCALHOST\|$TOMCAT_WORK_CATALINA_LOCALHOST/_\|$TOMCAT_WORK_CATALINA_LOCALHOST/marketplace-portlet\|$TOMCAT_WORK_CATALINA_LOCALHOST/notifications-portlet\|$TOMCAT_WORK_CATALINA_LOCALHOST/resources-importer-web\|$TOMCAT_WORK_CATALINA_LOCALHOST/tunnel-web\)" -exec rm -r {} \;
+
+		TOMCAT_CONF_CATALINA_LOCALHOST=$TOMCAT/conf/Catalina/localhost
+		gfind $TOMCAT_CONF_CATALINA_LOCALHOST -maxdepth 1 ! -regex "\($TOMCAT_CONF_CATALINA_LOCALHOST\|$TOMCAT_CONF_CATALINA_LOCALHOST/ROOT.xml\|$TOMCAT_CONF_CATALINA_LOCALHOST/marketplace-portlet.xml\|$TOMCAT_CONF_CATALINA_LOCALHOST/notifications-portlet.xml\|$TOMCAT_CONF_CATALINA_LOCALHOST/resources-importer-web.xml\|$TOMCAT_CONF_CATALINA_LOCALHOST/tunnel-web.xml\)" -exec rm -r {} \;
+
 		cp ../license/license-portaldevelopment-developer-6.0sp2-liferaycom.xml deploy/
 	fi
 fi
