@@ -12,15 +12,9 @@ export HISTSIZE=100000
 export HISTFILESIZE=100000
 shopt -s histappend
 
-# Make mvim -v the default terminal editor:
-export EDITOR="/opt/local/bin/mvim -v"
+# Make nano the default terminal editor:
+export EDITOR="/opt/local/bin/nano --softwrap"
 export VISUAL="$EDITOR"
-
-# Add micro command to run mvim -v:
-alias micro="$EDITOR"
-
-# Alias vim to have default settings:
-alias vim='/usr/bin/vim -u NONE'
 
 # Path
 # /opt/local/bin:\ is first because macports needs to be first on the list.
