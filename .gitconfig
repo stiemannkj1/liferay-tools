@@ -5,4 +5,4 @@
 	helper = cache --timeout=32400
 [core]
 	editor = /opt/local/bin/nano
-	pager = less -+S
+	pager = /usr/bin/less -+S
