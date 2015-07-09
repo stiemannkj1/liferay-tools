@@ -21,7 +21,6 @@ include "/Users/kylestiemann/.nano/syntax/systemd.nanorc"
 include "/Users/kylestiemann/.nano/syntax/vi.nanorc"
 include "/Users/kylestiemann/.nano/syntax/xml.nanorc"
 
-set undo
 set nowrap
 set softwrap
 set tabsize 4
