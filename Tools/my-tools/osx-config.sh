@@ -2,6 +2,8 @@
 
 # defaults write com.apple.finder AppleShowAllFiles -bool true
 
+# defaults write com.apple.loginwindow PowerButtonSleepsSystem -bool no
+
 # Stop Slow loading Finder in Mavericks.
 # https://discussions.apple.com/message/23844251#23857589
 # killall Finder
