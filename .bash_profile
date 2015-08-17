@@ -95,8 +95,8 @@ function git_sed() {
 function rec_rep() {
 	FILES=$(ag --files-with-matches "$1")
 	if [[ "$FILES" ]]; then
-		SEARCH="${1/,/\\,}"
-		REPLACE="${2/,/\\,}"
+		SEARCH="${1//,/\\,}"
+		REPLACE="${2//,/\\,}"
 		perl -0p -i -e "s,$SEARCH,$REPLACE,g" $FILES
 		echo "$FILES"
 	fi
