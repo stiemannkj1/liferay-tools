@@ -1,0 +1,13 @@
+# look and feel
+hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%< "
+
+activity "Activity in %t(%n)"
+
+shell -$SHELL
+
+# Don't display the copyright page
+startup_message off
+
+escape ^||
+
+defscrollback 500
