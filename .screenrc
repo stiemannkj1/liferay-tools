@@ -3,7 +3,7 @@ hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%< "
 
 activity "Activity in %t(%n)"
 
-shell -$SHELL
+defshell bash
 
 # Don't display the copyright page
 startup_message off
@@ -11,3 +11,6 @@ startup_message off
 escape ^||
 
 defscrollback 500
+
+# Open new window in current dir.
+bind c stuff "screen -X chdir $PWD; screen bash -l^M"
