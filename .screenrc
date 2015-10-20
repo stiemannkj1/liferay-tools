@@ -14,7 +14,8 @@ autodetach on
 # Change command-mode key to <Ctrl+|>
 escape ^||
 
-defscrollback 500
+# 1000 lines in screen
+defscrollback 1000
 
 # Open new window in current dir.
 bind c stuff "screen -X chdir $PWD; screen bash -l^M"
