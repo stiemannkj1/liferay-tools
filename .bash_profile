@@ -120,3 +120,5 @@ source ~/.mvn-bash-completion/bash_completion.bash
 bind '"å": history-search-backward'
 bind '"ß": history-search-forward'
 
+export NVM_DIR="/Users/kylestiemann/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
