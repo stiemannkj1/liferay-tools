@@ -8,6 +8,7 @@ defshell bash
 # Don't display the copyright page
 startup_message off
 
+# Change command-mode key to <Ctrl+|>
 escape ^||
 
 defscrollback 500
