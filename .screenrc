@@ -18,4 +18,4 @@ escape ^||
 defscrollback 1000
 
 # Open new window in current dir.
-bind c stuff "screen -X chdir $PWD; screen bash -l^M"
+bind c stuff "screen bash -l^M"
