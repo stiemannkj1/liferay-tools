@@ -8,6 +8,9 @@ defshell bash
 # Don't display the copyright page
 startup_message off
 
+# autodetach
+autodetach on
+
 # Change command-mode key to <Ctrl+|>
 escape ^||
 
