@@ -116,7 +116,7 @@ function rec_rep_literal() {
 # Activate mvn bash completion:
 source ~/.mvn-bash-completion/bash_completion.bash
 
-# Bind <C-Up> and <C-Down> to history search:
-bind '"\e[1;5A": history-search-backward'
-bind '"\e[1;5B": history-search-forward'
+# Bind <Alt-a> and <Alt-s> to history search:
+bind '"å": history-search-backward'
+bind '"ß": history-search-forward'
 
