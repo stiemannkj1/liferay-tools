@@ -4,7 +4,6 @@ export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
 export ANT_OPTS="$MAVEN_OPTS -XX:MaxPermSize=256m"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export LIFERAY_FACES="$HOME/Projects/liferay.com/faces"
 
 # History Settings:
 export HISTCONTROL=ignoredups:erasedups
@@ -35,7 +34,7 @@ $JAVA_HOME/bin:\
 ~/Tools/jalopy/bin:\
 ~/Tools/vdldoc/bin:\
 ~/Tools/my-tools:\
-$LIFERAY_FACES:\
+~/Projects/liferay.com/liferay-faces-maven:\
 
 # Support wildcards (*):
 shopt -s globstar
