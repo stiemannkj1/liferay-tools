@@ -29,8 +29,11 @@ if [[ "$@" =~ "reset" ]]; then
 	fi
 fi
 
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
-export PATH=$JAVA_HOME/bin:$PATH
+if [[ "${PWD##*/}" != *"7.0"* ]]; then
+	export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
+	export PATH=$JAVA_HOME/bin:$PATH
+fi
+
 DEBUG=""
 
 if [[ "$@" =~ "debug" ]]; then
