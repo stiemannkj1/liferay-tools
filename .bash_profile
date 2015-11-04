@@ -72,7 +72,7 @@ fi
 
 # Add git_upstream_branch function to easily determine the upstream branches to pull from or send a PR to.
 git_upstream_branch(){
-	UPSTREAM_BRANCH=$(echo "$1" | perl -pe 's/^[^0-9]*(?=[0-9])//')
+	UPSTREAM_BRANCH=$(echo "$1" | gsed 's/.*\([0-9][.][0-9][.]x\)/\1/')
 
 	if [[ ! "$UPSTREAM_BRANCH" =~ ^[0-9] ]]; then
 		UPSTREAM_BRANCH=master
