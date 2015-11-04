@@ -4,6 +4,8 @@ export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
 export ANT_OPTS="$MAVEN_OPTS -XX:MaxPermSize=256m"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+# TODO Remove this. Fix pluto deployments.
+export PORTALS_HOME=$HOME/Portals
 
 # History Settings:
 export HISTCONTROL=ignoredups:erasedups
