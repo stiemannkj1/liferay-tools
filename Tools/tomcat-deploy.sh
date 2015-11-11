@@ -7,7 +7,7 @@ rm -rf $TOMCAT_WEBAPPS/${PWD##*/}*
 echo "Done."
 
 echo "Building..."
-mvn clean install -P development
+mvn clean install $@
 echo "Done."
 
 echo "Copying" target/*.war "to $TOMCAT_WEBAPPS/ ..."
