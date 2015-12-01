@@ -1,1 +1,0 @@
-perl -n -p -i -e "s/\<h3\>\<a href=\".*?\"\>/Title: /" "s/\<\/a\> by \<a href=\".*?\"\>/, Artist: /" "s/\<\/a\>\<\/h3\>//"
