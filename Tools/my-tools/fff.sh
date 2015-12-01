@@ -10,4 +10,4 @@ if [ -z "SEARCH_DIR" ]; then
 	SEARCH_DIR="./"
 fi
 
-/opt/local/bin/gfind $SEARCH_DIR -regextype posix-extended -regex ".*/?$1[^/]*"
+gfind $SEARCH_DIR -regextype posix-extended -regex ".*/?$1[^/]*"
