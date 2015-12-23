@@ -1,0 +1,8 @@
+#!/opt/local/bin/bash
+
+# When running `osascript` in tmux, it is necessary to use the `reattach-to-user-namespace` command.
+if [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; then
+	reattach-to-user-namespace /usr/bin/osascript "$@"
+else
+	/usr/bin/osascript "$@"
+fi

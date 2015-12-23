@@ -14,4 +14,4 @@ echo "Copying" target/*.war "to $TOMCAT_WEBAPPS/ ..."
 cp target/*.war $TOMCAT_WEBAPPS/
 echo "Done."
 
-growl.scpt "Process Completed."
+growl.sh "Process Completed."

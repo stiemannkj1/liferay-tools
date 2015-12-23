@@ -21,6 +21,7 @@ export VISUAL="$EDITOR"
 # /opt/local/bin:\ is first because macports needs to be first on the list.
 export PATH=\
 /opt/local/bin:\
+~/Tools/my-tools:\
 /bin:\
 /opt/local/sbin:\
 /sbin:\
@@ -33,16 +34,12 @@ $JAVA_HOME/bin:\
 ~/Tools/freemarker-generator/bin:\
 ~/Tools/jalopy/bin:\
 ~/Tools/vdldoc/bin:\
-~/Tools/my-tools:\
 ~/Projects/liferay.com/liferay-faces-maven:\
 
 # Support wildcards (*):
 shopt -s globstar
 # Support inverse wildcards (!):
 shopt -s extglob
-
-# Add growl command to alert me when processes complete:
-alias growl='/usr/bin/osascript -e "display notification with title \"Process Completed.\""'
 
 # In Netbeans don't export the PROMPT_COMMAND variable:
 if [ -n "$NBMAGIC" ]; then
