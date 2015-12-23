@@ -65,17 +65,6 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 	source /opt/local/etc/profile.d/bash_completion.sh
 fi
 
-# Add git_upstream_branch function to easily determine the upstream branches to pull from or send a PR to.
-git_upstream_branch(){
-	UPSTREAM_BRANCH=$(echo "$1" | gsed 's/.*\([0-9][.][0-9][.]x\)/\1/')
-
-	if [[ ! "$UPSTREAM_BRANCH" =~ ^[0-9] ]]; then
-		UPSTREAM_BRANCH=master
-	fi
-
-	echo "$UPSTREAM_BRANCH"
-}
-
 # Add git_sed function:
 function git_sed() {
 	FILES=$(git grep --files-with-matches --name-only "$1")
