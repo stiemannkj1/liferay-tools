@@ -6,3 +6,4 @@
 [core]
 	editor = /opt/local/bin/nano
 	pager = /usr/bin/less -+S
+	excludesfile = /Users/kylestiemann/.global-gitignore
