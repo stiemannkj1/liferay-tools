@@ -65,17 +65,6 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 	source /opt/local/etc/profile.d/bash_completion.sh
 fi
 
-# Add git_sed function:
-function git_sed() {
-	FILES=$(git grep --files-with-matches --name-only "$1")
-	if [[ "$FILES" ]]; then
-		SEARCH="${1/,/\\,}"
-		REPLACE="${2/,/\\,}"
-		gsed -i -e "s,$SEARCH,$REPLACE,g" $FILES
-		echo "$FILES"
-	fi
-}
-
 # Add rec_rep function for recursive replacing of (potentially) multiline strings:
 function rec_rep() {
 	FILES=$(ag --files-with-matches "$1")
