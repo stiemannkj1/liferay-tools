@@ -65,28 +65,6 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 	source /opt/local/etc/profile.d/bash_completion.sh
 fi
 
-# Add rec_rep function for recursive replacing of (potentially) multiline strings:
-function rec_rep() {
-	FILES=$(ag --files-with-matches "$1")
-	if [[ "$FILES" ]]; then
-		SEARCH="${1//,/\\,}"
-		REPLACE="${2//,/\\,}"
-		perl -0p -i -e "s,$SEARCH,$REPLACE,g" $FILES
-		echo "$FILES"
-	fi
-}
-
-# Add rec_rep_literal function for recursive replacing of (potentially) multiline string literals:
-function rec_rep_literal() {
-	FILES=$(ag --files-with-matches --literal "$1")
-	if [[ "$FILES" ]]; then
-		SEARCH="${1//,/\\,}"
-		REPLACE="${2//,/\\,}"
-		perl -0p -i -e "s,\Q$SEARCH,$REPLACE,g" $FILES
-		echo "$FILES"
-	fi
-}
-
 # Activate mvn bash completion:
 source ~/.mvn-bash-completion/bash_completion.bash
 
