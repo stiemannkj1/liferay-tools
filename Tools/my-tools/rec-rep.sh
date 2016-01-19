@@ -7,6 +7,8 @@ for ARG in "$@"; do
 	elif [ "$ARG" == '-0' ] || [ "$ARG" == '--multiline' ]; then
 		# ag does multiline searches by default
 		PERL_MULTILINE='-0'
+	elif [ "$ARG" == '-n' ] || [ "$ARG" == '--file-names' ]; then
+		REC_REP_FILE_NAMES="true"
 	elif [ -z "$SEARCH" ]; then
 		SEARCH="$ARG"
 	elif [ -z "$REPLACE" ]; then
@@ -32,4 +34,19 @@ if [ -n "$FILES" ]; then
 	REPLACE="${REPLACE//,/\\,}"
 	perl $PERL_MULTILINE -p -i -e "s,$PERL_LITERAL$SEARCH,$REPLACE,g" $FILES
 	echo "$FILES"
+fi
+
+if [ -n "$REC_REP_FILE_NAMES" ]; then
+
+	if [ -n "$AG_LITERAL" ]; then
+		echo "Literal file name matching is not supported."
+	else
+		fff.sh "$SEARCH" "${SEARCH_DIR[@]}" | tail -r | while read FILE; do
+			FILE_NAME="${FILE##*/}"
+			FILE_PATH="${FILE%/*}"
+			NEW_FILE="$FILE_PATH/${FILE_NAME//$SEARCH/$REPLACE}"
+			mv "$FILE" "$NEW_FILE"
+			echo "Renamed $FILE to $NEW_FILE"
+		done
+	fi
 fi
