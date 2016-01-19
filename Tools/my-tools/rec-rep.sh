@@ -9,8 +9,10 @@ for ARG in "$@"; do
 		PERL_MULTILINE='-0'
 	elif [ -z "$SEARCH" ]; then
 		SEARCH="$ARG"
-	else
+	elif [ -z "$REPLACE" ]; then
 		REPLACE="$ARG"
+	else
+		SEARCH_DIR+=("$ARG")
 	fi
 done
 
@@ -19,7 +21,11 @@ if [ -z "$SEARCH" ]; then
 	exit 1
 fi
 
-FILES=$(ag --files-with-matches $AG_LITERAL "$SEARCH")
+if [ ${#SEARCH_DIR[@]} -eq 0 ]; then
+	SEARCH_DIR+=(".")
+fi
+
+FILES=$(ag --files-with-matches $AG_LITERAL "$SEARCH" "${SEARCH_DIR[@]}")
 
 if [ -n "$FILES" ]; then
 	SEARCH="${SEARCH//,/\\,}"
