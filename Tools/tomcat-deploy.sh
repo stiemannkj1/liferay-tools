@@ -1,6 +1,6 @@
 #!/opt/local/bin/bash
 
-TOMCAT_WEBAPPS=/Users/kylestiemann/Servers/apache-tomcat-7.0.56/webapps
+TOMCAT_WEBAPPS=/Users/kylestiemann/Servers/apache-tomcat-7.0.62/webapps
 
 echo "Removing $TOMCAT_WEBAPPS/${PWD##*/}* ..."
 rm -rf $TOMCAT_WEBAPPS/${PWD##*/}*
