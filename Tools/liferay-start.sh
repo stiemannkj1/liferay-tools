@@ -2,7 +2,7 @@
 
 stop_portal() {
 	echo
-	$TOMCAT/bin/catalina.sh stop
+	$TOMCAT/bin/shutdown.sh
 	exit 0
 }
 
@@ -37,6 +37,8 @@ fi
 DEBUG=""
 
 if [[ "$@" =~ "debug" ]]; then
+	export JPDA_ADDRESS=8000
+	export JPDA_TRANSPORT=dt_socket
 	DEBUG="jpda"
 elif [[ "$@" =~ "jrebel" ]]; then
 	# jrebel.jar is symlinked to the NetBeans version of jrebel.jar via the following command:
