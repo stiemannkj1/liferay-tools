@@ -1,7 +1,7 @@
 # Enviornment Variables:
 export JAVA_HOME=$(/usr/libexec/java_home)
 export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
-export ANT_OPTS="$MAVEN_OPTS -XX:MaxPermSize=256m"
+export ANT_OPTS="-Xmx2048m -Djava.awt.headless=true -XX:MaxPermSize=512m"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 # TODO Remove this. Fix pluto deployments.
