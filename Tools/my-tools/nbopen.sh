@@ -7,4 +7,3 @@ for arg in "$@"; do
 done
 
 /Applications/NetBeans/NetBeans\ 8.1.app/Contents/MacOS/netbeans --open "$@"
-osascript -e 'tell application "Netbeans 8.1" to activate'
