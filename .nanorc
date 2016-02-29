@@ -24,8 +24,22 @@ include "/Users/kylestiemann/.nano/syntax/xml.nanorc"
 set nowrap
 set softwrap
 set tabsize 4
+# Use smooth scrolling.
 set smooth
+# Search with regexs.
 set regexp
+# Save a history of searches.
 set historylog
-set mouse
+# Always display cursor position in the status bar.
 set const
+# set undo
+set mouse
+set cut
+set autoindent
+set backup
+
+# bind Ω undo main
+# bind ¸ redo main
+# bind ^C copytext main
+# bind ^V uncut
+
