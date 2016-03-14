@@ -15,7 +15,7 @@ export HISTFILESIZE=100000
 shopt -s histappend
 
 # Make nano the default terminal editor:
-export EDITOR="/opt/local/bin/nano"
+export EDITOR="/opt/local/bin/vim"
 export VISUAL="$EDITOR"
 
 # Path
