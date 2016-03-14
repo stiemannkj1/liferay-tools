@@ -14,6 +14,8 @@ set whichwrap+=<,>,[,]
 
 set showmatch
 
+set backspace=indent,eol,start
+
 " search settings
 set hlsearch
 set incsearch
