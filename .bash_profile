@@ -32,10 +32,11 @@ export PATH=\
 /usr/local/mysql/bin:\
 $JAVA_HOME/bin:\
 ~/Tools:\
-~/Tools/freemarker-generator/bin:\
 ~/Tools/jalopy/bin:\
 ~/Tools/vdldoc/bin:\
+~/Tools/jd-cli-0.9.1.Final-dist:\
 ~/Projects/liferay.com/liferay-faces-maven:\
+~/.rvm/bin
 
 # Support wildcards (*):
 shopt -s globstar
@@ -75,3 +76,6 @@ bind '"ß": history-search-forward'
 
 export NVM_DIR="/Users/kylestiemann/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
