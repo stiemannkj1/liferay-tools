@@ -23,7 +23,7 @@ done
 
 if [[ tck =~ $1 ]]; then
 
-	pushd  ~/Projects/liferay.com/liferay-faces-bridge-impl/test/bridge-tck/bridge-tck-main-portlet && deploy.sh "${@:2}" development
+	pushd  ~/Projects/liferay.com/liferay-faces-bridge-impl/tck/bridge-tck-main-portlet && deploy.sh "${@:2}" development
 	mv ~/Portals/liferay.com/liferay-portal-$LIFERAY_VERSION-jsf-$JSF_VERSION/deploy/bridge-tck-main-portlet* ~/Portals/liferay.com/${LIFERAY_VERSION:0:3}/deploy/
 	echo "Moving ~/Portals/liferay.com/liferay-portal-$LIFERAY_VERSION-jsf-$JSF_VERSION/bridge-tck-main-portlet* to ~/Portals/liferay.com/${LIFERAY_VERSION:0:3}/deploy/"
 	popd
