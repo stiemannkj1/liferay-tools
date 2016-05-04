@@ -8,33 +8,20 @@ stop_portal() {
 
 trap 'stop_portal' EXIT
 
-TOMCAT=$(gfind . -name "tomcat-*" | head -1)
+TOMCAT=$(gfind . -maxdepth 1 -name "tomcat-*" | head -1)
 
 if [[ "$@" =~ "reset" ]]; then
 	rm -r data/
 
-	if [[ "${PWD##*/}" == *"5"* ]] || [[ "${PWD##*/}" == *"6"* ]]; then
+	if [[ "${PWD##*/}" == *"6.2"* ]]; then
 		TOMCAT_WEBAPPS=$TOMCAT/webapps;
 		gfind $TOMCAT_WEBAPPS -maxdepth 1 ! -regex "\($TOMCAT_WEBAPPS\|$TOMCAT_WEBAPPS/ROOT\|$TOMCAT_WEBAPPS/marketplace-portlet\|$TOMCAT_WEBAPPS/notifications-portlet\|$TOMCAT_WEBAPPS/resources-importer-web\|$TOMCAT_WEBAPPS/tunnel-web\)" -exec rm -r {} \;
-
-		if [[ "${PWD##*/}" == *"5.2"* ]]; then
-			cp ../license/license-portaldevelopment-developer-5.2sp5-liferaycom.xml deploy/
-		elif [[ "${PWD##*/}" == *"6.0"* ]]; then
-
-			TOMCAT_WORK_CATALINA_LOCALHOST=$TOMCAT/work/Catalina/localhost
-			gfind $TOMCAT_WORK_CATALINA_LOCALHOST -maxdepth 1 ! -regex "\($TOMCAT_WORK_CATALINA_LOCALHOST\|$TOMCAT_WORK_CATALINA_LOCALHOST/_\|$TOMCAT_WORK_CATALINA_LOCALHOST/marketplace-portlet\|$TOMCAT_WORK_CATALINA_LOCALHOST/notifications-portlet\|$TOMCAT_WORK_CATALINA_LOCALHOST/resources-importer-web\|$TOMCAT_WORK_CATALINA_LOCALHOST/tunnel-web\)" -exec rm -r {} \;
-
-			TOMCAT_CONF_CATALINA_LOCALHOST=$TOMCAT/conf/Catalina/localhost
-			gfind $TOMCAT_CONF_CATALINA_LOCALHOST -maxdepth 1 ! -regex "\($TOMCAT_CONF_CATALINA_LOCALHOST\|$TOMCAT_CONF_CATALINA_LOCALHOST/ROOT.xml\|$TOMCAT_CONF_CATALINA_LOCALHOST/marketplace-portlet.xml\|$TOMCAT_CONF_CATALINA_LOCALHOST/notifications-portlet.xml\|$TOMCAT_CONF_CATALINA_LOCALHOST/resources-importer-web.xml\|$TOMCAT_CONF_CATALINA_LOCALHOST/tunnel-web.xml\)" -exec rm -r {} \;
-
-			cp ../license/license-portaldevelopment-developer-6.0sp2-liferaycom.xml deploy/
-		fi
+	else
+		OSGI_WAR=osgi/war
+		gfind $OSGI_WAR -maxdepth 1 ! -regex "\($OSGI_WAR\|$OSGI_WAR/user-.*-theme.war\)" -exec rm -r {} \;
+		OSGI_MODULES=osgi/modules
+		gfind $OSGI_MODULES -maxdepth 1 -regex "$OSGI_MODULES/com[.]liferay[.]faces.*" -exec rm -r {} \;
 	fi
-fi
-
-if [[ "${PWD##*/}" != *"7"* ]]; then
-	export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
-	export PATH=$JAVA_HOME/bin:$PATH
 fi
 
 DEBUG=""
