@@ -35,6 +35,7 @@ $JAVA_HOME/bin:\
 ~/Tools/jalopy/bin:\
 ~/Tools/vdldoc/bin:\
 ~/Tools/jd-cli-0.9.1.Final-dist:\
+~/Tools/SaxonHE9-6-0-8J:\
 ~/Projects/liferay.com/liferay-faces-maven:\
 ~/.rvm/bin
 
