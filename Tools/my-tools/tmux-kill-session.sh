@@ -10,10 +10,11 @@ echo $PWD >> ~/Tools/my-tools/.tmux-saved-tabs.txt
 session="$(tmux display-message -p "#S")"
 windows="$(tmux list-windows | wc -l)"
 
-for ((window=0; window < windows; window++));
+# TODO use tmux-run-command.sh instead of manually doing this.
+for ((window=0; window < windows; window++)); do
 
 	# Don't print the first window's directory since we already printed it.
-	do if ((window > 0)); then
+	if ((window > 0)); then
 		tmux send-keys -t "$session:$window" "echo \$PWD >> ~/Tools/my-tools/.tmux-saved-tabs.txt; history -d \$(history 1)" Enter
 	fi
 done
