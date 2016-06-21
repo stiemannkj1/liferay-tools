@@ -1,6 +1,6 @@
 #!/opt/local/bin/bash
 
-for portlet in $(gfind "./demos" "./issues" -maxdepth 2 -name *-portlet | egrep "$1"); do
+for portlet in $(gfind "./demo" "./demos" "./issue" "./issues" -maxdepth 2 -name *-portlet | egrep "$1"); do
 
 	if [ -e "$portlet/pom.xml" ]; then
 		(cd $portlet && deploy.sh "${@:2}" development)
