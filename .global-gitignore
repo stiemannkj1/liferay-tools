@@ -2,3 +2,5 @@ nbactions.xml
 *.NavData
 nb-configuration.xml
 .DS_Store
+nbproject/*
+.gitignore
