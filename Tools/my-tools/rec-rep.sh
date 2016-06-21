@@ -40,7 +40,7 @@ if [ ${#SEARCH_DIR[@]} -eq 0 ]; then
 	SEARCH_DIR+=(".")
 fi
 
-FILES=$(ag --files-with-matches $AG_LITERAL "$SEARCH" "${SEARCH_DIR[@]}")
+FILES=$(ag --case-sensitive --files-with-matches $AG_LITERAL "$SEARCH" "${SEARCH_DIR[@]}")
 
 if [ -n "$FILES" ]; then
 	SEARCH="${SEARCH//,/\\,}"
