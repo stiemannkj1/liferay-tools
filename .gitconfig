@@ -1,9 +1,9 @@
 [user]
 	name = Kyle Stiemann
 	email = stiemannkj1@gmail.com
-[credential]
-	helper = cache --timeout=32400
 [core]
 	editor = /opt/local/bin/nano
 	pager = /usr/bin/less -+S
 	excludesfile = /Users/kylestiemann/.global-gitignore
+[credential]
+	helper = osxkeychain
