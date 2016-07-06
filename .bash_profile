@@ -32,7 +32,6 @@ export PATH=\
 /usr/local/mysql/bin:\
 $JAVA_HOME/bin:\
 ~/Tools:\
-~/Tools/jalopy-1.9.5/bin:\
 ~/Tools/vdldoc/bin:\
 ~/Tools/jd-cli-0.9.1.Final-dist:\
 ~/Tools/SaxonHE9-6-0-8J:\
