@@ -5,11 +5,15 @@ if [ -z "$1" ]; then
 	exit 0
 fi
 
-BRANCHES=$(git branch | ag --case-sensitive -- "$1")
+BRANCHES=$(git branch | perl -ne 'print unless /^[*]/' | perl -pe 's/^[ \t]+//g' | ag --case-sensitive -- "$1")
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-if [[ $BRANCHES == *"$CURRENT_BRANCH"* ]]; then
-	echo "Cannot delete checked out branch. Exiting."
+if [ -n "$(echo $CURRENT_BRANCH | ag --case-sensitive -- "$1")" ]; then
+	echo "Warning: Cannot delete the currently checked out branch."
+fi
+
+if [ -z "$BRANCHES" ]; then
+	echo "No deletable branches found."
 	exit 1
 fi
 
