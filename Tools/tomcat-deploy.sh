@@ -1,11 +1,5 @@
 #!/opt/local/bin/bash
 
-TOMCAT_WEBAPPS=/Users/kylestiemann/Servers/apache-tomcat-7.0.62/webapps
-
-echo "Removing $TOMCAT_WEBAPPS/${PWD##*/}* ..."
-rm -rf $TOMCAT_WEBAPPS/${PWD##*/}*
-echo "Done."
-
 echo "Building..."
 if [ $# -eq 0 ]; then
 	mvn clean install -P prettyfaces,development,jsf22
@@ -14,13 +8,17 @@ else
 fi
 echo "Done."
 
-echo "Copying" target/*.war "to $TOMCAT_WEBAPPS/ ..."
-cp target/*.war $TOMCAT_WEBAPPS/
+WAR_WITH_VERSION=$(fff.sh '[.]war' ./target/)
+WAR_WITH_VERSION=${WAR_WITH_VERSION##*/}
+WAR_NAME=${WAR_WITH_VERSION//-[0-9][0-9.]*-[A-Za-z0-9][A-Za-z0-9_]*[.]war}
+
+TOMCAT_WEBAPPS=/Users/kylestiemann/Servers/apache-tomcat-8.0.32/webapps
+echo "Removing $TOMCAT_WEBAPPS/$WAR_NAME* ..."
+rm -r $TOMCAT_WEBAPPS/$WAR_NAME*
 echo "Done."
 
-if [ $# -eq 0 ] || [[ $@ == *"prettyfaces"* ]]; then
-	echo "Rebuilding without prettyfaces to avoid issues if this war is used as an overlay."
-	mvn clean install
-fi
+echo "Copying target/$WAR_WITH_VERSION to $TOMCAT_WEBAPPS/$WAR_NAME.war ..."
+cp target/$WAR_WITH_VERSION $TOMCAT_WEBAPPS/$WAR_NAME.war
+echo "Done."
 
 growl-complete.sh
