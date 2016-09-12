@@ -4,6 +4,7 @@ case "$PWD" in
 	*liferay-faces-alloy*|\
 		*liferay-faces-bridge-ext*|\
 		*liferay-faces-generator*|\
+		*liferay-faces-lsv*|\
 		*liferay-faces-maven*|\
 		*liferay-faces-metal*|\
 		*liferay-faces-portal*)
