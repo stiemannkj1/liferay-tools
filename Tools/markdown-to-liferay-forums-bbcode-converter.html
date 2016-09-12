@@ -45,8 +45,8 @@
 						//.replace(/^(?!\n*[`]{3,3})[#]{1,1}\s*(.*)\n?$/gmi, "[h1]$1[/h1]") // h1
 						//
 						//.replace(/^\t|[ ]{4,4}(.*)/gmi, "$1")  //code; strips tabs
-						.replace(/^\`{3,3}(.*)\n((?:.|\n)+?)\n\`{3,3}\n?$/gmi, "[code]$2[/code]")   // back ticks
-						.replace(/^\~{3,3}(.*)\n((?:.|\n)+?)\n\~{3,3}\n?$/gmi, "[code]$2[/code]")   // tilde
+						.replace(/^\`{3,3}(.*)\n((?:.|\n)+?)\n\`{3,3}\n?$/gmi, "[font=Courier New][size=4]$2[/size][/font]")   // back ticks
+						.replace(/^\~{3,3}(.*)\n((?:.|\n)+?)\n\~{3,3}\n?$/gmi, "[font=Courier New][size=4]$2[/size][/font]")   // tilde
 						.replace(/\`([^\`].*?)\`/gmi, "[font=Courier New]$1[/font]")  // inline code
 						//
 						.replace(/\[!\[.*?\]\((.*?)\)\]\((.*?)\)/gmi, '[img]$1[/img]\nClickable image was pointing to [url=$2]here[/url]') //image
@@ -108,16 +108,7 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			var textBoxl = document.getElementById("left_ta");
 			var textBoxr = document.getElementById("right_ta");
-			textBoxl.onfocus = function () {
-				textBoxl.select();
-
-				textBoxl.onmouseup = function () {
-					textBoxl.onmouseup = null;
-					return false;
-				};
-			};
 			textBoxr.onfocus = function () {
 				textBoxr.select();
 
