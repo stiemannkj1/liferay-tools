@@ -13,7 +13,7 @@ for ARG in "$@"; do
 		REC_REP_FILE_NAMES="true"
 	elif [ -z "$SEARCH" ]; then
 		SEARCH="$ARG"
-	elif [ -z "$REPLACE" ]; then
+	elif [ -z "$REPLACE" ] && [ -z "$DELETE_MATCHING_LINES" ]; then
 		REPLACE="$ARG"
 	else
 		SEARCH_DIR+=("$ARG")
