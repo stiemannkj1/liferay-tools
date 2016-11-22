@@ -19,10 +19,11 @@ if [[ "$@" =~ "reset" ]]; then
 		TOMCAT_WEBAPPS=$TOMCAT/webapps;
 		gfind $TOMCAT_WEBAPPS -maxdepth 1 ! -regex "\($TOMCAT_WEBAPPS\|$TOMCAT_WEBAPPS/ROOT\|$TOMCAT_WEBAPPS/marketplace-portlet\|$TOMCAT_WEBAPPS/notifications-portlet\|$TOMCAT_WEBAPPS/resources-importer-web\|$TOMCAT_WEBAPPS/tunnel-web\)" -exec rm -r {} \;
 	else
-		OSGI_WAR=osgi/war
-		gfind $OSGI_WAR -maxdepth 1 ! -regex "\($OSGI_WAR\|$OSGI_WAR/user-.*-theme.war\)" -exec rm -r {} \;
-		OSGI_MODULES=osgi/modules
-		gfind $OSGI_MODULES -maxdepth 1 -regex "$OSGI_MODULES/com[.]liferay[.]faces.*" -exec rm -r {} \;
+		:
+#		OSGI_WAR=osgi/war
+#		gfind $OSGI_WAR -maxdepth 1 ! -regex "\($OSGI_WAR\|$OSGI_WAR/user-.*-theme.war\)" -exec rm -r {} \;
+#		OSGI_MODULES=osgi/modules
+#		gfind $OSGI_MODULES -maxdepth 1 -regex "$OSGI_MODULES/com[.]liferay[.]faces.*" -exec rm -r {} \;
 	fi
 fi
 
@@ -41,4 +42,3 @@ fi
 # liferay-alert.sh starts an infinite loop watching the portal logs for deploys, so this script must be exited with ^C.
 # When the script is killed, stop_portal is executed.
 $TOMCAT/bin/catalina.sh $DEBUG start && liferay-alert.sh
-
