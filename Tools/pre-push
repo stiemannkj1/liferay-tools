@@ -1,0 +1,13 @@
+#!/opt/local/bin/bash
+
+# Soft linked in .git:
+# ln -s $HOME/Tools/pre-push $HOME/.git/hooks/pre-push
+
+# Obtain a list of the installed requested macports (with variants).
+sudo port echo requested | \
+	perl -pe 's/\@[^+^\n]+(\+?[^ ]*).*/$1/g' | perl -pe 's/\s*\+/ +/g' > Tools/installed-requested-ports.txt || exit 1
+
+if $(git status --porcelain | grep -q 'Tools/installed-requested-ports.txt'); then
+	git commit -m 'Updated Tools/installed-requested-ports.txt' -- Tools/installed-requested-ports.txt &&
+	exit 0 || exit 1
+fi
