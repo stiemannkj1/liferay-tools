@@ -36,8 +36,7 @@ $JAVA_HOME/bin:\
 ~/Tools/jd-cli-0.9.1.Final-dist:\
 ~/Tools/SaxonHE9-6-0-8J:\
 ~/Tools/phantomjs-2.1.1-macosx/bin:\
-~/Projects/liferay.com/liferay-faces-maven:\
-~/.rvm/bin
+~/Projects/liferay.com/liferay-faces-maven
 
 # Support wildcards (*):
 shopt -s globstar
@@ -79,4 +78,5 @@ export NVM_DIR="/Users/kylestiemann/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
