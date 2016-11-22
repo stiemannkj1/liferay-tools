@@ -11,7 +11,7 @@ case "$PWD" in
 		PROFILE_ARG="--profile=liferay-faces"
 	;;
 	*liferay-faces-*)
-		PROFILE_ARG=""
+		PROFILE_ARG="--profile=liferay-faces-apache-2.0"
 	;;
 	*)
 		PROFILE_ARG="--profile=liferay-faces"
