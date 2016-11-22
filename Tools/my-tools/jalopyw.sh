@@ -1,16 +1,11 @@
 #!/opt/local/bin/bash
 
 case "$PWD" in
-	*liferay-faces-alloy*|\
-		*liferay-faces-bridge-ext*|\
-		*liferay-faces-generator*|\
-		*liferay-faces-lsv*|\
-		*liferay-faces-maven*|\
-		*liferay-faces-metal*|\
-		*liferay-faces-portal*)
-		PROFILE_ARG="--profile=liferay-faces"
-	;;
-	*liferay-faces-*)
+	*liferay-faces-bridge-impl*|\
+		*liferay-faces-bridge-api*|\
+		*liferay-faces-showcase*|\
+		*liferay-faces-test-selenium*|\
+		*liferay-faces-util*)
 		PROFILE_ARG="--profile=liferay-faces-apache-2.0"
 	;;
 	*)
