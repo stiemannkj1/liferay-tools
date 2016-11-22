@@ -35,3 +35,4 @@ tmux-pasteboard
 tree                           
 unrar                          
 vim +huge
+wget +ssl
