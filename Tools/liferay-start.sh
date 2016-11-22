@@ -1,8 +1,10 @@
 #!/opt/local/bin/bash
 
 stop_portal() {
-	echo
+	RUNNING_BOOTSTRAPS="$(jps | grep -o 'Bootstrap' | wc -l | tr -d '[[:space:]]')"
+	EXPECTED_RUNNING_BOOTSTRAPS_AFTER_SHUTDOWN="$((RUNNING_BOOTSTRAPS - 1))"
 	$TOMCAT/bin/shutdown.sh
+	while [ "$(jps | grep -o 'Bootstrap' | wc -l | tr -d '[[:space:]]')" != "$EXPECTED_RUNNING_BOOTSTRAPS_AFTER_SHUTDOWN" ]; do :; done
 	exit 0
 }
 
