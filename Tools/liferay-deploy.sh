@@ -26,6 +26,10 @@ if [ -d "./bridge-ext" ]; then
 	DIRS_TO_SEARCH+=("./bridge-ext")
 fi
 
+if [ -d "./site" ]; then
+	DIRS_TO_SEARCH+=("./site")
+fi
+
 if [ ${#DIRS_TO_SEARCH[@]} -eq 0 ]; then
 	echo "Error: no demos to deploy."
 	exit 1
