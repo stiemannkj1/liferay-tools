@@ -1,4 +1,17 @@
 <!doctype html>
+<!--
+	Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
+
+	This library is free software; you can redistribute it and/or modify it under
+	the terms of the GNU Lesser General Public License as published by the Free
+	Software Foundation; either version 2.1 of the License, or (at your option)
+	any later version.
+
+	This library is distributed in the hope that it will be useful, but WITHOUT
+	ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+	FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+	details.
+-->
 <html class="no-js" lang="en">
 	<head>
 		<meta charset="utf-8"/>
@@ -9,106 +22,162 @@
 				height: 20em;
 			}
 		</style>
+		<script type="text/javascript" src="file:///Users/kylestiemann/Tools/marked-0.3.6/marked.min.js"></script>
 		<script type="text/javascript">
-			function convert()
-			{
-				var left = document.getElementById("left_ta");
-				var right = document.getElementById("right_ta");
 
-				var left_value = left.value;
+			function unescape(text) {
+				return text.replace('&lt;', '<')
+						.replace('&gt;', '>')
+						.replace('&quot;', '"')
+						.replace('&#39;', "'")
+						.replace('&amp;', '&');
+			}
+
+			var liferayForumsBBCodeRenderer = new marked.Renderer();
+			var useCodeTag = false;
+
+			liferayForumsBBCodeRenderer.code = function (text, language /* unused */) {
+
+				if (useCodeTag) {
+					return '\n[code]' + text + '[/code]';
+				} else {
+					return '\n[size=4][font=Courier New]' + text + '[/font][/size]\n';
+				}
+			};
+
+			liferayForumsBBCodeRenderer.blockquote = function (text) {
+				return '\n[quote]' + unescape(text) + '[/quote]';
+			};
+
+			liferayForumsBBCodeRenderer.heading = function (text, level) {
+
+				if (level === 1) {
+					size = 7;
+				} else if (level === 2) {
+					size = 6;
+				} else if (level >= 3) {
+					size = 5;
+				}
+
+				return '[size=' + size + '][b]' + unescape(text) + '[/b][/size]\n';
+			};
+
+			liferayForumsBBCodeRenderer.hr = function () {
+				return '\n[center][b]---[/b][/center]\n';
+			};
+
+			liferayForumsBBCodeRenderer.list = function (body, ordered) {
+
+				var beginTag = '\n[list';
+
+				if (ordered) {
+					beginTag += '=1';
+				}
+
+				beginTag += ']\n';
+
+				return beginTag + unescape(body) + '[/list]\n';
+			};
+
+			liferayForumsBBCodeRenderer.listitem = function (text) {
+				return '[*]' + unescape(text) + '\n';
+			};
+
+			liferayForumsBBCodeRenderer.paragraph = function (text) {
+				return '\n' + unescape(text) + '\n';
+			};
+
+			liferayForumsBBCodeRenderer.strong = function (text) {
+				return '[b]' + unescape(text) + '[/b]';
+			};
+
+			liferayForumsBBCodeRenderer.em = function (text) {
+				return '[i]' + unescape(text) + '[/i]';
+			};
+
+			liferayForumsBBCodeRenderer.codespan = function (text) {
+				return '[font=Courier New]' + unescape(text) + '[/font]';
+			};
+
+			liferayForumsBBCodeRenderer.br = function () {
+				return '\n';
+			};
+
+			liferayForumsBBCodeRenderer.del = function (text) {
+				return '[s]' + unescape(text) + '[/s]';
+			};
+
+			liferayForumsBBCodeRenderer.link = function (href, title, text) {
+
+				var endTag = '[/url]';
+
+				if (title && title !== '') {
+					endTag += ' (' + title + ')';
+				}
+
+				return '[url=' + href + ']' + unescape(text) + endTag;
+			};
+
+			liferayForumsBBCodeRenderer.image = function (href, title, text) {
+
+				var beginTag = '';
+
+				if (title && title !== '') {
+					beginTag += '[size=5][b]' + unescape(title) + '[/b][/size]\n';
+				}
+
+				if (text && text !== '') {
+					beginTag += unescape(text) + '\n';
+				}
+
+				beginTag += '[image]';
+
+				return beginTag + href + '[/image]';
+			};
+
+			marked.setOptions({
+				renderer: liferayForumsBBCodeRenderer,
+				gfm: true,
+				tables: true,
+				breaks: true,
+				pedantic: false,
+				sanitize: false,
+				smartLists: true,
+				smartypants: false
+			});
+
+			function convert() {
+
+				var markdown = document.getElementById("markdown_text");
+				var bbcode = document.getElementById("bbcode_text");
+
+				var markdown_value = markdown.value;
 				//general Markdown conversion
-				left_value = left_value
-						//
-						.replace(/\[(.+?)\]\((.+?)(\s".*")?\)/gmi, '[url=$2]$1[/url]') // url
-						//
-						.replace(/^(.+)(\n|\r\n)([=]{3,3}\s*(\n|\r\n)?)$/gmi, "[h1]$1[/h1]") // h1
-						.replace(/^(.+)(\n|\r\n)([-]{3,3}\s*(\n|\r\n)?)$/gmi, "[h2]$1[/h2]") // h2
-						//
-						.replace(/^[#]{6,6}\s*(.*[^\s])\s*[#]{6,6}\n?$/gmi, "[h6]$1[/h6]") // h4
-						.replace(/^[#]{6,6}\s*(.*)\n?$/gmi, "[h6]$1[/h6]") // h4
-						//
-						.replace(/^>(.*)?[^\n]?$/gmi, "$1") // removes quotes
-						//
-						.replace(/^[#]{5,5}\s*(.*[^\s])\s*[#]{5,5}\n?$/gmi, "[h5]$1[/h5]") // h4
-						.replace(/^[#]{5,5}\s*(.*)\n?$/gmi, "[h5]$1[/h5]") // h4
-						//
-						.replace(/^[#]{4,4}\s*(.*[^\s])\s*[#]{4,4}\n?$/gmi, "[h4]$1[/h4]") // h4
-						.replace(/^[#]{4,4}\s*(.*)\n?$/gmi, "[h4]$1[/h4]") // h4
-						//
-						.replace(/^[#]{3,3}\s*(.*[^\s])\s*[#]{3,3}\n?$/gmi, "[h3]$1[/h3]") // h3
-						.replace(/^[#]{3,3}\s?(.*)\n?$/gmi, "[h3]$1[/h3]") // h3
-						//
-						//.replace(/^[#]{2,2}\s*(.*[^\s])\s*[#]{2,2}\n?$/gmi, "[h2]$1[/h2]") // h2
-						//.replace(/^[#]{2,2}\s*(.*)\n?$/gmi, "[h2]$1[/h2]") // h2
-						//
-						//.replace(/^[#]{1,1}\s*(.*[^\s])\s*[#]{1,1}\n?$/gmi, "[h1]$1[/h1]") // h1
-						//.replace(/^(?!\n*[`]{3,3})[#]{1,1}\s*(.*)\n?$/gmi, "[h1]$1[/h1]") // h1
-						//
-						//.replace(/^\t|[ ]{4,4}(.*)/gmi, "$1")  //code; strips tabs
-						.replace(/^\`{3,3}(.*)\n((?:.|\n)+?)\n\`{3,3}\n?$/gmi, "[font=Courier New][size=4]$2[/size][/font]")   // back ticks
-						.replace(/^\~{3,3}(.*)\n((?:.|\n)+?)\n\~{3,3}\n?$/gmi, "[font=Courier New][size=4]$2[/size][/font]")   // tilde
-						.replace(/\`([^\`].*?)\`/gmi, "[font=Courier New]$1[/font]")  // inline code
-						//
-						.replace(/\[!\[.*?\]\((.*?)\)\]\((.*?)\)/gmi, '[img]$1[/img]\nClickable image was pointing to [url=$2]here[/url]') //image
-						.replace(/!\[(.*)\]\((.*)\)/gmi, '[img]$2[/img]') //image
-						//
-						.replace(/\*\*\*([^\*].*?)\*\*\*/gmi, "[b][i]$1[/i][/b]") // bold + itlaic
-						.replace(/\*\*([^\*].*?)\*\*/gmi, "[b]$1[/b]") // bold
-						.replace(/(\s)\*((?!\/[0-9]|\s|\*).*?)\*(\s)/gmi, "$1[i]$2[/i]$3")  // italic
-				//
-				right.value = left_value;
+				markdown_value = marked(markdown_value);
+
+				if (markdown_value.charAt(0) === '\n') {
+					markdown_value = markdown_value.substr(1);
+				}
+
+				bbcode.value = markdown_value;
 				console.log('converted');
 			}
 		</script>
 	</head>
 	<body>
 		<div class="row">
-			<div class="large-12 columns">
-				<h2>Markdown to Liferay Forums (BBCode) Converter</h2> 
-			</div>
+			<h2>Markdown to Liferay Forums (BBCode) Converter</h2>
 		</div>
 
 		<div class="row">
-			<div class="large-12 columns">
-				<!-- Grid Example -->
-				<div class="row">
-					<div class="large-12 columns">
-						<div class="panel">
-							<p>
-								Paste your Markdown formatted text into the top box and Feral FAQ formatted BBCode appears in the bottom. Indented code will have the space/tabs stripped. You have to manually apply <kbd>[code][/code]</kbd> tags to these. Github style <kbd>```</kbd> code tags or <kbd>~~~</kbd> will be replaced with <kbd>[code]some code[/code]</kbd> tags.
-                            </p>
-							<p>
-								For <kbd>H1</kbd> and <kbd>H2</kbd> tags do not use <kbd>#</kbd> and <kbd>##</kbd>. Instead use <kbd>===</kbd> underneath for <kbd>H1</kbd> and <kbd>---</kbd> underneath for <kbd>H2</kbd> or they will not be converted. So for example:
-                            </p>
-							<div>
-								<pre><code>Sometitle H1</code></pre>
-								<pre><code>===</code></pre>
-								<p>
-                                </p>
-								<pre><code>Sometitle H2</code></pre>
-								<pre><code>---</code></pre>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns mycustom1">
-						<div class="panel textdivsize">
-							<textarea id="left_ta" class="textareasize" onChange="convert()" onKeyUp="convert()" placeholder="Enter your Markdown formatted text here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Markdown formatted text here'"></textarea>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-12 columns mycustom1">
-						<div class="panel textdivsize">
-							<textarea id="right_ta" class="textareasize" placeholder="Your BBCode formatted text will be automatically shown in this box" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your BBCode formatted text will be automatically shown in this box'"></textarea>
-						</div>
-					</div>
-				</div>
-			</div>
+			<p>
+				Paste your Markdown formatted text into the top box and Liferay forums BBCode appears in the bottom. Indented code will have the space/tabs stripped. You have to manually apply <kbd>[code][/code]</kbd> tags to these. Github style <kbd>```</kbd> code tags or <kbd>~~~</kbd> will be replaced with <kbd>[size=4][font=Courier New]some code[/font][/size]</kbd> tags instead.
+			</p>
+			<textarea id="markdown_text" class="textareasize" onChange="convert()" onKeyUp="convert()" placeholder="Enter your Markdown formatted text here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Markdown formatted text here'"></textarea>
+			<textarea id="bbcode_text" class="textareasize" placeholder="Your BBCode formatted text will be automatically shown in this box" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your BBCode formatted text will be automatically shown in this box'"></textarea>
 		</div>
 		<script type="text/javascript">
-			var textBoxr = document.getElementById("right_ta");
+			var textBoxr = document.getElementById("bbcode_text");
 			textBoxr.onfocus = function () {
 				textBoxr.select();
 
@@ -117,7 +186,6 @@
 					return false;
 				};
 			};
-			// http://stackoverflow.com/questions/5797539/jquery-select-all-text-from-a-textarea
 		</script>
 	</body>
 </html>
