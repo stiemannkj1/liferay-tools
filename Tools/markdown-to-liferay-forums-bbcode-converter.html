@@ -177,12 +177,13 @@
 			<textarea id="bbcode_text" class="textareasize" placeholder="Your BBCode formatted text will be automatically shown in this box" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your BBCode formatted text will be automatically shown in this box'"></textarea>
 		</div>
 		<script type="text/javascript">
-			var textBoxr = document.getElementById("bbcode_text");
-			textBoxr.onfocus = function () {
-				textBoxr.select();
+			var bbcode = document.getElementById("bbcode_text");
+			bbcode.onfocus = function () {
 
-				textBoxr.onmouseup = function () {
-					textBoxr.onmouseup = null;
+				bbcode.select();
+
+				bbcode.onmouseup = function () {
+					bbcode.onmouseup = null;
 					return false;
 				};
 			};
