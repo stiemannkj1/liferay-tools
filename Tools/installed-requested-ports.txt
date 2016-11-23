@@ -1,38 +1,39 @@
-apache-ant                     
-autoconf                       
-automake                       
-bash                           
-bash-completion                
-bzip2                          
-cmake                          
-coreutils                      
+apache-ant
+autoconf
+automake
+bash
+bash-completion
+bzip2
+cmake
+coreutils
 cyrus-sasl2 +kerberos
-desktop-file-utils             
-dos2unix                       
+desktop-file-utils
+dos2unix
 ffmpeg +gpl2
-findutils                      
-gifsicle                       
+findutils
+gifsicle
 git +credential_osxkeychain +doc +pcre +perl5_24 +svn
-gnupg                          
-gradle                         
+gnupg
+gradle
 graphviz +pangocairo +x11
-gsed                           
-hub                            
+grep
+gsed
+hub
 ImageMagick +x11
-ispell                         
-libksba                        
-maven3                         
+ispell
+libksba
+maven3
 mercurial +bash_completion
-nano                           
-perl5.16                       
-perl5.22                       
-port_cutleaves                 
-realpath                       
-the_silver_searcher            
-tkdiff                         
-tmux                           
-tmux-pasteboard                
-tree                           
-unrar                          
+nano
+perl5.16
+perl5.22
+port_cutleaves
+realpath
+the_silver_searcher
+tkdiff
+tmux
+tmux-pasteboard
+tree
+unrar
 vim +huge
 wget +ssl
