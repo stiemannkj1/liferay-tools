@@ -5,10 +5,12 @@
 
 # Obtain a list of the installed requested macports (with variants).
 sudo port echo requested | \
-	perl -pe 's/\@[^+^\n]+(\+?[^ ]*).*/$1/g' | perl -pe 's/\s*\+/ +/g' > Tools/installed-requested-ports.txt ||
-	echo "Failed update the list of requested ports." && exit 1
+	perl -pe 's/\@[^+^\n]+(\+?[^ ]*).*/$1/g' | perl -pe 's/\s*\+/ +/g' | perl -pe 's/(\t| )+$//g' > Tools/installed-requested-ports.txt ||
+	echo "Failed update the list of requested ports." || exit 1
 
 if $(git status --porcelain | grep -q 'Tools/installed-requested-ports.txt'); then
-	git commit -m 'Updated Tools/installed-requested-ports.txt' -- Tools/installed-requested-ports.txt &&
-	exit 0 || echo "Failed to commit the list of requested ports." && exit 1
+	git commit -m 'Updated Tools/installed-requested-ports.txt' -- Tools/installed-requested-ports.txt ||
+    echo "Failed to commit the list of requested ports." || exit 1
 fi
+
+exit 0
