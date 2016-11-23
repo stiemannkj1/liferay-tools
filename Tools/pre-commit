@@ -19,10 +19,10 @@
 # Soft linked in .git:
 # ln -s $HOME/Tools/pre-commit $HOME/.git/hooks/pre-commit
 
-gsed -E -i '/^\#\!.*\/bin\/bash/r Tools/license.txt' \
-	$(git diff --cached --name-only --diff-filter=ACM | xargs grep -l '^\#\!.*\/bin\/bash' -- | xargs grep -L '^# Copyright' --) &&
-	gsed -i '1r Tools/license.txt' \
-	$(git diff --cached --name-only --diff-filter=ACM | xargs grep -l '^#' -- | xargs grep -L '^# Copyright' -- | xargs grep -L '^\#\!.*\/bin\/bash' --) &&
-	perl -p -i -e "s/\\$\{CURRENT_YEAR\}/$(date +'%Y')/g" \
-	$(git diff --cached --name-only --diff-filter=ACM | xargs grep -l '^#' --) &&
-	exit 0 || exit 1
+#gsed -E -i '/^\#\!.*\/bin\/bash/r Tools/license.txt' \
+#	$(git diff --cached --name-only --diff-filter=ACM | xargs grep -s -l -I '^\#\!.*\/bin\/bash' -- | xargs grep -L '^# Copyright' --) &&
+#	gsed -i '1r Tools/license.txt' \
+#	$(git diff --cached --name-only --diff-filter=ACM | xargs grep -s -l -I '^#' -- | xargs grep -L '^\#\!.*\/bin\/bash' -- | xargs grep -L '^# Copyright' --) &&
+#	perl -p -i -e "s/\\$\{CURRENT_YEAR\}/$(date +'%Y')/g" \
+#	$(git diff --cached --name-only --diff-filter=ACM | xargs grep -s -l -I '^#' -- | grep -v license.txt) &&
+#	exit 0 || exit 1
