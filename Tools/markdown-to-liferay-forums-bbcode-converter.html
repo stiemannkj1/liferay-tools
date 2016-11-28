@@ -26,11 +26,13 @@
 		<script type="text/javascript">
 
 			function unescape(text) {
-				return text.replace('&lt;', '<')
-						.replace('&gt;', '>')
-						.replace('&quot;', '"')
-						.replace('&#39;', "'")
-						.replace('&amp;', '&');
+				// split and join are used instead of replace since replace does not replace all occurences. For more
+				// details see: http://stackoverflow.com/questions/1144783/how-to-replace-all-occurrences-of-a-string-in-javascript#1145525
+				return text.split('&lt;').join('<')
+						.split('&gt;').join('>')
+						.split('&quot;').join('"')
+						.split('&#39;').join("'")
+						.split('&amp;').join('&');
 			}
 
 			var liferayForumsBBCodeRenderer = new marked.Renderer();
