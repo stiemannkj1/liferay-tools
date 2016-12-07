@@ -36,11 +36,10 @@
 			}
 
 			var liferayForumsBBCodeRenderer = new marked.Renderer();
-			var useCodeTag = false;
 
 			liferayForumsBBCodeRenderer.code = function (text, language /* unused */) {
 
-				if (useCodeTag) {
+				if (document.getElementById('useCodeTags').checked) {
 					return '\n[code]' + text + '[/code]';
 				} else {
 					return '\n[size=4][font=Courier New]' + text + '[/font][/size]\n';
@@ -65,7 +64,7 @@
 			};
 
 			liferayForumsBBCodeRenderer.hr = function () {
-				return '\n[center][b]---[/b][/center]\n';
+				return '[center][b]--------------------------------------------------------------------------------------------[/b][/center]';
 			};
 
 			liferayForumsBBCodeRenderer.list = function (body, ordered) {
@@ -173,8 +172,12 @@
 
 		<div class="row">
 			<p>
-				Paste your Markdown formatted text into the top box and Liferay forums BBCode appears in the bottom. Indented code will have the space/tabs stripped. You have to manually apply <kbd>[code][/code]</kbd> tags to these. Github style <kbd>```</kbd> code tags or <kbd>~~~</kbd> will be replaced with <kbd>[size=4][font=Courier New]some code[/font][/size]</kbd> tags instead.
+				Paste your Markdown formatted text into the top box and Liferay Forums BBCode appears in the bottom.
 			</p>
+			<label>
+				<input id="useCodeTags" type="checkbox" onchange="convert();" />
+				Use <code>[code]</code> tags (if unchecked, <code>[size=4][font=Courier New]</code> tags will be used instead since they do not render line numbers in the Liferay Forums so they are easier to copy/paste).
+			</label>
 			<textarea id="markdown_text" class="textareasize" onChange="convert()" onKeyUp="convert()" placeholder="Enter your Markdown formatted text here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Markdown formatted text here'"></textarea>
 			<textarea id="bbcode_text" class="textareasize" placeholder="Your BBCode formatted text will be automatically shown in this box" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your BBCode formatted text will be automatically shown in this box'"></textarea>
 		</div>
