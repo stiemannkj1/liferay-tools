@@ -81,7 +81,7 @@
 			};
 
 			liferayForumsBBCodeRenderer.listitem = function (text) {
-				return '[*]' + unescape(text) + '\n';
+				return '[*]' + unescape(text.replace(/^\n/, '')) + '\n';
 			};
 
 			liferayForumsBBCodeRenderer.paragraph = function (text) {
@@ -163,6 +163,41 @@
 				bbcode.value = markdown_value;
 				console.log('converted');
 			}
+
+			function indentSelectedLines() {
+
+				var markdown = document.getElementById("markdown_text");
+				var firstLineIndex = markdown.value.substring(0, markdown.selectionStart).lastIndexOf('\n');
+
+				if (firstLineIndex === -1) {
+					firstLineIndex = 0;
+				}
+
+				var stringBeforeSelection = markdown.value.substring(0, firstLineIndex);
+				var stringAfterSelection = markdown.value.substring(markdown.selectionEnd);
+				markdown.value = stringBeforeSelection + '    ' +
+					markdown.value.substring(firstLineIndex, markdown.selectionEnd).replace(/\n/g, '\n    ') +
+					stringAfterSelection;
+				convert();
+			}
+
+			function unindentSelectedLines() {
+
+				var markdown = document.getElementById("markdown_text");
+				var firstLineIndex = markdown.value.substring(0, markdown.selectionStart).lastIndexOf('\n');
+
+				if (firstLineIndex === -1) {
+					firstLineIndex = 0;
+				}
+
+				var stringBeforeSelection = markdown.value.substring(0, firstLineIndex);
+				var stringAfterSelection = markdown.value.substring(markdown.selectionEnd);
+				markdown.value = stringBeforeSelection +
+					markdown.value.substring(firstLineIndex, markdown.selectionEnd).replace(/^    /, '')
+					.replace(/\n    /g, '\n') +
+					stringAfterSelection;
+				convert();
+			}
 		</script>
 	</head>
 	<body>
@@ -174,6 +209,8 @@
 			<p>
 				Paste your Markdown formatted text into the top box and Liferay Forums BBCode appears in the bottom.
 			</p>
+			<button onclick="indentSelectedLines()">Indent Selected Lines</button>
+			<button onclick="unindentSelectedLines()">Unindent Selected Lines</button>
 			<label>
 				<input id="useCodeTags" type="checkbox" onchange="convert();" />
 				Use <code>[code]</code> tags (if unchecked, <code>[size=4][font=Courier New]</code> tags will be used instead since they do not render line numbers in the Liferay Forums so they are easier to copy/paste).

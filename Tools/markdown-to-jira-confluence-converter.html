@@ -158,6 +158,41 @@
 				confluence.value = markdown_value;
 				console.log('converted');
 			}
+
+			function indentSelectedLines() {
+
+				var markdown = document.getElementById("markdown_text");
+				var firstLineIndex = markdown.value.substring(0, markdown.selectionStart).lastIndexOf('\n');
+
+				if (firstLineIndex === -1) {
+					firstLineIndex = 0;
+				}
+
+				var stringBeforeSelection = markdown.value.substring(0, firstLineIndex);
+				var stringAfterSelection = markdown.value.substring(markdown.selectionEnd);
+				markdown.value = stringBeforeSelection + '    ' +
+					markdown.value.substring(firstLineIndex, markdown.selectionEnd).replace(/\n/g, '\n    ') +
+					stringAfterSelection;
+				convert();
+			}
+
+			function unindentSelectedLines() {
+
+				var markdown = document.getElementById("markdown_text");
+				var firstLineIndex = markdown.value.substring(0, markdown.selectionStart).lastIndexOf('\n');
+
+				if (firstLineIndex === -1) {
+					firstLineIndex = 0;
+				}
+
+				var stringBeforeSelection = markdown.value.substring(0, firstLineIndex);
+				var stringAfterSelection = markdown.value.substring(markdown.selectionEnd);
+				markdown.value = stringBeforeSelection +
+					markdown.value.substring(firstLineIndex, markdown.selectionEnd).replace(/^    /, '')
+					.replace(/\n    /g, '\n') +
+					stringAfterSelection;
+				convert();
+			}
 		</script>
 	</head>
 	<body>
@@ -169,6 +204,9 @@
 			<p>
 				Paste your Markdown formatted text into the top box and JIRA Confluence appears in the bottom.
 			</p>
+			<button onclick="indentSelectedLines()">Indent Selected Lines</button>
+			<button onclick="unindentSelectedLines()">Unindent Selected Lines</button>
+			<br />
 			<textarea id="markdown_text" class="textareasize" onChange="convert()" onKeyUp="convert()" placeholder="Enter your Markdown formatted text here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Markdown formatted text here'"></textarea>
 			<textarea id="confluence_text" class="textareasize" placeholder="Your Confluence formatted text will be automatically shown in this box" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Confluence formatted text will be automatically shown in this box'"></textarea>
 		</div>
