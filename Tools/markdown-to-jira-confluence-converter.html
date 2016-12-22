@@ -17,12 +17,12 @@
 		<meta charset="utf-8"/>
 		<title>Markdown to JIRA (Confluence) Converter</title>
 		<style>
-			.textareasize {
-				width: 66%;
-				height: 20em;
+			.textarea {
+				font-family: "Courier New", Courier, monospace;
+				font-size: 15px;
 			}
 		</style>
-		<script type="text/javascript" src="file:///Users/kylestiemann/Tools/marked-0.3.6/marked.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
 		<script type="text/javascript">
 
 			function unescape(text) {
@@ -76,7 +76,7 @@
 
 				// Unfortunately, there is no way to determine if the list is ordered or not here, so
 				// jiraConfluenceRenderer.list() replaces all '*' bullets with '#' if the list is ordered.
-				return '* ' + unescape(text.replace(/^\n/, ''));
+				return '* ' + unescape(text.replace(/^\n/, '').replace(/\n+/g, '\n'));
 			};
 
 			jiraConfluenceRenderer.paragraph = function (text) {
@@ -96,7 +96,7 @@
 			};
 
 			jiraConfluenceRenderer.br = function () {
-				return '\\';
+				return '\n';
 			};
 
 			jiraConfluenceRenderer.del = function (text) {
@@ -159,39 +159,46 @@
 				console.log('converted');
 			}
 
-			function indentSelectedLines() {
+			function indentOrUnindent(indent) {
 
 				var markdown = document.getElementById("markdown_text");
-				var firstLineIndex = markdown.value.substring(0, markdown.selectionStart).lastIndexOf('\n');
+				var selectionStart = markdown.selectionStart;
+				var selectionEnd = markdown.selectionEnd;
+				var firstLineIndex = markdown.value.substring(0, selectionStart).lastIndexOf('\n') + 1;
 
 				if (firstLineIndex === -1) {
 					firstLineIndex = 0;
 				}
 
 				var stringBeforeSelection = markdown.value.substring(0, firstLineIndex);
-				var stringAfterSelection = markdown.value.substring(markdown.selectionEnd);
-				markdown.value = stringBeforeSelection + '    ' +
-					markdown.value.substring(firstLineIndex, markdown.selectionEnd).replace(/\n/g, '\n    ') +
-					stringAfterSelection;
+				var stringAfterSelection = markdown.value.substring(selectionEnd);
+				var changedLines;
+				var newSelectionIndex;
+
+				if (indent) {
+					newSelectionIndex = selectionStart + 4;
+					changedLines = '    ' + markdown.value.substring(firstLineIndex, selectionEnd)
+							.replace(/\n/g, '\n    ');
+				} else {
+					var textToUnindent = markdown.value.substring(firstLineIndex, markdown.selectionEnd);
+					newSelectionIndex = selectionStart + (textToUnindent.startsWith('    ') ? -4 : 0);
+					changedLines = textToUnindent.replace(/^    /, '')
+							.replace(/\n    /g, '\n');
+				}
+
+				markdown.value = stringBeforeSelection + changedLines + stringAfterSelection;
 				convert();
+				markdown.focus();
+				markdown.selectionStart = newSelectionIndex;
+				markdown.selectionEnd = markdown.value.lastIndexOf(stringAfterSelection);
+			}
+
+			function indentSelectedLines() {
+				indentOrUnindent(true);
 			}
 
 			function unindentSelectedLines() {
-
-				var markdown = document.getElementById("markdown_text");
-				var firstLineIndex = markdown.value.substring(0, markdown.selectionStart).lastIndexOf('\n');
-
-				if (firstLineIndex === -1) {
-					firstLineIndex = 0;
-				}
-
-				var stringBeforeSelection = markdown.value.substring(0, firstLineIndex);
-				var stringAfterSelection = markdown.value.substring(markdown.selectionEnd);
-				markdown.value = stringBeforeSelection +
-					markdown.value.substring(firstLineIndex, markdown.selectionEnd).replace(/^    /, '')
-					.replace(/\n    /g, '\n') +
-					stringAfterSelection;
-				convert();
+				indentOrUnindent(false);
 			}
 		</script>
 	</head>
@@ -207,8 +214,13 @@
 			<button onclick="indentSelectedLines()">Indent Selected Lines</button>
 			<button onclick="unindentSelectedLines()">Unindent Selected Lines</button>
 			<br />
-			<textarea id="markdown_text" class="textareasize" onChange="convert()" onKeyUp="convert()" placeholder="Enter your Markdown formatted text here" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Markdown formatted text here'"></textarea>
-			<textarea id="confluence_text" class="textareasize" placeholder="Your Confluence formatted text will be automatically shown in this box" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Confluence formatted text will be automatically shown in this box'"></textarea>
+			<textarea id="markdown_text" class="textarea" cols="120" rows="15" onChange="convert()" onKeyUp="convert()"
+					  placeholder="Enter your Markdown formatted text here" onfocus="this.placeholder = ''"
+					  onblur="this.placeholder = 'Enter your Markdown formatted text here'"></textarea>
+			<textarea id="confluence_text" class="textarea" cols="120" rows="15"
+					  placeholder="Your Confluence formatted text will be automatically shown in this box"
+					  onfocus="this.placeholder = ''"
+					  onblur="this.placeholder = 'Your Confluence formatted text will be automatically shown in this box'"></textarea>
 		</div>
 		<script type="text/javascript">
 			var confluence = document.getElementById("confluence_text");
