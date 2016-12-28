@@ -1,247 +1,164 @@
 <!doctype html>
 <!--
-	Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
+    Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
 
-	This library is free software; you can redistribute it and/or modify it under
-	the terms of the GNU Lesser General Public License as published by the Free
-	Software Foundation; either version 2.1 of the License, or (at your option)
-	any later version.
+    This library is free software; you can redistribute it and/or modify it under
+    the terms of the GNU Lesser General Public License as published by the Free
+    Software Foundation; either version 2.1 of the License, or (at your option)
+    any later version.
 
-	This library is distributed in the hope that it will be useful, but WITHOUT
-	ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-	FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-	details.
+    This library is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+    FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+    details.
 -->
-<html class="no-js" lang="en">
-	<head>
-		<meta charset="utf-8"/>
-		<title>Markdown to Liferay Forums (BBCode) Converter</title>
-		<style>
-			.textarea {
-				font-family: "Courier New", Courier, monospace;
-				font-size: 15px;
-			}
-		</style>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
-		<script type="text/javascript">
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Markdown to Liferay Forums (BBCode) Converter</title>
+        <style>
+            textarea {
+                font-family: "Courier New", Courier, monospace;
+                font-size: 15px;
+            }
+        </style>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+        <script type="text/javascript" src="./markdown-converter-util.js"></script>
+    </head>
+    <body>
+        <div class="row">
+            <h2>Markdown to Liferay Forums (BBCode) Converter</h2>
+        </div>
 
-			function unescape(text) {
-				// split and join are used instead of replace since replace does not replace all occurences. For more
-				// details see: http://stackoverflow.com/questions/1144783/how-to-replace-all-occurrences-of-a-string-in-javascript#1145525
-				return text.split('&lt;').join('<')
-						.split('&gt;').join('>')
-						.split('&quot;').join('"')
-						.split('&#39;').join("'")
-						.split('&amp;').join('&');
-			}
+        <div class="row">
+            <p>
+                Paste your Markdown formatted text into the top box and Liferay Forums BBCode appears in the bottom.
+            </p>
+            <button onclick="indentSelectedLines();">Indent Selected Lines</button>
+            <button onclick="unindentSelectedLines();">Unindent Selected Lines</button>
+            <label>
+                <input id="useCodeTag" type="checkbox" onchange="convert();" />
+                Use <code>[code]</code> tags (if unchecked, <code>[size=4][font=Courier New]</code> tags will be used
+                instead since they do not render line numbers in the Liferay Forums so they are easier to copy/paste).
+            </label>
+            <textarea id="markdownTextarea" cols="120" rows="15" onChange="convert();" onKeyUp="convert();"
+                placeholder="Enter your Markdown formatted text here"></textarea>
+            <textarea id="bbcodeTextarea" cols="120" rows="15" onfocus="this.select();" onmouseup="return false;"
+                placeholder="Your Liferay Forums BBCode formatted text will be automatically shown in this box"></textarea>
+        </div>
+        <script type="text/javascript">
+            var liferayForumsBBCodeRenderer = new marked.Renderer();
 
-			var liferayForumsBBCodeRenderer = new marked.Renderer();
+            liferayForumsBBCodeRenderer.code = function (text, language /* unused */) {
 
-			liferayForumsBBCodeRenderer.code = function (text, language /* unused */) {
+                if (document.getElementById('useCodeTag').checked) {
+                    return '\n[code]' + text + '[/code]';
+                } else {
+                    return '\n[size=4][font=Courier New]' + text + '[/font][/size]\n';
+                }
+            };
 
-				if (document.getElementById('useCodeTags').checked) {
-					return '\n[code]' + text + '[/code]';
-				} else {
-					return '\n[size=4][font=Courier New]' + text + '[/font][/size]\n';
-				}
-			};
+            liferayForumsBBCodeRenderer.blockquote = function (text) {
+                return '\n[quote]' + Util.unescapeXML(text) + '[/quote]';
+            };
 
-			liferayForumsBBCodeRenderer.blockquote = function (text) {
-				return '\n[quote]' + unescape(text) + '[/quote]';
-			};
+            liferayForumsBBCodeRenderer.heading = function (text, level) {
 
-			liferayForumsBBCodeRenderer.heading = function (text, level) {
+                if (level === 1) {
+                    size = 7;
+                } else if (level === 2) {
+                    size = 6;
+                } else if (level >= 3) {
+                    size = 5;
+                }
 
-				if (level === 1) {
-					size = 7;
-				} else if (level === 2) {
-					size = 6;
-				} else if (level >= 3) {
-					size = 5;
-				}
+                return '[size=' + size + '][b]' + Util.unescapeXML(text) + '[/b][/size]\n';
+            };
 
-				return '[size=' + size + '][b]' + unescape(text) + '[/b][/size]\n';
-			};
+            liferayForumsBBCodeRenderer.hr = function () {
+                return '[center][b]--------------------------------------------------------------------------------------------[/b][/center]';
+            };
 
-			liferayForumsBBCodeRenderer.hr = function () {
-				return '[center][b]--------------------------------------------------------------------------------------------[/b][/center]';
-			};
+            liferayForumsBBCodeRenderer.list = function (body, ordered) {
+                var beginTag = '\n[list';
 
-			liferayForumsBBCodeRenderer.list = function (body, ordered) {
+                if (ordered) {
+                    beginTag += '=1';
+                }
 
-				var beginTag = '\n[list';
+                beginTag += ']\n';
+                return beginTag + Util.unescapeXML(body) + '[/list]\n';
+            };
 
-				if (ordered) {
-					beginTag += '=1';
-				}
+            liferayForumsBBCodeRenderer.listitem = function (text) {
+                return '[*]' + Util.unescapeXML(text.replace(/^\n/, '')) + '\n';
+            };
 
-				beginTag += ']\n';
+            liferayForumsBBCodeRenderer.paragraph = function (text) {
+                return '\n' + Util.unescapeXML(text) + '\n';
+            };
 
-				return beginTag + unescape(body) + '[/list]\n';
-			};
+            liferayForumsBBCodeRenderer.strong = function (text) {
+                return '[b]' + Util.unescapeXML(text) + '[/b]';
+            };
 
-			liferayForumsBBCodeRenderer.listitem = function (text) {
-				return '[*]' + unescape(text.replace(/^\n/, '')) + '\n';
-			};
+            liferayForumsBBCodeRenderer.em = function (text) {
+                return '[i]' + Util.unescapeXML(text) + '[/i]';
+            };
 
-			liferayForumsBBCodeRenderer.paragraph = function (text) {
-				return '\n' + unescape(text) + '\n';
-			};
+            liferayForumsBBCodeRenderer.codespan = function (text) {
+                return '[font=Courier New]' + Util.unescapeXML(text) + '[/font]';
+            };
 
-			liferayForumsBBCodeRenderer.strong = function (text) {
-				return '[b]' + unescape(text) + '[/b]';
-			};
+            liferayForumsBBCodeRenderer.br = function () {
+                return '\n';
+            };
 
-			liferayForumsBBCodeRenderer.em = function (text) {
-				return '[i]' + unescape(text) + '[/i]';
-			};
+            liferayForumsBBCodeRenderer.del = function (text) {
+                return '[s]' + Util.unescapeXML(text) + '[/s]';
+            };
 
-			liferayForumsBBCodeRenderer.codespan = function (text) {
-				return '[font=Courier New]' + unescape(text) + '[/font]';
-			};
+            liferayForumsBBCodeRenderer.link = function (href, title, text) {
+                var endTag = '[/url]';
 
-			liferayForumsBBCodeRenderer.br = function () {
-				return '\n';
-			};
+                if (title && title !== '') {
+                    endTag += ' (' + title + ')';
+                }
 
-			liferayForumsBBCodeRenderer.del = function (text) {
-				return '[s]' + unescape(text) + '[/s]';
-			};
+                return '[url=' + href + ']' + Util.unescapeXML(text) + endTag;
+            };
 
-			liferayForumsBBCodeRenderer.link = function (href, title, text) {
+            liferayForumsBBCodeRenderer.image = function (href, title, text) {
+                var beginTag = '';
 
-				var endTag = '[/url]';
+                if (title && title !== '') {
+                    beginTag += '[size=5][b]' + Util.unescapeXML(title) + '[/b][/size]\n';
+                }
 
-				if (title && title !== '') {
-					endTag += ' (' + title + ')';
-				}
+                if (text && text !== '') {
+                    beginTag += Util.unescapeXML(text) + '\n';
+                }
 
-				return '[url=' + href + ']' + unescape(text) + endTag;
-			};
+                beginTag += '[image]';
+                return beginTag + href + '[/image]';
+            };
 
-			liferayForumsBBCodeRenderer.image = function (href, title, text) {
+            var markdownConverter = new MarkdownConverter(liferayForumsBBCodeRenderer);
 
-				var beginTag = '';
+            function convert() {
+                markdownConverter.convert(document.getElementById('markdownTextarea'),
+                    document.getElementById('bbcodeTextarea'));
+            }
 
-				if (title && title !== '') {
-					beginTag += '[size=5][b]' + unescape(title) + '[/b][/size]\n';
-				}
+            function indentSelectedLines() {
+                Util.indentSelectedLines(document.getElementById('markdownTextarea'));
+                convert();
+            }
 
-				if (text && text !== '') {
-					beginTag += unescape(text) + '\n';
-				}
-
-				beginTag += '[image]';
-
-				return beginTag + href + '[/image]';
-			};
-
-			marked.setOptions({
-				renderer: liferayForumsBBCodeRenderer,
-				gfm: true,
-				tables: true,
-				breaks: true,
-				pedantic: false,
-				sanitize: false,
-				smartLists: true,
-				smartypants: false
-			});
-
-			function convert() {
-
-				var markdown = document.getElementById("markdown_text");
-				var bbcode = document.getElementById("bbcode_text");
-
-				var markdown_value = markdown.value;
-				//general Markdown conversion
-				markdown_value = marked(markdown_value);
-
-				if (markdown_value.charAt(0) === '\n') {
-					markdown_value = markdown_value.substr(1);
-				}
-
-				bbcode.value = markdown_value;
-				console.log('converted');
-			}
-
-			function indentOrUnindent(indent) {
-
-				var markdown = document.getElementById("markdown_text");
-				var selectionStart = markdown.selectionStart;
-				var selectionEnd = markdown.selectionEnd;
-				var firstLineIndex = markdown.value.substring(0, selectionStart).lastIndexOf('\n') + 1;
-
-				if (firstLineIndex === -1) {
-					firstLineIndex = 0;
-				}
-
-				var stringBeforeSelection = markdown.value.substring(0, firstLineIndex);
-				var stringAfterSelection = markdown.value.substring(selectionEnd);
-				var changedLines;
-				var newSelectionIndex;
-
-				if (indent) {
-					newSelectionIndex = selectionStart + 4;
-					changedLines = '    ' + markdown.value.substring(firstLineIndex, selectionEnd)
-							.replace(/\n/g, '\n    ');
-				} else {
-					var textToUnindent = markdown.value.substring(firstLineIndex, markdown.selectionEnd);
-					newSelectionIndex = selectionStart + (textToUnindent.startsWith('    ') ? -4 : 0);
-					changedLines = textToUnindent.replace(/^    /, '')
-							.replace(/\n    /g, '\n');
-				}
-
-				markdown.value = stringBeforeSelection + changedLines + stringAfterSelection;
-				convert();
-				markdown.focus();
-				markdown.selectionStart = newSelectionIndex;
-				markdown.selectionEnd = markdown.value.lastIndexOf(stringAfterSelection);
-			}
-
-			function indentSelectedLines() {
-				indentOrUnindent(true);
-			}
-
-			function unindentSelectedLines() {
-				indentOrUnindent(false);
-			}
-		</script>
-	</head>
-	<body>
-		<div class="row">
-			<h2>Markdown to Liferay Forums (BBCode) Converter</h2>
-		</div>
-
-		<div class="row">
-			<p>
-				Paste your Markdown formatted text into the top box and Liferay Forums BBCode appears in the bottom.
-			</p>
-			<button onclick="indentSelectedLines()">Indent Selected Lines</button>
-			<button onclick="unindentSelectedLines()">Unindent Selected Lines</button>
-			<label>
-				<input id="useCodeTags" type="checkbox" onchange="convert();" />
-				Use <code>[code]</code> tags (if unchecked, <code>[size=4][font=Courier New]</code> tags will be used
-				instead since they do not render line numbers in the Liferay Forums so they are easier to copy/paste).
-			</label>
-			<textarea id="markdown_text" class="textarea" cols="120" rows="15" onChange="convert()" onKeyUp="convert()"
-					  placeholder="Enter your Markdown formatted text here" onfocus="this.placeholder = ''"
-					  onblur="this.placeholder = 'Enter your Markdown formatted text here'"></textarea>
-			<textarea id="bbcode_text" class="textarea" cols="120" rows="15"
-					  placeholder="Your BBCode formatted text will be automatically shown in this box"
-					  onfocus="this.placeholder = ''"
-					  onblur="this.placeholder = 'Your BBCode formatted text will be automatically shown in this box'"></textarea>
-		</div>
-		<script type="text/javascript">
-			var bbcode = document.getElementById("bbcode_text");
-			bbcode.onfocus = function () {
-
-				bbcode.select();
-
-				bbcode.onmouseup = function () {
-					bbcode.onmouseup = null;
-					return false;
-				};
-			};
-		</script>
-	</body>
+            function unindentSelectedLines() {
+                Util.unindentSelectedLines(document.getElementById('markdownTextarea'));
+                convert();
+            }
+        </script>
+    </body>
 </html>

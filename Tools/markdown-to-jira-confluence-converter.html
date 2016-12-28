@@ -1,238 +1,155 @@
 <!doctype html>
 <!--
-	Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
+    Copyright (c) 2000-2016 Liferay, Inc. All rights reserved.
 
-	This library is free software; you can redistribute it and/or modify it under
-	the terms of the GNU Lesser General Public License as published by the Free
-	Software Foundation; either version 2.1 of the License, or (at your option)
-	any later version.
+    This library is free software; you can redistribute it and/or modify it under
+    the terms of the GNU Lesser General Public License as published by the Free
+    Software Foundation; either version 2.1 of the License, or (at your option)
+    any later version.
 
-	This library is distributed in the hope that it will be useful, but WITHOUT
-	ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-	FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-	details.
+    This library is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+    FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+    details.
 -->
-<html class="no-js" lang="en">
-	<head>
-		<meta charset="utf-8"/>
-		<title>Markdown to JIRA (Confluence) Converter</title>
-		<style>
-			.textarea {
-				font-family: "Courier New", Courier, monospace;
-				font-size: 15px;
-			}
-		</style>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
-		<script type="text/javascript">
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Markdown to JIRA (Confluence) Converter</title>
+        <style>
+            textarea {
+                font-family: "Courier New", Courier, monospace;
+                font-size: 15px;
+            }
+        </style>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+        <script type="text/javascript" src="./markdown-converter-util.js"></script>
+    </head>
+    <body>
+        <div class="row">
+            <h2>Markdown to JIRA (Confluence) Converter</h2>
+        </div>
 
-			function unescape(text) {
-				// split and join are used instead of replace since replace does not replace all occurences. For more
-				// details see: http://stackoverflow.com/questions/1144783/how-to-replace-all-occurrences-of-a-string-in-javascript#1145525
-				return text.split('&lt;').join('<')
-						.split('&gt;').join('>')
-						.split('&quot;').join('"')
-						.split('&#39;').join("'")
-						.split('&amp;').join('&');
-			}
+        <div class="row">
+            <p>
+                Paste your Markdown formatted text into the top box and JIRA Confluence appears in the bottom.
+            </p>
+            <button onclick="indentSelectedLines();">Indent Selected Lines</button>
+            <button onclick="unindentSelectedLines();">Unindent Selected Lines</button>
+            <br />
+            <textarea id="markdownTextarea" cols="120" rows="15" onChange="convert();" onKeyUp="convert();"
+                placeholder="Enter your Markdown formatted text here"></textarea>
+            <textarea id="confluenceTextarea" cols="120" rows="15" onfocus="this.select();" onmouseup="return false;"
+                placeholder="Your JIRA Confluence formatted text will be automatically shown in this box"></textarea>
+        </div>
+        <script type="text/javascript">
+            var jiraConfluenceRenderer = new marked.Renderer();
 
-			var jiraConfluenceRenderer = new marked.Renderer();
-			jiraConfluenceRenderer.renderingOrderedList = false;
+            jiraConfluenceRenderer.code = function (text, language) {
 
-			jiraConfluenceRenderer.code = function (text, language) {
+                var languageString = '';
 
-				var languageString = '';
+                if (language) {
+                    languageString = ':' + language;
+                }
 
-				if (language) {
-					languageString = ':' + language;
-				}
+                return '{code' + languageString + '}\n' + text + '\n{code}\n';
+            };
 
-				return '{code' + languageString + '}\n' + text + '\n{code}\n';
-			};
+            jiraConfluenceRenderer.blockquote = function (text) {
+                return '{quote}' + Util.unescapeXML(text) + '{quote}\n';
+            };
 
-			jiraConfluenceRenderer.blockquote = function (text) {
-				return '{quote}' + unescape(text) + '{quote}\n';
-			};
+            jiraConfluenceRenderer.heading = function (text, level) {
+                return 'h' + level + '. ' + Util.unescapeXML(text) + '\n';
+            };
 
-			jiraConfluenceRenderer.heading = function (text, level) {
-				return 'h' + level + '. ' + unescape(text) + '\n';
-			};
+            jiraConfluenceRenderer.hr = function () {
+                return '----\n';
+            };
 
-			jiraConfluenceRenderer.hr = function () {
-				return '----\n';
-			};
+            jiraConfluenceRenderer.list = function (body, ordered) {
+                var listString = body;
 
-			jiraConfluenceRenderer.list = function (body, ordered) {
+                if (ordered) {
+                    listString = listString.replace(/^\*/g, '#').replace(/\n\*/g, '\n#');
+                }
 
-				var listString = body;
+                return Util.unescapeXML(listString);
+            };
 
-				if (ordered) {
-					listString = listString.replace(/^\*/g, '#').replace(/\n\*/g, '\n#');
-				}
+            jiraConfluenceRenderer.listitem = function (text) {
+                // Unfortunately, there is no way to determine if the list is ordered or not here, so
+                // jiraConfluenceRenderer.list() replaces all '*' bullets with '#' if the list is ordered.
+                return '* ' + Util.unescapeXML(text.replace(/^\n/, '').replace(/\n+/g, '\n'));
+            };
 
-				return unescape(listString);
-			};
+            jiraConfluenceRenderer.paragraph = function (text) {
+                return '\n' + Util.unescapeXML(text) + '\n';
+            };
 
-			jiraConfluenceRenderer.listitem = function (text) {
+            jiraConfluenceRenderer.strong = function (text) {
+                return '*' + Util.unescapeXML(text) + '*';
+            };
 
-				// Unfortunately, there is no way to determine if the list is ordered or not here, so
-				// jiraConfluenceRenderer.list() replaces all '*' bullets with '#' if the list is ordered.
-				return '* ' + unescape(text.replace(/^\n/, '').replace(/\n+/g, '\n'));
-			};
+            jiraConfluenceRenderer.em = function (text) {
+                return '_' + Util.unescapeXML(text) + '_';
+            };
 
-			jiraConfluenceRenderer.paragraph = function (text) {
-				return '\n' + unescape(text) + '\n';
-			};
+            jiraConfluenceRenderer.codespan = function (text) {
+                return '{{' + Util.unescapeXML(text) + '}}';
+            };
 
-			jiraConfluenceRenderer.strong = function (text) {
-				return '*' + unescape(text) + '*';
-			};
+            jiraConfluenceRenderer.br = function () {
+                return '\n';
+            };
 
-			jiraConfluenceRenderer.em = function (text) {
-				return '_' + unescape(text) + '_';
-			};
+            jiraConfluenceRenderer.del = function (text) {
+                return '-' + Util.unescapeXML(text) + '-';
+            };
 
-			jiraConfluenceRenderer.codespan = function (text) {
-				return '{{' + unescape(text) + '}}';
-			};
+            jiraConfluenceRenderer.link = function (href, title, text) {
+                var close = ']';
 
-			jiraConfluenceRenderer.br = function () {
-				return '\n';
-			};
+                if (title && title !== '') {
+                    close += ' (' + title + ')';
+                }
 
-			jiraConfluenceRenderer.del = function (text) {
-				return '-' + unescape(text) + '-';
-			};
+                return '[' + Util.unescapeXML(text) + '|' + href + close;
+            };
 
-			jiraConfluenceRenderer.link = function (href, title, text) {
+            jiraConfluenceRenderer.image = function (href, title, text) {
+                var titleString = '';
 
-				var close = ']';
+                if (title && title !== '') {
+                    titleString = '|title=' + title;
+                }
 
-				if (title && title !== '') {
-					close += ' (' + title + ')';
-				}
+                var textString = '';
 
-				return '[' + unescape(text) + '|' + href + close;
-			};
+                if (text && text !== '') {
+                    textString = '\n' + Util.unescapeXML(text) + '\n';
+                }
 
-			jiraConfluenceRenderer.image = function (href, title, text) {
+                return '!' + href + titleString + '!' + textString;
+            };
 
-				var titleString = '';
+            var markdownConverter = new MarkdownConverter(jiraConfluenceRenderer);
 
-				if (title && title !== '') {
-					titleString = '|title=' + title;
-				}
+            function convert() {
+                markdownConverter.convert(document.getElementById('markdownTextarea'),
+                    document.getElementById('confluenceTextarea'));
+            }
 
-				var textString = '';
+            function indentSelectedLines() {
+                Util.indentSelectedLines(document.getElementById('markdownTextarea'));
+                convert();
+            }
 
-				if (text && text !== '') {
-					textString = '\n' + unescape(text) + '\n';
-				}
-
-				return '!' + href + titleString + '!' + textString;
-			};
-
-			marked.setOptions({
-				renderer: jiraConfluenceRenderer,
-				gfm: true,
-				tables: true,
-				breaks: true,
-				pedantic: false,
-				sanitize: false,
-				smartLists: true,
-				smartypants: false
-			});
-
-			function convert() {
-
-				var markdown = document.getElementById("markdown_text");
-				var confluence = document.getElementById("confluence_text");
-
-				var markdown_value = markdown.value;
-				//general Markdown conversion
-				markdown_value = marked(markdown_value);
-
-				if (markdown_value.charAt(0) === '\n') {
-					markdown_value = markdown_value.substr(1);
-				}
-
-				confluence.value = markdown_value;
-				console.log('converted');
-			}
-
-			function indentOrUnindent(indent) {
-
-				var markdown = document.getElementById("markdown_text");
-				var selectionStart = markdown.selectionStart;
-				var selectionEnd = markdown.selectionEnd;
-				var firstLineIndex = markdown.value.substring(0, selectionStart).lastIndexOf('\n') + 1;
-
-				if (firstLineIndex === -1) {
-					firstLineIndex = 0;
-				}
-
-				var stringBeforeSelection = markdown.value.substring(0, firstLineIndex);
-				var stringAfterSelection = markdown.value.substring(selectionEnd);
-				var changedLines;
-				var newSelectionIndex;
-
-				if (indent) {
-					newSelectionIndex = selectionStart + 4;
-					changedLines = '    ' + markdown.value.substring(firstLineIndex, selectionEnd)
-							.replace(/\n/g, '\n    ');
-				} else {
-					var textToUnindent = markdown.value.substring(firstLineIndex, markdown.selectionEnd);
-					newSelectionIndex = selectionStart + (textToUnindent.startsWith('    ') ? -4 : 0);
-					changedLines = textToUnindent.replace(/^    /, '')
-							.replace(/\n    /g, '\n');
-				}
-
-				markdown.value = stringBeforeSelection + changedLines + stringAfterSelection;
-				convert();
-				markdown.focus();
-				markdown.selectionStart = newSelectionIndex;
-				markdown.selectionEnd = markdown.value.lastIndexOf(stringAfterSelection);
-			}
-
-			function indentSelectedLines() {
-				indentOrUnindent(true);
-			}
-
-			function unindentSelectedLines() {
-				indentOrUnindent(false);
-			}
-		</script>
-	</head>
-	<body>
-		<div class="row">
-			<h2>Markdown to JIRA (Confluence) Converter</h2>
-		</div>
-
-		<div class="row">
-			<p>
-				Paste your Markdown formatted text into the top box and JIRA Confluence appears in the bottom.
-			</p>
-			<button onclick="indentSelectedLines()">Indent Selected Lines</button>
-			<button onclick="unindentSelectedLines()">Unindent Selected Lines</button>
-			<br />
-			<textarea id="markdown_text" class="textarea" cols="120" rows="15" onChange="convert()" onKeyUp="convert()"
-					  placeholder="Enter your Markdown formatted text here" onfocus="this.placeholder = ''"
-					  onblur="this.placeholder = 'Enter your Markdown formatted text here'"></textarea>
-			<textarea id="confluence_text" class="textarea" cols="120" rows="15"
-					  placeholder="Your Confluence formatted text will be automatically shown in this box"
-					  onfocus="this.placeholder = ''"
-					  onblur="this.placeholder = 'Your Confluence formatted text will be automatically shown in this box'"></textarea>
-		</div>
-		<script type="text/javascript">
-			var confluence = document.getElementById("confluence_text");
-			confluence.onfocus = function () {
-
-				confluence.select();
-
-				confluence.onmouseup = function () {
-					confluence.onmouseup = null;
-					return false;
-				};
-			};
-		</script>
-	</body>
+            function unindentSelectedLines() {
+                Util.unindentSelectedLines(document.getElementById('markdownTextarea'));
+                convert();
+            }
+        </script>
+    </body>
 </html>
