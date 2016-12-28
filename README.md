@@ -10,5 +10,5 @@ The code in this repo is licensed under [the GNU Lesser General Public License v
 
 If you want to access one of my (html + JS) markdown converters without cloning my repo you can use https://rawgit.com/:
 
-- [Markdown to JIRA (Confluence) Converter](https://rawgit.com/stiemannkj1/liferay-tools/master/Tools/markdown-to-jira-confluence-converter.html)
-- [Markdown to Liferay Forums (BBCode) Converter](https://rawgit.com/stiemannkj1/liferay-tools/master/Tools/markdown-to-liferay-forums-bbcode-converter.html)
+- [Markdown to JIRA (Confluence) Converter](https://cdn.rawgit.com/stiemannkj1/liferay-tools/4d00c5952cc3f8d3d24adbc175d4530f99d6676e/Tools/markdown-to-jira-confluence-converter.html)
+- [Markdown to Liferay Forums (BBCode) Converter](https://cdn.rawgit.com/stiemannkj1/liferay-tools/4d00c5952cc3f8d3d24adbc175d4530f99d6676e/Tools/markdown-to-liferay-forums-bbcode-converter.html)
