@@ -2,7 +2,7 @@
 
 ################################################################################
 #
-# Copyright (c) 2000-${CURRENT_YEAR} Liferay, Inc. All rights reserved.
+# Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
 #
 # This library is free software; you can redistribute it and/or modify it under
 # the terms of the GNU Lesser General Public License as published by the Free
@@ -17,6 +17,6 @@
 ################################################################################
 
 cd ~/Tools/my-tools
-printf '#!/opt/local/bin/bash\n'"$(cat ~/Tools/license.txt)"'\n\n'"$1"'\n' > "$2"
+printf '#!/opt/local/bin/bash\n'"$(cat ~/Tools/license.txt | perl -p -e "s/\\$\{CURRENT_YEAR\}/$(date +'%Y')/g")"'\n\n'"$1"'\n' > "$2"
 chmod +x "$2"
 git add -f "$2"
