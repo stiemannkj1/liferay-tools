@@ -81,7 +81,8 @@
             jiraConfluenceRenderer.listitem = function (text) {
                 // Unfortunately, there is no way to determine if the list is ordered or not here, so
                 // jiraConfluenceRenderer.list() replaces all '*' bullets with '#' if the list is ordered.
-                return '* ' + Util.unescapeXML(text.replace(/^\n/, '').replace(/\n+/g, '\n'));
+                return '* ' + Util.unescapeXML(text.replace(/^\n/, '').replace(/\n+$/g, '').replace(/\n+/g, '\n')
+						+ '\n');
             };
 
             jiraConfluenceRenderer.paragraph = function (text) {
