@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 ################################################################################
 #
@@ -23,4 +23,4 @@ for arg in "$@"; do
 done
 
 git push origin -n "$@"
-echo "https://github.com/stiemannkj1/${PWD##*/}/tree/$branch" | tee /dev/tty | pbcopy
+echo "https://github.com/stiemannkj1/${PWD##*/}/tree/$branch" | tee /dev/tty | copy.sh

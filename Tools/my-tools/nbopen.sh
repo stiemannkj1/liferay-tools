@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 ################################################################################
 #
@@ -22,4 +22,4 @@ for arg in "$@"; do
 	fi
 done
 
-/Applications/NetBeans/NetBeans\ 8.1.app/Contents/MacOS/netbeans --open "$@"
+/home/kylestiemann/Tools/netbeans-8.2/bin/netbeans --open "$@"

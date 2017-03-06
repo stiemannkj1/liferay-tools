@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 ################################################################################
 #
@@ -28,7 +28,7 @@ WAR_WITH_VERSION=$(fff.sh '[.]war' ./target/)
 WAR_WITH_VERSION=${WAR_WITH_VERSION##*/}
 WAR_NAME=${WAR_WITH_VERSION//-[0-9][0-9.]*-[A-Za-z0-9][A-Za-z0-9_]*[.]war}
 
-TOMCAT_WEBAPPS=/Users/kylestiemann/Servers/apache-tomcat-8.0.32/webapps
+TOMCAT_WEBAPPS=/home/kylestiemann/Servers/apache-tomcat-8.0.32/webapps
 echo "Removing $TOMCAT_WEBAPPS/$WAR_NAME* ..."
 rm -r $TOMCAT_WEBAPPS/$WAR_NAME*
 echo "Done."

@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 ################################################################################
 #
@@ -30,7 +30,7 @@ if [ ${#SEARCH_DIR[@]} -eq 0 ]; then
 	SEARCH_DIR+=(".")
 fi
 
-FIND_COMMAND='gfind "${SEARCH_DIR[@]}"'
+FIND_COMMAND='find "${SEARCH_DIR[@]}"'
 
 if [ -z "$ALL" ]; then
 	FIND_COMMAND+=' -not \( -path '"'"'*/.git'"'"' -prune \) -not \( -path '"'"'*/target'"'"' -prune \)'
@@ -43,4 +43,4 @@ fi
 eval $FIND_COMMAND
 
 # TODO read ignores from gitignore:
-# gfind ./ -not \( -path '*/.git' -prune \) $(while read line; do printf " -not ( -path '*/$line' -prune ) "; done < .gitignore)
+# find ./ -not \( -path '*/.git' -prune \) $(while read line; do printf " -not ( -path '*/$line' -prune ) "; done < .gitignore)

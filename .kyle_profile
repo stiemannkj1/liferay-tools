@@ -14,11 +14,13 @@
 #
 ################################################################################
 
+# This file is sourced in ~/.bashrc
+
 # Enviornment Variables:
-export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_121
 export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
 export ANT_OPTS="-Xmx2048m -Djava.awt.headless=true -XX:MaxPermSize=512m"
-export GRADLE_HOME=/opt/local/share/java/gradle
+export GRADLE_HOME=/usr/bin/gradle
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 # TODO Remove this. Fix pluto deployments.
@@ -31,27 +33,27 @@ export HISTFILESIZE=100000
 shopt -s histappend
 
 # Make nano the default terminal editor:
-export EDITOR="/opt/local/bin/vim"
+export EDITOR="/usr/bin/nano"
 export VISUAL="$EDITOR"
 
 # Path
-# /opt/local/bin:\ is first because macports needs to be first on the list.
 export PATH=\
-/opt/local/bin:\
 ~/Tools/my-tools:\
+/usr/lib/jvm/jdk1.8.0_121/bin:\
 /bin:\
-/opt/local/sbin:\
 /sbin:\
 /usr/bin:\
 /usr/sbin:\
 /usr/local/bin:\
 /usr/local/mysql/bin:\
 $JAVA_HOME/bin:\
+~/Tools/ripgrep-0.4.0-x86_64-unknown-linux-musl:\
+~/Tools/hub-linux-amd64-2.2.9/bin:\
 ~/Tools:\
 ~/Tools/vdldoc/bin:\
 ~/Tools/jd-cli-0.9.1.Final-dist:\
 ~/Tools/SaxonHE9-6-0-8J:\
-~/Tools/phantomjs-2.1.1-macosx/bin:\
+~/Tools/phantomjs-2.1.1-linux-x86_64/bin:\
 ~/Projects/liferay.com/liferay-faces-maven
 
 # Support wildcards (*):
@@ -79,18 +81,25 @@ PROMPT_COMMAND='
 '
 
 # Activate git bash completion:
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-	source /opt/local/etc/profile.d/bash_completion.sh
+if [ -f /etc/profile.d/bash_completion.sh ]; then
+	source /etc/profile.d/bash_completion.sh
+fi
+
+# Activate git bash completion:
+if [ -f ~/Tools/hub-linux-amd64-2.2.9/etc/hub.bash_completion.sh ]; then
+        source ~/Tools/hub-linux-amd64-2.2.9/etc/hub.bash_completion.sh
 fi
 
 # Activate mvn bash completion:
-source ~/.mvn-bash-completion/bash_completion.bash
+if [ -f /etc/profile.d/bash_completion.sh ]; then
+	source ~/Tools/completion/maven_completion.bash
+fi
 
 # Bind <Alt-a> and <Alt-s> to history search:
-bind '"å": history-search-backward'
-bind '"ß": history-search-forward'
+bind '"\ea": history-search-backward'
+bind '"\es": history-search-forward'
 
-export NVM_DIR="/Users/kylestiemann/.nvm"
+export NVM_DIR="/home/kylestiemann/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Load RVM into a shell session *as a function*

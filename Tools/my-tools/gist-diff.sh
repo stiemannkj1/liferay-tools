@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 ################################################################################
 #
@@ -30,4 +30,4 @@ if [[ "$2" == http* ]]; then
 	FILE2='<(curl -s "$2")'
 fi
 
-gist.sh <(eval diff $FILE1 $FILE2 -u | gsed "1iLeft:  $1\nRight: $2\n") -f diff.diff
+gist.sh <(eval diff $FILE1 $FILE2 -u | sed "1iLeft:  $1\nRight: $2\n") -f diff.diff

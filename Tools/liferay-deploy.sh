@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 ################################################################################
 #
@@ -51,7 +51,7 @@ if [ ${#DIRS_TO_SEARCH[@]} -eq 0 ]; then
 	exit 1
 fi
 
-for portlet in $(gfind "${DIRS_TO_SEARCH[@]}" -maxdepth 2 -name *-portlet | egrep "$1"); do
+for portlet in $(find "${DIRS_TO_SEARCH[@]}" -maxdepth 2 -name *-portlet | egrep "$1"); do
 
 	if [ -e "$portlet/pom.xml" ]; then
 		(cd $portlet && deploy.sh "${@:2}" development)

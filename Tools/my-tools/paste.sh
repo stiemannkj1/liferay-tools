@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ################################################################################
 #
 # Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
@@ -14,4 +16,4 @@
 #
 ################################################################################
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+xsel --clipboard --output

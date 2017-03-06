@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 git reset HEAD -- "$@"
 git checkout HEAD -- "$@"

@@ -2,11 +2,11 @@
 	name = Kyle Stiemann
 	email = stiemannkj1@gmail.com
 [core]
-	editor = /opt/local/bin/nano
+	editor = /usr/bin/nano
 	pager = /usr/bin/less -+S
-	excludesfile = /Users/kylestiemann/.global-gitignore
+	excludesfile = /home/kylestiemann/.global-gitignore
 [credential]
-	helper = osxkeychain
+	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
 [pager]
 	log = diff-highlight | less
 	show = diff-highlight | less

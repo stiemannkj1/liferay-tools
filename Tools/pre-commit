@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 ################################################################################
 #
@@ -21,10 +21,10 @@
 
 #git diff --cached --name-only --diff-filter=ACM | \
 #	xargs grep -s -l -I '^\#\!.*\/bin\/bash' -- | xargs grep -L '^# Copyright' -- | \
-#	xargs gsed -E -i '/^\#\!.*\/bin\/bash/r Tools/license.txt' &&
+#	xargs sed -E -i '/^\#\!.*\/bin\/bash/r Tools/license.txt' &&
 #	git diff --cached --name-only --diff-filter=ACM | \
 #	xargs grep -s -l -I '^#' -- | xargs grep -L '^\#\!.*\/bin\/bash' -- | xargs grep -L '^# Copyright' -- | \
-#	xargs gsed -i -e '1s/^/\n/' -e '1r Tools/license.txt' -e '1{h;d}' -e '2{x;G}' -e '1d' &&
+#	xargs sed -i -e '1s/^/\n/' -e '1r Tools/license.txt' -e '1{h;d}' -e '2{x;G}' -e '1d' &&
 #	git diff --cached --name-only --diff-filter=ACM | xargs grep -s -l -I '^#' -- | grep -v license.txt | \
 #	xargs perl -p -i -e "s/\\$\{CURRENT_YEAR\}/$(date +'%Y')/g" &&
 #	exit 0 || exit 1

@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 ################################################################################
 #
@@ -16,7 +16,7 @@
 #
 ################################################################################
 
-output=$(java -classpath '/Users/kylestiemann/Tools/SaxonHE9-6-0-8J/saxon9he.jar' \
+output=$(java -classpath '/home/kylestiemann/Tools/SaxonHE9-6-0-8J/saxon9he.jar' \
 net.sf.saxon.Query '!method=text' -s:"$2" -qs:"concat(string-join($1, '&#xA;'), '&#xA;')")
 
 if [[ $output = *[![:blank:]]* ]]; then

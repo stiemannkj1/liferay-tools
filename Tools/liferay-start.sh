@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 ################################################################################
 #
@@ -26,20 +26,20 @@ stop_portal() {
 
 trap 'stop_portal' EXIT
 
-TOMCAT=$(gfind . -maxdepth 1 -name "tomcat-*" | head -1)
+TOMCAT=$(find . -maxdepth 1 -name "tomcat-*" | head -1)
 
 if [[ "$@" =~ "reset" ]]; then
 	rm -r data/
 
 	if [[ "${PWD##*/}" == *"6.2"* ]]; then
 		TOMCAT_WEBAPPS=$TOMCAT/webapps;
-		gfind $TOMCAT_WEBAPPS -maxdepth 1 ! -regex "\($TOMCAT_WEBAPPS\|$TOMCAT_WEBAPPS/ROOT\|$TOMCAT_WEBAPPS/marketplace-portlet\|$TOMCAT_WEBAPPS/notifications-portlet\|$TOMCAT_WEBAPPS/resources-importer-web\|$TOMCAT_WEBAPPS/tunnel-web\)" -exec rm -r {} \;
+		find $TOMCAT_WEBAPPS -maxdepth 1 ! -regex "\($TOMCAT_WEBAPPS\|$TOMCAT_WEBAPPS/ROOT\|$TOMCAT_WEBAPPS/marketplace-portlet\|$TOMCAT_WEBAPPS/notifications-portlet\|$TOMCAT_WEBAPPS/resources-importer-web\|$TOMCAT_WEBAPPS/tunnel-web\)" -exec rm -r {} \;
 	else
 		:
 #		OSGI_WAR=osgi/war
-#		gfind $OSGI_WAR -maxdepth 1 ! -regex "\($OSGI_WAR\|$OSGI_WAR/user-.*-theme.war\)" -exec rm -r {} \;
+#		find $OSGI_WAR -maxdepth 1 ! -regex "\($OSGI_WAR\|$OSGI_WAR/user-.*-theme.war\)" -exec rm -r {} \;
 #		OSGI_MODULES=osgi/modules
-#		gfind $OSGI_MODULES -maxdepth 1 -regex "$OSGI_MODULES/com[.]liferay[.]faces.*" -exec rm -r {} \;
+#		find $OSGI_MODULES -maxdepth 1 -regex "$OSGI_MODULES/com[.]liferay[.]faces.*" -exec rm -r {} \;
 	fi
 fi
 
@@ -52,7 +52,7 @@ if [[ "$@" =~ "debug" ]]; then
 elif [[ "$@" =~ "jrebel" ]]; then
 	# jrebel.jar is symlinked to the NetBeans version of jrebel.jar via the following command:
 	# ln -s "/Applications/NetBeans/NetBeans 8.0.app/Contents/Resources/NetBeans/java2/jrebel/jrebel.jar" .jrebel/jrebel.jar
-	export JAVA_OPTS="$JAVA_OPTS -javaagent:/Users/kylestiemann/.jrebel/jrebel.jar"
+	export JAVA_OPTS="$JAVA_OPTS -javaagent:/home/kylestiemann/.jrebel/jrebel.jar"
 fi
 
 # liferay-alert.sh starts an infinite loop watching the portal logs for deploys, so this script must be exited with ^C.

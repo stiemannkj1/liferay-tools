@@ -1,4 +1,4 @@
-#!/opt/local/bin/bash
+#!/bin/bash
 
 ################################################################################
 #
@@ -17,6 +17,6 @@
 ################################################################################
 
 cd ~/Tools/my-tools
-printf '#!/opt/local/bin/bash\n'"$(cat ~/Tools/license.txt | perl -p -e "s/\\$\{CURRENT_YEAR\}/$(date +'%Y')/g")"'\n\n'"$1"'\n' > "$2"
+printf '#!/bin/bash\n'"$(cat ~/Tools/license.txt | perl -p -e "s/\\$\{CURRENT_YEAR\}/$(date +'%Y')/g")"'\n\n'"$1"'\n' > "$2"
 chmod +x "$2"
 git add -f "$2"
