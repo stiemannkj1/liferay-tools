@@ -17,7 +17,7 @@
 # This file is sourced in ~/.bashrc
 
 # Enviornment Variables:
-export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_121
+export JAVA_HOME=$(/home/kylestiemann/Tools/my-tools/java-home.sh)
 export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
 export ANT_OPTS="-Xmx2048m -Djava.awt.headless=true -XX:MaxPermSize=512m"
 export GRADLE_HOME=/usr/bin/gradle
@@ -39,7 +39,7 @@ export VISUAL="$EDITOR"
 # Path
 export PATH=\
 ~/Tools/my-tools:\
-/usr/lib/jvm/jdk1.8.0_121/bin:\
+$JAVA_HOME/bin:\
 /bin:\
 /sbin:\
 /usr/bin:\
