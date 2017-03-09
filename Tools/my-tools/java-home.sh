@@ -16,14 +16,14 @@
 #
 ################################################################################
 
-JAVA_HOME=$(echo /usr/lib/jvm/jdk1.8*)
+JAVA_HOME=$(echo /home/kylestiemann/Tools/jdk1.8*)
 
 if [[ "$1" == *7* ]]; then
-	JAVA_HOME=$(echo /usr/lib/jvm/jdk1.7*)
+	JAVA_HOME=$(echo /home/kylestiemann/Tools/jdk1.7*)
 elif [[ "$1" == *6* ]]; then
-	JAVA_HOME=$(echo /usr/lib/jvm/jdk1.6*)
+	JAVA_HOME=$(echo /home/kylestiemann/Tools/jdk1.6*)
 elif [[ "$1" == *5* ]]; then
-	JAVA_HOME=$(echo /usr/lib/jvm/jdk1.5*)
+	JAVA_HOME=$(echo /home/kylestiemann/Tools/jdk1.5*)
 fi
 
 if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
