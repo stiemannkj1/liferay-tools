@@ -23,6 +23,7 @@
 # Enviornment Variables:
 export JAVA_HOME=$(/home/kylestiemann/Tools/my-tools/java-home.sh)
 export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
+export MVN_OPTIONS="-Dwebdriver.firefox.bin=/home/kylestiemann/Tools/firefox-46.0/firefox"
 export ANT_OPTS="-Xmx2048m -Djava.awt.headless=true -XX:MaxPermSize=512m"
 export GRADLE_HOME=/usr/bin/gradle
 export LC_ALL=en_US.UTF-8
