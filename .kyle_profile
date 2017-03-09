@@ -16,6 +16,10 @@
 
 # This file is sourced in ~/.bashrc
 
+# Linux Keyboard Settings
+# setxkbmap -layout us -option 'ctrl:nocaps,altwin:swap_lalt_lwin'
+# echo options hid_apple fnmode=2 | sudo tee -a /etc/modprobe.d/hid_apple.conf
+
 # Enviornment Variables:
 export JAVA_HOME=$(/home/kylestiemann/Tools/my-tools/java-home.sh)
 export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
