@@ -36,9 +36,12 @@
             </p>
             <button onclick="indentSelectedLines();">Indent Selected Lines</button>
             <button onclick="unindentSelectedLines();">Unindent Selected Lines</button>
-            <br />
+        </div>
+        <div class="row">
             <textarea id="markdownTextarea" cols="120" rows="15" onChange="convert();" onKeyUp="convert();"
                 placeholder="Enter your Markdown formatted text here"></textarea>
+        </div>
+        <div class="row">
             <textarea id="confluenceTextarea" cols="120" rows="15" onfocus="this.select();" onmouseup="return false;"
                 placeholder="Your JIRA Confluence formatted text will be automatically shown in this box"></textarea>
         </div>
@@ -82,7 +85,7 @@
                 // Unfortunately, there is no way to determine if the list is ordered or not here, so
                 // jiraConfluenceRenderer.list() replaces all '*' bullets with '#' if the list is ordered.
                 return '* ' + Util.unescapeXML(text.replace(/^\n/, '').replace(/\n+$/g, '').replace(/\n+/g, '\n')
-						+ '\n');
+                        + '\n');
             };
 
             jiraConfluenceRenderer.paragraph = function (text) {
