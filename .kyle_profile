@@ -16,13 +16,6 @@
 
 # This file is sourced in ~/.bashrc
 
-# Linux Keyboard Settings
-# printf "\nsetxkbmap -layout us -option 'ctrl:nocaps,altwin:swap_lalt_lwin'\n" >> ~/.profile
-# echo options hid_apple fnmode=2 | sudo tee -a /etc/modprobe.d/hid_apple.conf
-
-# Turn Off Guest Account
-# sudo sh -c 'printf "[SeatDefaults]\nallow-guest=false\n" > /etc/lightdm/lightdm.conf.d/50-no-guest.conf'
-
 # Enviornment Variables:
 export JAVA_HOME=$(/home/kylestiemann/Tools/my-tools/java-home.sh)
 export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
