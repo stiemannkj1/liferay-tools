@@ -51,6 +51,7 @@ sudo apt install \
     tmux \
     xsel \
     git \
+    pandoc \
     ddclient \
     libgnome-keyring-dev
 
