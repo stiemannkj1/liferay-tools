@@ -48,9 +48,11 @@ $JAVA_HOME/bin:\
 /usr/local/bin:\
 /usr/local/mysql/bin:\
 $JAVA_HOME/bin:\
+~/Tools:\
+~/Android/Sdk/emulator:\
+~/Android/Sdk/platform-tools:\
 ~/Tools/ripgrep-0.4.0-x86_64-unknown-linux-musl:\
 ~/Tools/hub-linux-amd64-2.2.9/bin:\
-~/Tools:\
 ~/Tools/vdldoc/bin:\
 ~/Tools/jd-cli-0.9.1.Final-dist:\
 ~/Tools/SaxonHE9-6-0-8J:\
