@@ -16,7 +16,7 @@
 #
 ################################################################################
 
-emulator -avd $(emulator -list-avds | head -1) -debug-all \
+emulator -avd $(emulator -list-avds | ag "^Android_$1") -debug-all \
 	-debug-no-qemud \
 	-debug-no-sensors \
 	-debug-no-surface \
