@@ -2,8 +2,8 @@
 	name = Kyle Stiemann
 	email = stiemannkj1@gmail.com
 [core]
-	editor = /usr/bin/nano
-	pager = /usr/bin/less -+S
+	editor = /bin/nano
+	pager = /bin/less -+S
 	excludesfile = /home/kylestiemann/.global-gitignore
 [credential]
 	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
