@@ -34,7 +34,7 @@ export HISTFILESIZE=100000
 shopt -s histappend
 
 # Make nano the default terminal editor:
-export EDITOR="/usr/bin/nano"
+export EDITOR="/bin/nano"
 export VISUAL="$EDITOR"
 
 # Path
@@ -90,7 +90,7 @@ fi
 
 # Activate git bash completion:
 if [ -f ~/Tools/hub-linux-amd64-2.2.9/etc/hub.bash_completion.sh ]; then
-        source ~/Tools/hub-linux-amd64-2.2.9/etc/hub.bash_completion.sh
+	source ~/Tools/hub-linux-amd64-2.2.9/etc/hub.bash_completion.sh
 fi
 
 # Activate mvn bash completion:
