@@ -17,6 +17,13 @@
 ################################################################################
 
 stop_portal() {
+
+	if [[ "${PWD##*/}" != *"6.2"* ]] && [[ "$@" =~ "reset" ]]; then
+		rm -r $TOMCAT/../osgi/war/com.liferay.faces.*
+		rm -r $TOMCAT/../osgi/wabs/com.liferay.faces.*
+		sleep 15
+	fi
+
 	RUNNING_BOOTSTRAPS="$(jps | grep -o 'Bootstrap' | wc -l | tr -d '[[:space:]]')"
 	EXPECTED_RUNNING_BOOTSTRAPS_AFTER_SHUTDOWN="$((RUNNING_BOOTSTRAPS - 1))"
 	$TOMCAT/bin/shutdown.sh
@@ -24,7 +31,7 @@ stop_portal() {
 	exit 0
 }
 
-trap 'stop_portal' EXIT
+trap 'stop_portal $@' EXIT
 
 TOMCAT=$(find . -maxdepth 1 -name "tomcat-*" | head -1)
 
