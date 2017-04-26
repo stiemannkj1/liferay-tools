@@ -1,4 +1,10 @@
 #!/bin/bash
 
-git reset HEAD -- "$@"
-git checkout HEAD -- "$@"
+args="."
+
+if [ -n "$@" ]; then
+	args="@"
+fi
+
+git reset HEAD -- "$args"
+git checkout HEAD -- "$args"
