@@ -17,26 +17,25 @@
 ################################################################################
 
 # Linux Keyboard Settings
-setxkbmap -layout us -option 'ctrl:nocaps,altwin:swap_lalt_lwin'
+setxkbmap -layout us -option 'ctrl:nocaps'
 (crontab -l ; echo '@reboot /home/kylestiemann/Tools/my-tools/onboot.sh') 2>&1 | \
     grep -v "no crontab" | sort -u | crontab -
 
-echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
-grep -q  'options hid_apple fnmode=2' /etc/modprobe.d/hid_apple.conf 2> /dev/null || {
-    echo 'options hid_apple fnmode=2' | sudo tee -a /etc/modprobe.d/hid_apple.conf &&
-    sudo update-initramfs -u -k all
-}
-
 # Linux Touchpad Settings
+synclient RightButtonAreaTop=0
+grep -q 'RightButtonAreaTop=0' ~/.profile ||
+    echo 'synclient RightButtonAreaTop=0' >> ~/.profile
+synclient RightButtonAreaLeft=0
+grep -q 'RightButtonAreaLeft=0' ~/.profile ||
+    echo 'synclient RightButtonAreaLeft=0' >> ~/.profile
 synclient PalmDetect=1
 grep -q 'PalmDetect=1' ~/.profile ||
-    echo synclient PalmDetect=1 >> ~/.profile
+    echo 'synclient PalmDetect=1' >> ~/.profile
 
 # Linux Screen Resolution Settings
-xrandr -s '1680x1050'
+xrandr -s '1920x1080'
 
 ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` &> /dev/null || {
-    sudo apt install bcmwl-kernel-source
     echo 'Please connect to the internet before continuing.'
     exit 1
 }
@@ -50,9 +49,12 @@ sudo apt install \
     ant \
     tmux \
     xsel \
+    meld \
     git \
+    subversion \
     pandoc \
     ddclient \
+    gnome-keyring \
     libgnome-keyring-dev
 
 cd /usr/share/doc/git/contrib/credential/gnome-keyring
