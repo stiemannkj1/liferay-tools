@@ -18,8 +18,8 @@
 
 # Linux Keyboard Settings
 setxkbmap -layout us -option 'ctrl:nocaps,altwin:swap_lalt_lwin'
-grep -q 'setxkbmap' ~/.profile ||
-    printf "\nsetxkbmap -layout us -option 'ctrl:nocaps,altwin:swap_lalt_lwin'\n" >> ~/.profile
+(crontab -l ; echo '@reboot /home/kylestiemann/Tools/my-tools/onboot.sh') 2>&1 | \
+    grep -v "no crontab" | sort -u | crontab -
 
 echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
 grep -q  'options hid_apple fnmode=2' /etc/modprobe.d/hid_apple.conf 2> /dev/null || {
