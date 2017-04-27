@@ -3,7 +3,7 @@
 args="."
 
 if [ -n "$@" ]; then
-	args="@"
+	args="$@"
 fi
 
 git reset HEAD -- "$args"
