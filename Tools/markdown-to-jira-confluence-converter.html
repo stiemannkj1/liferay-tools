@@ -141,8 +141,10 @@
             var markdownConverter = new MarkdownConverter(jiraConfluenceRenderer);
 
             function convert() {
+                var confluenceTextarea = document.getElementById('confluenceTextarea');
                 markdownConverter.convert(document.getElementById('markdownTextarea'),
-                    document.getElementById('confluenceTextarea'));
+                    confluenceTextarea);
+                confluenceTextarea.value = confluenceTextarea.value.replace(/\}\}(\S)/g, '}} $1');
             }
 
             function indentSelectedLines() {
