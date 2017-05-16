@@ -55,7 +55,8 @@ sudo apt install \
     pandoc \
     ddclient \
     gnome-keyring \
-    libgnome-keyring-dev
+    libgnome-keyring-dev \
+    libnotify-bin
 
 cd /usr/share/doc/git/contrib/credential/gnome-keyring
 sudo make
