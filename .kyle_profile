@@ -52,7 +52,6 @@ $JAVA_HOME/bin:\
 /usr/sbin:\
 /usr/local/bin:\
 /usr/local/mysql/bin:\
-$JAVA_HOME/bin:\
 ~/Tools:\
 ~/Android/Sdk/emulator:\
 ~/Android/Sdk/platform-tools:\
