@@ -144,7 +144,7 @@
                 var confluenceTextarea = document.getElementById('confluenceTextarea');
                 markdownConverter.convert(document.getElementById('markdownTextarea'),
                     confluenceTextarea);
-                confluenceTextarea.value = confluenceTextarea.value.replace(/\}\}(\S)/g, '}} $1');
+                confluenceTextarea.value = confluenceTextarea.value.replace(/\}\}/g, '}} $1');
             }
 
             function indentSelectedLines() {
