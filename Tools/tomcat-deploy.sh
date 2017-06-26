@@ -18,7 +18,7 @@
 
 echo "Building..."
 if [ $# -eq 0 ]; then
-	mvn clean install -P prettyfaces,development,jsf22
+	mvn clean install -P prettyfaces,jsf22
 else
 	mvn clean install $@
 fi

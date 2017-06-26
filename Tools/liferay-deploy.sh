@@ -54,16 +54,26 @@ fi
 for portlet in $(find "${DIRS_TO_SEARCH[@]}" -maxdepth 2 -name *-portlet | egrep "$1"); do
 
 	if [ -e "$portlet/pom.xml" ]; then
-		(cd $portlet && deploy.sh "${@:2}" development)
+		(cd $portlet && deploy.sh "${@:2}")
 	else
 		echo "$portlet missing pom.xml. Ignoring."
 	fi
 done
 
 if [[ tck =~ $1 ]]; then
-	(cd ~/Projects/liferay.com/liferay-faces-bridge-impl/tck/bridge-tck-main-portlet && deploy.sh "${@:2}" development)
+
+	(cd ~/Projects/liferay.com/liferay-faces-bridge-impl/tck/ && mvn clean install)
+
+	for portlet in $(find ~/Projects/liferay.com/liferay-faces-bridge-impl/tck/ -maxdepth 1 -name *-portlet | egrep "$1"); do
+
+		if [ -e "$portlet/pom.xml" ]; then
+			(cd $portlet && deploy.sh "${@:2}")
+		else
+			echo "$portlet missing pom.xml. Ignoring."
+		fi
+	done
 fi
 
 if [[ test-setup-hook =~ $1 ]]; then
-	(cd ~/Projects/liferay.com/liferay-faces-portal/test/test-setup-hook && deploy.sh "${@:2}" development)
+	(cd ~/Projects/liferay.com/liferay-faces-portal/test/test-setup-hook && deploy.sh "${@:2}")
 fi
