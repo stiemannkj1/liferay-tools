@@ -18,15 +18,16 @@
 
 echo "Building..."
 if [ $# -eq 0 ]; then
-	mvn clean install -P prettyfaces,jsf22
+	mvn clean package -P prettyfaces
 else
-	mvn clean install $@
+	mvn clean package $@
 fi
 echo "Done."
 
 WAR_WITH_VERSION=$(fff.sh '[.]war' ./target/)
 WAR_WITH_VERSION=${WAR_WITH_VERSION##*/}
 WAR_NAME=${WAR_WITH_VERSION//-[0-9][0-9.]*-[A-Za-z0-9][A-Za-z0-9_]*[.]war}
+WAR_NAME=${WAR_NAME//[.]war}
 
 TOMCAT_WEBAPPS=/home/kylestiemann/Servers/apache-tomcat-8.0.32/webapps
 echo "Removing $TOMCAT_WEBAPPS/$WAR_NAME* ..."
