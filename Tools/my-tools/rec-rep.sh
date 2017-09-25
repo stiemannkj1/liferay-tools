@@ -74,7 +74,7 @@ if [ -n "$REC_REP_FILE_NAMES" ]; then
 	if [ -n "$AG_LITERAL" ]; then
 		echo "Literal file name matching is not supported."
 	else
-		fff.sh "$SEARCH" "${SEARCH_DIR[@]}" | tail -r | while read FILE; do
+		fff.sh "$SEARCH" "${SEARCH_DIR[@]}" | tac | while read FILE; do
 			FILE_NAME="${FILE##*/}"
 			FILE_PATH="${FILE%/*}"
 			NEW_FILE="$FILE_PATH/${FILE_NAME//$SEARCH/$REPLACE}"
