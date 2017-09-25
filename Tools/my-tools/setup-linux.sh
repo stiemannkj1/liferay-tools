@@ -31,6 +31,9 @@ grep -q 'RightButtonAreaLeft=0' ~/.profile ||
 synclient PalmDetect=1
 grep -q 'PalmDetect=1' ~/.profile ||
     echo 'synclient PalmDetect=1' >> ~/.profile
+synclient MaxTapTime=0
+grep -q 'MaxTapTime=0' ~/.profile ||
+    echo 'synclient MaxTapTime=0' >> ~/.profile
 
 # Linux Screen Resolution Settings
 xrandr -s '1920x1080'
@@ -44,6 +47,7 @@ sudo apt update
 sudo apt upgrade
 sudo apt install \
     chromium-browser \
+    shutter \
     silversearcher-ag \
     maven \
     ant \
@@ -77,7 +81,7 @@ if [ ! -L /etc/ddclient.conf ]; then
 fi
 
 hash google-chrome 2> /dev/null || {
-    firefox 'https://www.google.com/chrome/browser/desktop/index.html'
+    firefox 'https://www.google.com/chrome/browser/desktop/index.html' &
     echo 'Please install google-chrome.'
 }
 
