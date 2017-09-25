@@ -34,5 +34,6 @@ if [ -z "$BRANCHES" ]; then
 fi
 
 for branch in $BRANCHES; do
-	git push --delete origin "$branch" && git branch -D "$branch"
+	git branch -D "$branch"
+	git push --delete origin "$branch"
 done
