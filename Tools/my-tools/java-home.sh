@@ -22,13 +22,15 @@ if [[ "$1" == *7* ]]; then
 	JAVA_HOME=$(printf '%s\n' /home/kylestiemann/Tools/jdk1.7* | tail -1)
 elif [[ "$1" == *6* ]]; then
 	JAVA_HOME=$(printf '%s\n' /home/kylestiemann/Tools/jdk1.6* | tail -1)
+	MVN_HOME_COLON=/home/kylestiemann/Tools/apache-maven-3.1.1/bin:
 elif [[ "$1" == *5* ]]; then
 	JAVA_HOME=$(printf '%s\n' /home/kylestiemann/Tools/jdk1.5* | tail -1)
+	MVN_HOME_COLON=/home/kylestiemann/Tools/apache-maven-3.1.1/bin:
 fi
 
 if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
 	export JAVA_HOME
-	export PATH=$JAVA_HOME/bin:$PATH
+	export PATH=$JAVA_HOME/bin:$MVN_HOME_COLON$PATH
 else
 	echo $JAVA_HOME
 fi
