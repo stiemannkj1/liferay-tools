@@ -52,7 +52,7 @@ sudo apt install \
     maven \
     ant \
     tmux \
-    xsel \
+    xclip \
     meld \
     git \
     subversion \
