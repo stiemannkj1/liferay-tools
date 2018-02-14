@@ -17,13 +17,6 @@
 ################################################################################
 
 stop_portal() {
-
-	if [[ "${PWD##*/}" != *"6.2"* ]] && [[ "$@" =~ "reset" ]]; then
-		rm -r $TOMCAT/../osgi/war/com.liferay.faces.*
-		rm -r $TOMCAT/../osgi/wabs/com.liferay.faces.*
-		sleep 15
-	fi
-
 	RUNNING_BOOTSTRAPS="$(jps | grep -o 'Bootstrap' | wc -l | tr -d '[[:space:]]')"
 	EXPECTED_RUNNING_BOOTSTRAPS_AFTER_SHUTDOWN="$((RUNNING_BOOTSTRAPS - 1))"
 	$TOMCAT/bin/shutdown.sh
@@ -42,11 +35,10 @@ if [[ "$@" =~ "reset" ]]; then
 		TOMCAT_WEBAPPS=$TOMCAT/webapps;
 		find $TOMCAT_WEBAPPS -maxdepth 1 ! -regex "\($TOMCAT_WEBAPPS\|$TOMCAT_WEBAPPS/ROOT\|$TOMCAT_WEBAPPS/marketplace-portlet\|$TOMCAT_WEBAPPS/notifications-portlet\|$TOMCAT_WEBAPPS/resources-importer-web\|$TOMCAT_WEBAPPS/tunnel-web\)" -exec rm -r {} \;
 	else
-		:
-#		OSGI_WAR=osgi/war
-#		find $OSGI_WAR -maxdepth 1 ! -regex "\($OSGI_WAR\|$OSGI_WAR/user-.*-theme.war\)" -exec rm -r {} \;
-#		OSGI_MODULES=osgi/modules
-#		find $OSGI_MODULES -maxdepth 1 -regex "$OSGI_MODULES/com[.]liferay[.]faces.*" -exec rm -r {} \;
+		rm -r $TOMCAT/../osgi/modules/*
+		rm -r $TOMCAT/../osgi/war/com.liferay.faces.*
+		rm -r $TOMCAT/../osgi/wabs/com.liferay.faces.*
+		rm -r $TOMCAT/../osgi/state/org.eclipse.osgi
 	fi
 fi
 
