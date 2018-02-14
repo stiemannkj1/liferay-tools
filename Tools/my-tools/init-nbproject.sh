@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ################################################################################
 #
 # Copyright (c) 2000-2017 Liferay, Inc. All rights reserved.
@@ -14,12 +16,9 @@
 #
 ################################################################################
 
-.DS_Store
-nbactions.xml
-*.NavData
-nb-configuration.xml
-.gitignore
-nbproject/*
-*nbproject
-nbbuild.xml
-install-into-pluto.sh
+cp ~/Tools/my-tools/nbbuild.xml .
+mkdir -p ./nbproject
+cp ~/Tools/my-tools/nbproject/project.xml nbproject/.
+currentDirName="${PWD##*/}"
+perl -p -i -e 's|\$[{]project[.]name[}]|'"$currentDirName"'|g' \
+	nbbuild.xml nbproject/project.xml

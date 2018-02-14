@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Copyright (c) 2000-2018 Liferay, Inc. All rights reserved.
+
+This library is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation; either version 2.1 of the License, or (at your option)
+any later version.
+
+This library is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+details.
+
+-->
+<project xmlns="http://www.netbeans.org/ns/project/1">
+	<type>org.netbeans.modules.ant.freeform</type>
+	<configuration>
+		<general-data xmlns="http://www.netbeans.org/ns/freeform-project/1">
+			<name>${project.name}</name>
+			<properties/>
+			<folders>
+				<source-folder>
+					<label>src/main/java</label>
+					<type>java</type>
+					<location>src/main/java</location>
+				</source-folder>
+				<source-folder>
+					<label>src/test/java</label>
+					<type>java</type>
+					<location>src/test/java</location>
+				</source-folder>
+				<source-folder>
+					<label>src/main/resources</label>
+					<type>resources</type>
+					<location>src/main/resources</location>
+				</source-folder>
+			</folders>
+			<ide-actions>
+				<action name="build">
+					<target>dist</target>
+				</action>
+				<action name="clean">
+					<target>clean</target>
+				</action>
+				<action name="rebuild">
+					<target>clean</target>
+					<target>dist</target>
+				</action>
+			</ide-actions>
+			<view>
+				<items>
+					<source-folder style="packages">
+						<label>src/main/java</label>
+						<location>src/main/java</location>
+					</source-folder>
+					<source-folder style="packages">
+						<label>src/test/java</label>
+						<location>src/test/java</location>
+					</source-folder>
+					<source-folder style="resources">
+						<label>src/main/resources</label>
+						<location>src/main/resources</location>
+					</source-folder>
+					<source-file>
+						<location>nbbuild.xml</location>
+					</source-file>
+				</items>
+				<context-menu>
+					<ide-action name="build"/>
+					<ide-action name="clean"/>
+					<ide-action name="rebuild"/>
+				</context-menu>
+			</view>
+		</general-data>
+		<java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/2">
+			<compilation-unit>
+				<package-root>src/main/java</package-root>
+				<source-level>1.5</source-level>
+			</compilation-unit>
+			<compilation-unit>
+				<package-root>src/test/java</package-root>
+				<unit-tests/>
+				<source-level>1.5</source-level>
+			</compilation-unit>
+		</java-data>
+	</configuration>
+</project>
