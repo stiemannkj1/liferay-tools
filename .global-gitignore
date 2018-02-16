@@ -15,11 +15,14 @@
 ################################################################################
 
 .DS_Store
+.gitignore
 nbactions.xml
 *.NavData
 nb-configuration.xml
-.gitignore
+nbproject
 nbproject/*
 *nbproject
+.nb-gradle
+.nb-gradle/*
 nbbuild.xml
 install-into-pluto.sh
