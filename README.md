@@ -11,7 +11,7 @@ The code in this repo is licensed under [the GNU Lesser General Public License v
 If you want to access one of my (html + JS) markdown converters without cloning my repo you can use https://rawgit.com/:
 
 - [Markdown to JIRA (Confluence) Converter](https://cdn.rawgit.com/stiemannkj1/liferay-tools/030309e190477b85fcd08a148169e588da7d0727/Tools/markdown-to-jira-confluence-converter.html)
-- [Markdown to Liferay Forums (BBCode) Converter](https://cdn.rawgit.com/stiemannkj1/liferay-tools/2bfbb89a018f884df893bae9ea12d43005caff2c/Tools/markdown-to-liferay-forums-bbcode-converter.html)
+- [Markdown to Liferay Forums (BBCode) Converter](https://cdn.rawgit.com/stiemannkj1/liferay-tools/62afd0496ba4c726f09792ff0526ef479f886647/Tools/markdown-to-liferay-forums-bbcode-converter.html)
 
 To view the generated html of this **`README.md`** file locally:
 
