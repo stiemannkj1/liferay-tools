@@ -51,19 +51,27 @@
                 placeholder="Your Liferay Forums BBCode formatted text will be automatically shown in this box"></textarea>
         </div>
         <script type="text/javascript">
+            function removeTrailingWhitespace(text) {
+                return text.replace(/\s+$/, '');
+            }
+
+            function removeLeadingWhitespace(text) {
+                return text.replace(/^\s+/, '');
+            }
+
             var liferayForumsBBCodeRenderer = new marked.Renderer();
 
             liferayForumsBBCodeRenderer.code = function (text, language /* unused */) {
 
                 if (document.getElementById('useCodeTag').checked) {
-                    return '\n[code]' + text + '[/code]';
+                    return '\n[code]' + text.trim() + '[/code]';
                 } else {
                     return '\n[size=4][font=Courier New]' + text + '[/font][/size]\n';
                 }
             };
 
             liferayForumsBBCodeRenderer.blockquote = function (text) {
-                return '\n[quote]' + Util.unescapeXML(text) + '[/quote]';
+                return '\n[quote]' + Util.unescapeXML(text.trim()) + '[/quote]';
             };
 
             liferayForumsBBCodeRenderer.heading = function (text, level) {
@@ -91,11 +99,11 @@
                 }
 
                 beginTag += ']\n';
-                return beginTag + Util.unescapeXML(body) + '[/list]\n';
+                return beginTag + Util.unescapeXML(removeTrailingWhitespace(body)) + '[/list]\n';
             };
 
             liferayForumsBBCodeRenderer.listitem = function (text) {
-                return '[*]' + Util.unescapeXML(text.replace(/^\n/, '')) + '\n';
+                return '[*]' + Util.unescapeXML(removeLeadingWhitespace(text)) + '\n';
             };
 
             liferayForumsBBCodeRenderer.paragraph = function (text) {
