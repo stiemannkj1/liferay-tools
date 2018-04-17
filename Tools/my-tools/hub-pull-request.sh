@@ -16,6 +16,7 @@
 #
 ################################################################################
 
+git push origin HEAD
 export GIT_EDITOR=no-edit.sh
 hub pull-request "$@" | tee /dev/tty | ag --nocolor '^http' | copy.sh
 export GIT_EDITOR=
