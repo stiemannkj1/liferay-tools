@@ -37,6 +37,7 @@ if [[ "$@" =~ "reset" ]]; then
 	else
 		rm -r $TOMCAT/../osgi/modules/*
 		rm -r $TOMCAT/../osgi/war/com.liferay.faces.*
+		rm -r $TOMCAT/../osgi/war/com.mycompany.my.*
 		rm -r $TOMCAT/../osgi/wabs/com.liferay.faces.*
 		rm -r $TOMCAT/../osgi/state/org.eclipse.osgi
 	fi
