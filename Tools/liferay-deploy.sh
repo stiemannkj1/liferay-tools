@@ -60,7 +60,7 @@ for portlet in $(find "${DIRS_TO_SEARCH[@]}" -maxdepth 2 -name *-portlet | egrep
 	fi
 done
 
-if [[ tck =~ $1 ]]; then
+if [[ $1 = *tck* ]]; then
 
 	(cd ~/Projects/liferay.com/liferay-faces-bridge-impl/tck/ && mvn clean install)
 
@@ -74,6 +74,6 @@ if [[ tck =~ $1 ]]; then
 	done
 fi
 
-if [[ test-setup-hook =~ $1 ]]; then
+if [[ $1 = *test* ]] || [[ $1 = *setup* ]]; then
 	(cd ~/Projects/liferay.com/liferay-faces-portal/test/test-setup-hook && deploy.sh "${@:2}")
 fi
