@@ -17,6 +17,7 @@
 ################################################################################
 
 currentBranch="$(git-current-branch.sh)"
+git pull upstream $currentBranch || (echo "Failed to pull upstream changes. Exiting."; exit 1)
 
 if [ "$currentBranch" == "master" ]; then
 	echo "Error: cannot backport to the master branch. Exiting."
