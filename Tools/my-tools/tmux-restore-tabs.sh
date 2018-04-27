@@ -17,13 +17,15 @@
 ################################################################################
 
 first=true
+tmux new-session -d
 
 while read line; do
+	tmux new-window -c $line
+
 	if [ "$first" = true ]; then
-		tmux new-session -d -c $line
+		tmux kill-window -t 0
+		tmux move-window -s 1 -t 0
 		first=false
-	else
-		tmux new-window -c $line
 	fi
 done < ~/Tools/my-tools/.tmux-saved-tabs.txt
 
