@@ -3,14 +3,14 @@
 	email = stiemannkj1@gmail.com
 [core]
 	editor = /bin/nano
-	pager = /bin/less -+S
+	pager = /bin/less -R -+S
 	excludesfile = /home/kylestiemann/.global-gitignore
 [credential]
 	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
 [pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+	log  = diff-highlight | /bin/less -R -+S
+	show = diff-highlight | /bin/less -R -+S
+	diff = diff-highlight | /bin/less -R -+S
 [interactive]
 	diffFilter = diff-highlight
 [diff]
