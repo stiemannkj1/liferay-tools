@@ -48,10 +48,7 @@ sudo apt upgrade
 sudo apt install \
     chromium-browser \
     shutter \
-    silversearcher-ag \
-    maven \
     ant \
-    tmux \
     xclip \
     meld \
     git \
@@ -60,7 +57,11 @@ sudo apt install \
     ddclient \
     gnome-keyring \
     libgnome-keyring-dev \
-    libnotify-bin
+    libnotify-bin \
+    parallel \
+    shutter \
+    realpath \
+    libxml2-utils
 
 cd /usr/share/doc/git/contrib/credential/gnome-keyring
 sudo make
