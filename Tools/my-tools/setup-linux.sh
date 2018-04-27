@@ -43,8 +43,6 @@ ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` &> /dev/null || {
     exit 1
 }
 
-sudo apt update
-sudo apt upgrade
 sudo apt install \
     chromium-browser \
     shutter \
@@ -86,3 +84,4 @@ hash google-chrome 2> /dev/null || {
     echo 'Please install google-chrome.'
 }
 
+sudo apt update && sudo apt upgrade
