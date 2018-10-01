@@ -16,10 +16,10 @@
 #
 ################################################################################
 
-classFiles="$(unzip -Z1 "$2" | grep "$1")"
+classFiles="$(unzip -Z1 "$1" | grep "$2")"
 
 while read -r line; do
 	tempFile="$(mktemp)"
-	unzip -p "$2" "$line" > "$tempFile"
+	unzip -p "$1" "$line" > "$tempFile"
 	jd-cli -oc "$tempFile"
 done <<< "$classFiles"
