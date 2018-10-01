@@ -18,6 +18,7 @@
 
 # Enviornment Variables:
 export JAVA_HOME=$(/home/kylestiemann/Tools/my-tools/java-home.sh)
+export MAVEN_HOME=/home/kylestiemann/Tools/my-tools
 export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
 MVN_OPTIONS=""
 MVN_OPTIONS="$MVN_OPTIONS -Dwebdriver.firefox.bin=/home/kylestiemann/Tools/firefox-46.0/firefox"
