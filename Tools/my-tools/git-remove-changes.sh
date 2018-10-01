@@ -2,9 +2,9 @@
 
 args="."
 
-if [ -n "$@" ]; then
+if (( $# > 0 )); then
 	args="$@"
 fi
 
-git reset HEAD -- "$args"
-git checkout HEAD -- "$args"
+git reset HEAD -- $args
+git checkout HEAD -- $args
