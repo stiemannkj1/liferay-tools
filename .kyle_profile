@@ -51,7 +51,7 @@ $JAVA_HOME/bin:\
 /usr/bin:\
 /usr/sbin:\
 /usr/local/bin:\
-/usr/local/mysql/bin:\
+/home/kylestiemann/Databases/mysql-5.7.23-linux-glibc2.12-x86_64/bin:\
 ~/Tools:\
 ~/Tools/gradle-4.7/bin:\
 ~/Android/Sdk/emulator:\
