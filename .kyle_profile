@@ -22,7 +22,7 @@ export MAVEN_HOME=/home/kylestiemann/Tools/my-tools
 export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
 MVN_OPTIONS=""
 MVN_OPTIONS="$MVN_OPTIONS -Dwebdriver.firefox.bin=/home/kylestiemann/Tools/firefox-45.0/firefox"
-MVN_OPTIONS="$MVN_OPTIONS -Dwebdriver.chrome.driver=/home/kylestiemann/Tools/chromedriver-2.36/chromedriver"
+MVN_OPTIONS="$MVN_OPTIONS -Dwebdriver.chrome.driver=/home/kylestiemann/Tools/chromedriver-2.45/chromedriver"
 MVN_OPTIONS="$MVN_OPTIONS -Dphantomjs.binary.path=/home/kylestiemann/Tools/phantomjs-2.1.1-linux-x86_64/bin/phantomjs"
 export MVN_OPTIONS;
 export ANT_OPTS="-Djava.awt.headless=true -Xms2048m -Xmx4096m -XX:MaxPermSize=512m"
