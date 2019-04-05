@@ -1,0 +1,21 @@
+#!/bin/bash
+# Output from genffcom for screencast#=1
+
+printf "Click OK when ready to start recording.
+
+To Stop Recording:
+Click the stop icon in the Notification Area" \
+| yad ---text-info --on-top --center --width=440 --height=280 --wrap --title="Get Ready" --window-icon="/usr/bin/record1".svg --text="\
+<b>SILENTCAST 1                </b><span font='24' color='green'>1</span>"
+(($? != 0)) && exit 1 #Cancel was clicked
+
+ffmpeg -f x11grab -s 546x420 -r 8 -i :0+1119,620 -c:v ffvhuff -an -y /home/kylestiemann/silentcast/temp.mkv & ffmpegPID=$!
+if [ "$XDG_CURRENT_DESKTOP" = "Unity" -o "$XDG_CURRENT_DESKTOP" = "Pantheon" -o "$KDE_SESSION_VERSION" = "5" ]
+then
+        echo "Unity, Pantheon, or Plasma 5 detected. Switching indicators..."
+	python /usr/share/silentcast/unity_indicator.py 1
+else
+    yad --notification --image="/usr/share/silentcast/stop1.svg" --text="1"
+fi
+kill $ffmpegPID
+wait # make sure ffmpeg is killed before exit or else can get stuck here
