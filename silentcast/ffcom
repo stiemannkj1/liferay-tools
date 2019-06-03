@@ -1,10 +1,10 @@
 #!/bin/bash
 # Output from genffcom for screencast#=1
 
-printf "Click OK when ready to start recording.
+printf "Click OK to start recording.
 
 To Stop Recording:
-Click the stop icon in the Notification Area" \
+Click stop icon in the Notification Area" \
 | yad ---text-info --on-top --center --width=440 --height=280 --wrap --title="Get Ready" --window-icon="/usr/bin/record1".svg --text="\
 <b>SILENTCAST 1                </b><span font='24' color='green'>1</span>"
 (($? != 0)) && exit 1 #Cancel was clicked
