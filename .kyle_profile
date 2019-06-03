@@ -19,7 +19,7 @@
 # Enviornment Variables:
 export JAVA_HOME=$(/home/kylestiemann/Tools/my-tools/java-home.sh)
 export MAVEN_HOME=/home/kylestiemann/Tools/my-tools
-export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true"
+export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true -Dhttps.protocols=TLSv1.2"
 MVN_OPTIONS=""
 MVN_OPTIONS="$MVN_OPTIONS -Dwebdriver.firefox.bin=/home/kylestiemann/Tools/firefox-45.0/firefox"
 MVN_OPTIONS="$MVN_OPTIONS -Dwebdriver.chrome.driver=/home/kylestiemann/Tools/chromedriver-2.45/chromedriver"
