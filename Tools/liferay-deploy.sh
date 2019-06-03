@@ -51,7 +51,9 @@ if [ ${#DIRS_TO_SEARCH[@]} -eq 0 ]; then
 	exit 1
 fi
 
-for portlet in $(find "${DIRS_TO_SEARCH[@]}" -maxdepth 2 -name *-portlet | egrep "$1"); do
+for portlet in $(find "${DIRS_TO_SEARCH[@]}" -maxdepth 2 -name *-portlet -o -regex '.*/lsv-[0-9]+$' | egrep "$1"); do
+
+	echo "Deploying $portlet"
 
 	if [ -e "$portlet/pom.xml" ]; then
 		(cd $portlet && deploy.sh "${@:2}")
