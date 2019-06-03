@@ -25,7 +25,7 @@ for ARG in "$@"; do
 		PERL_MULTILINE='-0'
 	elif [ "$ARG" == '-d' ] || [ "$ARG" == '--delete-matching-lines' ]; then
 		DELETE_MATCHING_LINES="true"
-	elif [ "$ARG" == '-n' ] || [ "$ARG" == '--file-names' ]; then
+	elif [ "$ARG" == '-n' ] || [ "$ARG" == '--file-names' ] || [ "$ARG" == '--replace-file-names' ]; then
 		REC_REP_FILE_NAMES="true"
 	elif [ -z "$SEARCH" ]; then
 		SEARCH="$ARG"
