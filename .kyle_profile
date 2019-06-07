@@ -25,7 +25,7 @@ MVN_OPTIONS="$MVN_OPTIONS -Dwebdriver.firefox.bin=/home/kylestiemann/Tools/firef
 MVN_OPTIONS="$MVN_OPTIONS -Dwebdriver.chrome.driver=/home/kylestiemann/Tools/chromedriver-74.0.3729.6/chromedriver"
 MVN_OPTIONS="$MVN_OPTIONS -Dphantomjs.binary.path=/home/kylestiemann/Tools/phantomjs-2.1.1-linux-x86_64/bin/phantomjs"
 export MVN_OPTIONS;
-export ANT_HOME=/usr/share/ant
+export ANT_HOME=/home/kylestiemann/Tools/apache-ant-1.9.14
 export ANT_OPTS="-Djava.awt.headless=true -Xms2048m -Xmx4096m -XX:MaxPermSize=1024m"
 export GRADLE_HOME=/usr/bin/gradle
 export GRADLE_OPTS="-Djava.awt.headless=true -Xms2048m -Xmx4096m -XX:MaxPermSize=1024m"
@@ -55,6 +55,7 @@ $JAVA_HOME/bin:\
 /usr/local/bin:\
 /home/kylestiemann/Databases/mysql-5.7.23-linux-glibc2.12-x86_64/bin:\
 ~/Tools:\
+$ANT_HOME/bin:\
 ~/Tools/gradle-4.7/bin:\
 ~/Android/Sdk/emulator:\
 ~/Android/Sdk/platform-tools:\
