@@ -61,7 +61,6 @@ $ANT_HOME/bin:\
 ~/Tools/gradle-4.7/bin:\
 ~/Android/Sdk/emulator:\
 ~/Android/Sdk/platform-tools:\
-~/Tools/tmux-2.3:\
 ~/Tools/the_silver_searcher-2.1.0:\
 ~/Tools/ripgrep-0.4.0-x86_64-unknown-linux-musl:\
 ~/Tools/hub-linux-amd64-2.2.9/bin:\
