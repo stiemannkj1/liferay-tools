@@ -22,7 +22,7 @@ setxkbmap -layout us -option 'ctrl:nocaps'
     grep -v "no crontab" | sort -u | crontab -
 
 # Linux Screen Resolution Settings
-xrandr -s '1920x1080'
+xrandr -s '2048x1152'
 
 ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` &> /dev/null || {
     echo 'Please connect to the internet before continuing.'
