@@ -6,7 +6,7 @@
 	pager = /bin/less -R -+S
 	excludesfile = /home/kylestiemann/.global-gitignore
 [credential]
-	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 [pager]
 	log  = diff-highlight | /bin/less -R -+S
 	show = diff-highlight | /bin/less -R -+S

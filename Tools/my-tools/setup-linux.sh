@@ -53,18 +53,18 @@ sudo apt install \
     subversion \
     pandoc \
     ddclient \
-    gnome-keyring \
-    libgnome-keyring-dev \
+    libsecret-1-0 \
+    libsecret-1-dev \
     libnotify-bin \
     parallel \
     shutter \
     realpath \
     libxml2-utils
 
-cd /usr/share/doc/git/contrib/credential/gnome-keyring
+cd /usr/share/doc/git/contrib/credential/libsecret
 sudo make
 git config --global credential.helper \
-    /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+    /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 cd -
 
 if [ ! -L /etc/ddclient.conf ]; then
