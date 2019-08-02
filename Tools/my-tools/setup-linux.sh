@@ -52,7 +52,6 @@ sudo apt install \
     git \
     subversion \
     pandoc \
-    ddclient \
     libsecret-1-0 \
     libsecret-1-dev \
     libnotify-bin \
@@ -66,18 +65,6 @@ sudo make
 git config --global credential.helper \
     /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 cd -
-
-if [ ! -L /etc/ddclient.conf ]; then
-    sudo rm /etc/ddclient.conf
-    sudo ln ~/Tools/my-tools/ddclient.conf -s /etc/ddclient.conf
-    sudo sed -i \
-        -e 's/(run_dhclient)="[^"]*"/$1="false"/' \
-        -e 's/(run_ipup)="[^"]*"/$1="false"/' \
-        -e 's/(run_daemon)="[^"]*"/$1="true"/' \
-        -e 's/(daemon_interval)="[^"]*"/$1="300"/' \
-        /etc/default/ddclient
-    sudo /etc/init.d/ddclient start
-fi
 
 hash google-chrome 2> /dev/null || {
     firefox 'https://www.google.com/chrome/browser/desktop/index.html' &
