@@ -21,20 +21,6 @@ setxkbmap -layout us -option 'ctrl:nocaps'
 (crontab -l ; echo '@reboot /home/kylestiemann/Tools/my-tools/onboot.sh') 2>&1 | \
     grep -v "no crontab" | sort -u | crontab -
 
-# Linux Touchpad Settings
-synclient RightButtonAreaTop=0
-grep -q 'RightButtonAreaTop=0' ~/.profile ||
-    echo 'synclient RightButtonAreaTop=0' >> ~/.profile
-synclient RightButtonAreaLeft=0
-grep -q 'RightButtonAreaLeft=0' ~/.profile ||
-    echo 'synclient RightButtonAreaLeft=0' >> ~/.profile
-synclient PalmDetect=1
-grep -q 'PalmDetect=1' ~/.profile ||
-    echo 'synclient PalmDetect=1' >> ~/.profile
-synclient MaxTapTime=0
-grep -q 'MaxTapTime=0' ~/.profile ||
-    echo 'synclient MaxTapTime=0' >> ~/.profile
-
 # Linux Screen Resolution Settings
 xrandr -s '1920x1080'
 
@@ -58,7 +44,22 @@ sudo apt install \
     parallel \
     shutter \
     realpath \
-    libxml2-utils
+    libxml2-utils \
+    xserver-xorg-input-synaptics
+
+# Linux Touchpad Settings
+synclient RightButtonAreaTop=0
+grep -q 'RightButtonAreaTop=0' ~/.profile ||
+    echo 'synclient RightButtonAreaTop=0' >> ~/.profile
+synclient RightButtonAreaLeft=0
+grep -q 'RightButtonAreaLeft=0' ~/.profile ||
+    echo 'synclient RightButtonAreaLeft=0' >> ~/.profile
+    synclient PalmDetect=1
+grep -q 'PalmDetect=1' ~/.profile ||
+    echo 'synclient PalmDetect=1' >> ~/.profile
+synclient MaxTapTime=0
+grep -q 'MaxTapTime=0' ~/.profile ||
+    echo 'synclient MaxTapTime=0' >> ~/.profile
 
 cd /usr/share/doc/git/contrib/credential/libsecret
 sudo make
