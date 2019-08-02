@@ -75,6 +75,8 @@ alias ls='ls -1'
 
 # Support wildcards (*):
 shopt -s globstar
+# Include dotfiles (such as .gitignore) in wildcards (*):
+shopt -s dotglob
 # Support inverse wildcards (!):
 shopt -s extglob
 
